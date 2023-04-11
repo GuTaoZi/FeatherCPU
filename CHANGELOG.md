@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-[$\large\text{How to keep a changelog?}$](https://keepachangelog.com/en/1.1.0/)
+<font style="font-size: 1.5rem"><a href="https://keepachangelog.com/en/1.1.0/">How to keep a changelog?</a></font>
 
 1. For each version, put the new log on the top of the changelog.
 
