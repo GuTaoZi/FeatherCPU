@@ -1,5 +1,3 @@
-$\Huge\text{Feather CPU 🪶}$
-
 <img src="https://s2.loli.net/2023/04/11/4E56VmKJpYWvkXB.png" alt="icon.png" width='600px' />
 
 A lightweight CPU for basic MIPS instructions running on MINISYS. Project for CS214 Computer Organization.
@@ -46,3 +44,4 @@ The TODOs itself is now the main todo to do (^^ ;
 ## Changelog
 
 See [CHANGELOG.md](https://github.com/GuTaoZi/FeatherCPU/blob/main/CHANGELOG.md).
+
