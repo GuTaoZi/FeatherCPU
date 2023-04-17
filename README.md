@@ -2,7 +2,7 @@
 
 <img src="https://s2.loli.net/2023/04/12/K7ciZAVULrT6GCt.png" alt="icon.png" width='600px' />
 
-A lightweight CPU for basic MIPS instructions running on MINISYS. Project for CS214 Computer Organization.
+A lightweight CPU core for basic RV32I instructions running on MINISYS. Project for CS214 Computer Organization.
 
 ## Contributors
 
@@ -15,6 +15,10 @@ A lightweight CPU for basic MIPS instructions running on MINISYS. Project for CS
 
 The TODOs itself is now the main todo to do (^^ ;
 
+## Style Guide
+
+This project is written in [Verilog Coding Style](https://verilogcodingstyle.readthedocs.io/en/latest/index.html).
+
 ## CPU Features
 
 Ø ISA（含所有指令（指令名、对应编码、使用方式），参考的ISA，基于参考ISA本次作业所做的更新或优化；寄存器（位宽和数目）等信息）；对于异常处理的支持情况。 
@@ -23,7 +27,7 @@ The TODOs itself is now the main todo to do (^^ ;
 
 Ø 对外设IO的支持：采用单独的访问外设的指令（以及相应的指令）还是MMIO（以及相关外设对应的地址），采用轮询还是中断的方式访问IO。
 
-Ø CPU的CPI，属于单周期还是多周期CPU，是否支持pipel ine（如支持，是几级流水，采用什么方式解决的流水线冲突问题）。
+Ø CPU的CPI，属于单周期还是多周期CPU，是否支持pipeline（如支持，是几级流水，采用什么方式解决的流水线冲突问题）。
 
 ## CPU Interfaces
 
