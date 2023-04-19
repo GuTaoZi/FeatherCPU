@@ -27,11 +27,15 @@ This project is written in [Verilog Coding Style](https://verilogcodingstyle.rea
 
 Ø ISA（含所有指令（指令名、对应编码、使用方式），参考的ISA，基于参考ISA本次作业所做的更新或优化；寄存器（位宽和数目）等信息）；对于异常处理的支持情况。 
 
-### Instruction Format
 
-<img src="https://five-embeddev.com/riscv-isa-manual/latest/rv32_02.png" style="zoom: 67%;" />
 
 ### Instructions
+
+
+
+#### Instruction Format
+
+<img src="https://five-embeddev.com/riscv-isa-manual/latest/rv32_02.png" style="zoom: 67%;" />
 
 Instructions with \* are custom instructions beyond `RV32I`.
 
@@ -47,7 +51,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td><b>funct7</b></td>
         <td><b>Description</b></td>
         <td><b>Note</b></td>
-        </tr>
+    </tr>
     <tr>
         <td>add</td>
         <td>Add</td>
@@ -56,6 +60,15 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>0x00</td>
         <td>rd = rs1 + rs2</td>
         <td></td>
+    </tr>
+    <tr>
+        <td>mul</td>
+        <td>Mul</td>
+        <td>0110011</td>
+        <td>000</td>
+        <td>0x01</td>
+        <td>rd = rs1 * rs2</td>
+        <td>low 32 bits</td>
     </tr>
     <tr>
         <td>*addu</td>
@@ -90,7 +103,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>0110011</td>
         <td>001</td>
         <td>0x00</td>
-        <td>rd = rs1 &lt;&lt; rs2</td>
+        <td>rd = rs1 << rs2</td>
         <td></td>
     </tr>
     <tr>
@@ -99,7 +112,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>0110011</td>
         <td>010</td>
         <td>0x00</td>
-        <td>rd = rs1 &lt; rs2</td>
+        <td>rd = rs1 < rs2</td>
         <td></td>
     </tr>
     <tr>
@@ -108,7 +121,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>0110011</td>
         <td>011</td>
         <td>0x00</td>
-        <td>rd = rs1 &lt; rs2</td>
+        <td>rd = rs1 < rs2</td>
         <td>zero-extends</td>
     </tr>
     <tr>
@@ -121,12 +134,21 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td></td>
     </tr>
     <tr>
+        <td>div</td>
+        <td>Div</td>
+        <td>0110011</td>
+        <td>100</td>
+        <td>0x01</td>
+        <td>rs = rs1 / rs2</td>
+        <td></td>
+    </tr>
+    <tr>
         <td>srl</td>
         <td>Shift Right Logical</td>
         <td>0110011</td>
         <td>101</td>
         <td>0x00</td>
-        <td>rd = rs1 &gt;&gt; rs2</td>
+        <td>rd = rs1 >> rs2</td>
         <td></td>
     </tr>
     <tr>
@@ -135,7 +157,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>0110011</td>
         <td>101</td>
         <td>0x20</td>
-        <td>rd = rs1 &gt;&gt; rs2</td>
+        <td>rd = rs1 >> rs2</td>
         <td>msb-extends</td>
     </tr>
     <tr>
@@ -145,6 +167,15 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>110</td>
         <td>0x00</td>
         <td>rd = rs1 | rs2</td>
+        <td>rs2</td>
+    </tr>
+    <tr>
+        <td>rem</td>
+        <td>Remainder</td>
+        <td>0110011</td>
+        <td>110</td>
+        <td>0x01</td>
+        <td>rd = rs1 % rs2</td>
         <td></td>
     </tr>
     <tr>
@@ -153,7 +184,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>0110011</td>
         <td>111</td>
         <td>0x00</td>
-        <td>rd = rs1 &amp; rs2</td>
+        <td>rd = rs1 & rs2</td>
         <td></td>
     </tr>
 </table>
@@ -357,12 +388,12 @@ Instructions with \* are custom instructions beyond `RV32I`.
 <details>
 <table>
     <tr>
-        <td>Inst</td>
-        <td>Name</td>
-        <td>Opcode</td>
-        <td>funct3</td>
-        <td>Description</td>
-        <td>Note</td>
+        <td><b>Inst</b></td>
+        <td><b>Name</b></td>
+        <td><b>Opcode</b></td>
+        <td><b>funct3</b></td>
+        <td><b>Description</b></td>
+        <td><b>Note</b></td>
     </tr>
     <tr>
         <td>beq</td>
@@ -414,13 +445,58 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
+
 #### J type
 
-| Inst | Name              | funct3  | Description | Note |
-| ---- | ----------------- | ------- | ----------- | ---- |
-| jal  | Jump And Link     | 1101111 |             |      |
-| jalr | Jump And Link Reg | 1100111 |             |      |
+<details>
+<table>
+    <tr>
+        <td><b>Inst</b></td>
+        <td><b>Name</b></td>
+        <td><b>Opcode</b></td>
+        <td><b>funct3</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>jal</td>
+        <td>Jump And Link</td>
+        <td>1101111</td>
+        <td></td>
+        <td>rd = PC + 4, PC += imm</td>
+    </tr>
+    <tr>
+        <td>jalr</td>
+        <td>Jump And Link Reg</td>
+        <td>1100111</td>
+        <td>000</td>
+        <td>rd = PC + 4, PC = rs1 + imm</td>
+    </tr>
+</table>
+</details>
+#### U type
 
+<details>
+<table>
+    <tr>
+        <td>Inst</td>
+        <td>Name</td>
+        <td>Opcode</td>
+        <td>Description</td>
+    </tr>
+    <tr>
+        <td>lui</td>
+        <td>Load Upper Imm</td>
+        <td>0110111</td>
+        <td>rd = imm &lt;&lt; 12</td>
+    </tr>
+    <tr>
+        <td>auipc</td>
+        <td>Add Upper Imm to PC</td>
+        <td>0010111</td>
+        <td>rd = PC + (imm &lt;&lt; 12)</td>
+    </tr>
+</table>
+</details>
 Ø 寻址空间设计：属于冯.诺依曼结构还是哈佛结构；寻址单位，指令空间、数据空间的大小。 
 
 Ø 对外设IO的支持：采用单独的访问外设的指令（以及相应的指令）还是MMIO（以及相关外设对应的地址），采用轮询还是中断的方式访问IO。
