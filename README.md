@@ -416,11 +416,10 @@ Instructions with \* are custom instructions beyond `RV32I`.
 </details>
 #### J type
 
-| Inst | Name | funct3 | Description | Note |
-| ---- | ---- | ------ | ----------- | ---- |
-|      |      |        |             |      |
-|      |      |        |             |      |
-|      |      |        |             |      |
+| Inst | Name              | funct3  | Description | Note |
+| ---- | ----------------- | ------- | ----------- | ---- |
+| jal  | Jump And Link     | 1101111 |             |      |
+| jalr | Jump And Link Reg | 1100111 |             |      |
 
 Ø 寻址空间设计：属于冯.诺依曼结构还是哈佛结构；寻址单位，指令空间、数据空间的大小。 
 
