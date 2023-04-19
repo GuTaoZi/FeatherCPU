@@ -163,13 +163,13 @@ Instructions with \* are custom instructions beyond `RV32I`.
 <details>
 <table>
     <tr>
-        <td>Inst</td>
-        <td>Name</td>
-        <td>Opcode</td>
-        <td>funct3</td>
-        <td>imm[11:5]</td>
-        <td>Description</td>
-        <td>Note</td>
+        <td><b>Inst</b></td>
+        <td><b>Name</b></td>
+        <td><b>Opcode</b></td>
+        <td><b>funct3</b></td>
+        <td><b>imm[11:5]</b></td>
+        <td><b>Description</b></td>
+        <td><b>Note</b></td>
     </tr>
     <tr>
         <td>addi</td>
@@ -317,14 +317,110 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
-
 #### S type
 
-|      |      |      |      |      |      |
-| ---- | ---- | ---- | ---- | ---- | ---- |
-|      |      |      |      |      |      |
-|      |      |      |      |      |      |
-|      |      |      |      |      |      |
+<details>
+<table>
+    <tr>
+        <td><b>Inst</b></td>
+        <td><b>Name</b></td>
+        <td><b>Opcode</b></td>
+        <td><b>funct3</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>sb</td>
+        <td>Store Byte</td>
+        <td>0100011</td>
+        <td>000</td>
+        <td>M[rs1+imm][0:7]=rs2[0:7]</td>
+    </tr>
+    <tr>
+        <td>sh</td>
+        <td>Store Half</td>
+        <td>0100011</td>
+        <td>001</td>
+        <td>M[rs1+imm][0:15]=rs2[0:15]</td>
+    </tr>
+    <tr>
+        <td>sw</td>
+        <td>Store Word</td>
+        <td>0100011</td>
+        <td>010</td>
+        <td>M[rs1+imm][0:31]=rs2[0:31]</td>
+    </tr>
+</table>
+</details>
+
+#### B type 
+
+<details>
+<table>
+    <tr>
+        <td>Inst</td>
+        <td>Name</td>
+        <td>Opcode</td>
+        <td>funct3</td>
+        <td>Description</td>
+        <td>Note</td>
+    </tr>
+    <tr>
+        <td>beq</td>
+        <td>Branch ==</td>
+        <td>1100011</td>
+        <td>000</td>
+        <td>if(rs1 == rs2) PC+=imm</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>bne</td>
+        <td>Branch !=</td>
+        <td>1100011</td>
+        <td>001</td>
+        <td>if(rs1 != rs2) PC+=imm</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>blt</td>
+        <td>Branch &lt;</td>
+        <td>1100011</td>
+        <td>100</td>
+        <td>if(rs1 &lt; rs2) PC+=imm</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>bge</td>
+        <td>Branch ≥</td>
+        <td>1100011</td>
+        <td>101</td>
+        <td>if(rs1 &gt;= rs2) PC+=imm</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>bltu</td>
+        <td>Unsigned Branch &lt;</td>
+        <td>1100011</td>
+        <td>110</td>
+        <td>if(rs1 &lt; rs2) PC+=imm</td>
+        <td>zero-extends</td>
+    </tr>
+    <tr>
+        <td>bgeu</td>
+        <td>Unsigned Branch ≥</td>
+        <td>1100011</td>
+        <td>111</td>
+        <td>if(rs1 &gt;= rs2) PC+=imm</td>
+        <td>zero-extends</td>
+    </tr>
+</table>
+</details>
+#### J type
+
+| Inst | Name | funct3 | Description | Note |
+| ---- | ---- | ------ | ----------- | ---- |
+|      |      |        |             |      |
+|      |      |        |             |      |
+|      |      |        |             |      |
 
 Ø 寻址空间设计：属于冯.诺依曼结构还是哈佛结构；寻址单位，指令空间、数据空间的大小。 
 
