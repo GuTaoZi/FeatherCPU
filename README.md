@@ -46,7 +46,7 @@ This custom ISA is designed based on `RV32I`.
 
 Some signed instructions beyond RV32I are implemented in this ISA. 
 
-For more details, see [Feather ISA](doc/FeatherISA.html).
+For more details, see [Feather ISA](doc/FeatherISA.md).
 
 ## CPU Interfaces
 
