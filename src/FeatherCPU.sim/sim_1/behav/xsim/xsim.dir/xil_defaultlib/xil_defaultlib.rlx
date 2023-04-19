@@ -1,0 +1,9 @@
+0.7
+2020.2
+Oct 14 2022
+05:20:55
+E:/Computer_Organization/FeatherCPU/src/FeatherCPU.sim/sim_1/behav/xsim/glbl.v,1665704903,verilog,,,,glbl,,,,,,,,
+E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sim_1/new/SignedTest.v,1681883442,verilog,,,,SignedTest,,,../../../../FeatherCPU.srcs/sources_1/new,,,,,
+E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InstDecoder.v,1681874764,verilog,,,E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ParamDef.vh;E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InstDef.vh,inst_decoder,,,../../../../FeatherCPU.srcs/sources_1/new,,,,,
+E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InstDef.vh,1681883442,verilog,,,,,,,,,,,,
+E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ParamDef.vh,1681873806,verilog,,,,,,,,,,,,
