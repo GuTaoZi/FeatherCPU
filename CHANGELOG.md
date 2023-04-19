@@ -11,9 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Create the Vivado project source
-- ADD `.gitignore`
-- Update ISA in `README`
+- Add `.gitignore`
 - Add `rars2coe.cpp` to convert rars output assemble code to coe file
+- Add Chinese version README and TODOs
+- Basic ISA design done, introduction of ISA split into `doc/FeatherISA.md`
 
 ## [0.0.1] - 2023-04-12
 
