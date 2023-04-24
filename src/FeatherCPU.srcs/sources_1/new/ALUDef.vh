@@ -17,3 +17,5 @@
 `define ALU_SLT 6'b0101_00
 
 `define ALU_ERR 6'b1111_11
+`define ALU_SLTU 6'b0101_00
+`define ALU_SLT  6'b0101_01
