@@ -4,6 +4,8 @@
 
 A lightweight CPU core for basic RV32I instructions running on MINISYS. Project for CS214 Computer Organization.
 
+For Chinese README, see [README_CN](doc/README_CN.pdf).
+
 ## Contributors
 
 | SID      | Name                                              | Contributions | Contribution Rate |
