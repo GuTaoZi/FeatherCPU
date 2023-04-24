@@ -1,9 +1,17 @@
-`define ALU_SUM 5'b00000
-`define ALU_ADD 6'b000000
-`define ALU_SUB 6'b000001
 
-`define ALU_MAD 5'b00001
-`define ALU_MUL 6'b000010
-`define ALU_DIV 6'b000011
+`define ALU_ADD 6'b0001_00
+`define ALU_SUB 6'b0001_01
 
-`define ALU_SLL 4'b0000
+`define ALU_MUL 6'b0010_00
+`define ALU_DIV 6'b0010_01
+`define ALU_REM 6'b0010_10
+
+`define ALU_SLL 6'b0011_00
+`define ALU_SRL 6'b0011_10
+`define ALU_SRA 6'b0011_11
+
+`define ALU_AND 6'b0100_00
+`define ALU_OR  6'b0100_01
+`define ALU_XOR 6'b0100_10
+
+`define ALU_SLT 6'b0101_00
