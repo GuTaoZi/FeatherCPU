@@ -14,5 +14,8 @@
 `define ALU_OR  6'b0100_01
 `define ALU_XOR 6'b0100_10
 
+`define ALU_SLT 6'b0101_00
+
+`define ALU_ERR 6'b1111_11
 `define ALU_SLTU 6'b0101_00
 `define ALU_SLT  6'b0101_01

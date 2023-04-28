@@ -50,7 +50,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>Unsigned Add</td>
         <td>0110011</td>
         <td>000</td>
-        <td>0x10</td>
+        <td>0x02</td>
         <td>rd = rs1 + rs2</td>
         <td>ignore overflow</td>
     </tr>
@@ -68,7 +68,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>Unsigned Sub</td>
         <td>0110011</td>
         <td>000</td>
-        <td>0x30</td>
+        <td>0x04</td>
         <td>rd = rs1 - rs2</td>
         <td>ignore overflow</td>
     </tr>
@@ -480,4 +480,3 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
-

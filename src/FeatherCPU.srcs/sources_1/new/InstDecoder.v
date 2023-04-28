@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 `include "ParamDef.vh"
 `include "InstDef.vh"
+`include "ALUDef.vh"
 
 module inst_decoder(
     input[`INST_LEN] i_inst,
@@ -29,5 +30,24 @@ assign imm_S = {i_inst[31:25],i_inst[11:7]};
 assign imm_B = {{20{i_inst[31]}},i_inst[19:12],i_inst[20],i_inst[30:21],1'b0};
 assign imm_U = {i_inst[31:12],12'b0};
 assign imm_J = {{12{i_inst[31]}}, i_inst[19:12],i_inst[20], i_inst[30:21],1'b0};
+
+assign o_alu_op = funct3?(
+    (funct3==3'b001)? `ALU_SLL: // sll
+    (funct3==3'b010)? `ALU_SLT: // slt
+    (funct3==3'b011)? `ALU_SLT: // sltu
+    (funct3==3'b100)? ((funct7[0])?`ALU_DIV:`ALU_XOR): // div : xor
+    (funct3==3'b101)? ((funct7[5])?`ALU_SRA:`ALU_SRL): // sra : srl
+    (funct3==3'b110)? ((funct7[0])?`ALU_REM:`ALU_OR):  // rem : or
+    (funct3==3'b111)? `ALU_AND: // and
+    `ALU_ERR // err
+):
+(
+    (funct7==7'b000_0000)? `ALU_ADD: // add
+    (funct7==7'b000_0001)? `ALU_MUL: // mul
+    (funct7==7'b000_0010)? `ALU_ADD: // addu
+    (funct7==7'b010_0000)? `ALU_SUB: // sub
+    (funct7==7'b000_0100)? `ALU_SUB: // subu
+    `ALU_ERR // err
+);
 
 endmodule
