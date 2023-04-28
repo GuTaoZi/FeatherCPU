@@ -28,7 +28,8 @@ input   [`INST_LEN]     write_data,
 input                   clk, // Be aware of that NEED 2 CYCLES to read data
 output  [`INST_LEN]     ins
     );
+wire [`REG_WIDTH] mem_addr;
 assign mem_addr = write_enable ? write_addr : pc;
-ins_mem im(.addra(mem_addr), .clka(clk), .dina(write_data), .douta(ins), .wea(write_enable));
+ins_mem im(.addra(mem_addr[13:0]), .clka(clk), .dina(write_data), .douta(ins), .wea(write_enable));
 
 endmodule
