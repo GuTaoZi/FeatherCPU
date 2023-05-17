@@ -35,7 +35,7 @@ reg [`REG_WIDTH] registers [`REG_NUMBERS : 0];
 
 always @(negedge clk)
 begin
-    if(RegWrite) begin
+    if(RegWrite && write_addr != 5'b00000) begin
         registers[write_addr] <= write_data;
     end
 end
