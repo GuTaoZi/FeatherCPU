@@ -56,7 +56,7 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// upg_clk_i__10.00000______0.000______50.0______290.478____133.882
+// upg_clk_o__10.00000______0.000______50.0______290.478____133.882
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -69,7 +69,7 @@ module upg_clk_wiz_clk_wiz
 
  (// Clock in ports
   // Clock out ports
-  output        upg_clk_i,
+  output        upg_clk_o,
   // Status and control signals
   input         reset,
   output        locked,
@@ -93,7 +93,7 @@ wire clk_in2_upg_clk_wiz;
   //    * Unused inputs are tied off
   //    * Unused outputs are labeled unused
 
-  wire        upg_clk_i_upg_clk_wiz;
+  wire        upg_clk_o_upg_clk_wiz;
   wire        clk_out2_upg_clk_wiz;
   wire        clk_out3_upg_clk_wiz;
   wire        clk_out4_upg_clk_wiz;
@@ -141,7 +141,7 @@ wire clk_in2_upg_clk_wiz;
    (
     .CLKFBOUT            (clkfbout_upg_clk_wiz),
     .CLKFBOUTB           (clkfboutb_unused),
-    .CLKOUT0             (upg_clk_i_upg_clk_wiz),
+    .CLKOUT0             (upg_clk_o_upg_clk_wiz),
     .CLKOUT0B            (clkout0b_unused),
     .CLKOUT1             (clkout1_unused),
     .CLKOUT1B            (clkout1b_unused),
@@ -195,8 +195,8 @@ wire clk_in2_upg_clk_wiz;
 
 
   BUFG clkout1_buf
-   (.O   (upg_clk_i),
-    .I   (upg_clk_i_upg_clk_wiz));
+   (.O   (upg_clk_o),
+    .I   (upg_clk_o_upg_clk_wiz));
 
 
 

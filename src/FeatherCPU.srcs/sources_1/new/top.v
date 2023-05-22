@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 `include "ParamDef.vh"
 
-module top(
+module Top(
     input clk,
     input rst,
     input upg_rx,
@@ -56,14 +56,16 @@ wire [31:0] pc;
 wire [31:0] inst;
 
 InsMem u_InsMem(
-    .pc(pc),
-    .clk(clk),
-    .uart_ena(uart_ena),
-    .uart_done(uart_addr[14] == 1'b1 ? 1 : uart_done),
-    .uart_clk(uart_clk),
-    .uart_addr(uart_addr[13:0]),
-    .uart_data(uart_data),
-    .inst(inst)
+    .i_pc(pc),
+    .i_clk(clk),
+    .i_uart_ena(uart_ena),
+    .i_uart_done(uart_addr[14] == 1'b1 ? 1 : uart_done),
+    .i_uart_clk(uart_clk),
+    .i_uart_addr(uart_addr[13:0]),
+    .i_uart_data(uart_data),
+    ///input///
+    ///output///
+    .o_inst(inst)
 );
 
 // direct from decoder, some of them might be none of use (like non-sense rd)
@@ -86,6 +88,8 @@ wire [2:0] inst_type;
 
 inst_decoder u_inst_decoder(
     .i_inst(inst),
+    ///input///
+    ///output///
     .o_rs1_idx(rs1_idx_raw),
     .o_rs2_idx(rs2_idx_raw),
     .o_rd_idx(rd_idx_raw),
@@ -105,17 +109,17 @@ wire [`REG_WIDTH] reg_data2;
 wire register_write_enable_of_id_and_pc=(state==2'b00)&(reg_write_en_from_id | (inst_type==`J_TYPE));
 
 Register u_Register(
-    .read_addr1(rs1_idx_raw),
-    .read_addr2(rs2_idx_raw),
-    .write_addr(rd_idx_raw),
-    .write_data(data_from_mem),
-    .write_en(register_write_enable_of_id_and_pc),
-    .clk(cpu_clk),
-    .rst(rst),
+    .i_read_addr1(rs1_idx_raw),
+    .i_read_addr2(rs2_idx_raw),
+    .i_write_addr(rd_idx_raw),
+    .i_write_data(data_from_mem),
+    .i_write_en(register_write_enable_of_id_and_pc),
+    .i_clk(cpu_clk),
+    .i_rst(rst),
     ///input///
     ///output///
-    .read_data1(reg_data1),
-    .read_data2(reg_data2)
+    .o_read_data1(reg_data1),
+    .o_read_data2(reg_data2)
 );
 
 wire [`REG_WIDTH] src1 = 
@@ -141,15 +145,15 @@ wire overflow_raw;
 
 
 ALU alu(
-    .src1(src1),
-    .src2(src2),
-    .branch_val_i(imm_raw),
-    .ALU_op(alu_op_raw),
-    .rst(rst),
+    .i_src1(src1),
+    .i_src2(src2),
+    .i_branch_val_i(imm_raw),
+    .i_ALU_op(alu_op_raw),
+    .i_rst(rst),
     ///input///
     ///output///
-    .ALU_ouput(alu_opt),
-    .overflow(overflow_raw)
+    .o_ALU_ouput(alu_opt),
+    .o_overflow(overflow_raw)
 );
 
 wire [`REG_WIDTH] hdw_switch_data;
@@ -175,32 +179,32 @@ DMA dma(
 );
 
 Keyboard_N_Segtube u_keyboard_segtube(
-    .clk(clk),
-    .rst(rst),
-    .row(kb_row),
+    .i_clk(clk),
+    .i_rst(rst),
+    .i_row(kb_row),
     ///input///
     ///output///
-    .col(kb_col),
-    .data(hdw_switch_data),
-    .seg_cho(seg_cho),
-    .seg_lit(seg_lit)
+    .o_col(kb_col),
+    .o_data(hdw_switch_data),
+    .o_seg_cho(seg_cho),
+    .o_seg_lit(seg_lit)
 );
 
 wire [`REG_WIDTH] pc_write_into_rs1;
 
 PC u_PC(
-    .clk(cpu_clk),
-    .rst(rst),
-    .Jal((inst[6:0]==`J_JAL)?1'b1:1'b0),
-    .Jalr((inst[6:0]==`J_JALR)?1'b1:1'b0),
-    .pc_en((state==2'b00)),
-    .branch((inst_type==`B_TYPE)?1'b1:1'b0),
-    .Jal_imm(imm_raw),
-    .alu_val(alu_opt), // from ALU
+    .i_clk(cpu_clk),
+    .i_rst(rst),
+    .i_Jal((inst[6:0]==`J_JAL)?1'b1:1'b0),
+    .i_Jalr((inst[6:0]==`J_JALR)?1'b1:1'b0),
+    .i_pc_en((state==2'b00)),
+    .i_branch((inst_type==`B_TYPE)?1'b1:1'b0),
+    .i_Jal_imm(imm_raw),
+    .i_alu_val(alu_opt), // from ALU
     ///input///
     ///output///
-    .pc(pc),
-    .pc_rb(pc_write_into_rs1)
+    .o_pc(pc),
+    .o_pc_rb(pc_write_into_rs1)
 );
 
 endmodule

@@ -164,8 +164,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
-
-
 ### I type
 
 <details>
@@ -270,16 +268,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
             <td></td>
         </tr>
         <tr>
-            <td>ecall</td>
-            <td>Environment Call</td>
-            <td>1110011</td>
-            <td>000</td>
-            <td></td>
-            <td>Transfer control to OS</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>ebreak</td>
+            <td>ebreak(optional)</td>
             <td>Environment Break</td>
             <td>1110011</td>
             <td>000</td>
@@ -289,6 +278,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         </tr>
     </table>
 </details>
+
 
 ### S type
 
@@ -310,8 +300,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
-
-
 
 ### B type 
 
@@ -341,41 +329,8 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>if(rs1 != rs2) PC+=imm</td>
         <td></td>
     </tr>
-    <tr>
-        <td>blt</td>
-        <td>Branch &lt;</td>
-        <td>1100011</td>
-        <td>100</td>
-        <td>if(rs1 &lt; rs2) PC+=imm</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>bge</td>
-        <td>Branch ≥</td>
-        <td>1100011</td>
-        <td>101</td>
-        <td>if(rs1 &gt;= rs2) PC+=imm</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>bltu</td>
-        <td>Unsigned Branch &lt;</td>
-        <td>1100011</td>
-        <td>110</td>
-        <td>if(rs1 &lt; rs2) PC+=imm</td>
-        <td>zero-extends</td>
-    </tr>
-    <tr>
-        <td>bgeu</td>
-        <td>Unsigned Branch ≥</td>
-        <td>1100011</td>
-        <td>111</td>
-        <td>if(rs1 &gt;= rs2) PC+=imm</td>
-        <td>zero-extends</td>
-    </tr>
 </table>
 </details>
-
 
 ### J type
 
@@ -392,7 +347,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>jal</td>
         <td>Jump And Link</td>
         <td>1101111</td>
-        <td></td>
+        <td>000</td>
         <td>rd = PC + 4, PC += imm</td>
     </tr>
     <tr>
@@ -404,7 +359,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
-
 
 ### U type
 
@@ -422,11 +376,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td>0110111</td>
         <td>rd = imm &lt;&lt; 12</td>
     </tr>
-    <tr>
-        <td>auipc</td>
-        <td>Add Upper Imm to PC</td>
-        <td>0010111</td>
-        <td>rd = PC + (imm &lt;&lt; 12)</td>
-    </tr>
 </table>
 </details>
+

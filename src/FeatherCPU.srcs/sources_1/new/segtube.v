@@ -1,12 +1,11 @@
 `timescale 1ns / 1ps
 
-
 module segtube(
-    input clk,
-    input [31:0] dat,
-    output reg[7:0] seg_cho,
-    output reg[7:0] seg_lit
-    );
+    input i_clk,
+    input [31:0] i_dat,
+    output reg[7:0] o_seg_cho,
+    output reg[7:0] o_seg_lit
+);
 
 wire[7:0] num2seg [15:0];
 assign num2seg[0] = 8'b1100_0000; // 0
@@ -28,18 +27,18 @@ assign num2seg[15] = 8'b1000_1110; // F
 
 wire [3:0] val [7:0];
 
-assign val[0] = {dat[3:0]};
-assign val[1] = {dat[7:4]};
-assign val[2] = {dat[11:8]};
-assign val[3] = {dat[15:12]};
-assign val[4] = {dat[19:16]};
-assign val[5] = {dat[23:20]};
-assign val[6] = {dat[27:24]};
-assign val[7] = {dat[31:28]};
+assign val[0] = {i_dat[3:0]};
+assign val[1] = {i_dat[7:4]};
+assign val[2] = {i_dat[11:8]};
+assign val[3] = {i_dat[15:12]};
+assign val[4] = {i_dat[19:16]};
+assign val[5] = {i_dat[23:20]};
+assign val[6] = {i_dat[27:24]};
+assign val[7] = {i_dat[31:28]};
 
 reg [16:0] cnt;
 
-always @(posedge clk)
+always @(posedge i_clk)
 begin
     cnt <= cnt + 1'b1;
 end
@@ -53,8 +52,8 @@ reg [7:0] tmp = 8'b1111_1110;
 
 always @(posedge seg_clk)
 begin
-    seg_cho = cho;
-    seg_lit = num2seg[val[counter]];
+    o_seg_cho = cho;
+    o_seg_lit = num2seg[val[counter]];
     counter = counter + 1'b1;
     tmp = (cho << 1'b1) ^ 1'b1;
     cho = (tmp == 8'b1111_1111)? 8'b1111_1110:tmp;

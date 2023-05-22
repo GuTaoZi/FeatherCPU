@@ -6,7 +6,66 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## [0.0.2] - 2023-04-19
+## [0.3.4] - 2023-05-23
+
+### Changed
+
+- Organize the project structure a little bit
+- Format the interfaces' names for every module
+
+### Fixed
+
+- Fix some micro-bugs, now synthesis design passed
+
+## [0.3.3] - 2023-05-22
+
+### Added
+
+- `uart` IP core for uart input
+- Complete the basic connection between modules in `top.v`
+
+### Changed
+
+- Modify the definition headers to accommodate more features
+- Strengthen the `InstDecoder.v`  ,`ALU.v`, `reg.v` module for more functions
+- Implement `J type` instructions by reinforcing `PC.v`
+- Simplified the ISA, making the project *lightweight* as a feather
+
+### Fixed
+
+- Fix some bugs of `keyboard.v`
+- Fix the Minisys board LED problem
+
+## [0.3.2] - 2023-05-14
+
+### Added
+
+- Add `DMA.v`, the memory-mapped IO module
+- Add `keyboard.v` and `segtube.v`, handling the hardware IO
+- Add `top.v`, initialize the development of the top module
+
+## [0.3.1] - 2023-05-04
+
+### Added
+
+- Add `PC.v` module
+- Add `reg.v` module
+
+### Changed
+
+- Complete basic `InstDecoder`, a relative complete ID module
+- Complete basic `ALU.v` module
+
+## [0.3.0] - 2023-04-26
+
+### Added
+
+- Add definition headers: `ParamDef.vh`, `ALUDef.vh`, `InstDef.vh`
+- Add `ALU.v`
+- Add `InstDecoder.v`, naive version of controller
+- Add `InstMemory` and `DataMemory`
+
+## [0.2.0] - 2023-04-19
 
 ### Added
 
@@ -16,7 +75,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Add Chinese version README and TODOs
 - Basic ISA design done, introduction of ISA split into `doc/FeatherISA.md`
 
-## [0.0.1] - 2023-04-12
+## [0.1.0] - 2023-04-12
 
 ### Added
 

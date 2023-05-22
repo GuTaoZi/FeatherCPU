@@ -3,15 +3,15 @@
 `include "ParamDef.vh"
 
 module DataMem(
-input   [`REG_WIDTH]    addr,
-input   [`REG_WIDTH]    write_data,
-input                   mem_read,
-input                   mem_write,
-input                   clk, // NEDD 2 CYCLES !!
-output  [`REG_WIDTH]    read_data
-    );
+    input   [`REG_WIDTH]    i_addr,
+    input   [`REG_WIDTH]    i_write_data,
+    input                   i_mem_read,
+    input                   i_mem_write,
+    input                   i_clk, // NEDD 2 CYCLES !!
+    output  [`REG_WIDTH]    o_read_data
+);
 wire [`REG_WIDTH] mem_out;
-assign read_data = mem_read ? mem_out : 32'b0;
-data_mem dm(.addra(addr[13:0]), .clka(clk), .dina(write_data), .douta(mem_out), .wea(mem_write));
+assign o_read_data = i_mem_read ? mem_out : 32'b0;
+data_mem dm(.addra(i_addr[13:0]), .clka(i_clk), .dina(i_write_data), .douta(mem_out), .wea(i_mem_write));
 
 endmodule

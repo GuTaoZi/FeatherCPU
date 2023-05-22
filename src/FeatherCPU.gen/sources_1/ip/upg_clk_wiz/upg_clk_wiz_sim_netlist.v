@@ -1,7 +1,7 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-// Date        : Mon May 22 17:06:50 2023
+// Date        : Tue May 23 01:19:46 2023
 // Host        : FIRST-MICROSOFT running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_sim_netlist.v
@@ -14,11 +14,11 @@
 
 (* NotValidForBitStream *)
 module upg_clk_wiz
-   (upg_clk_i,
+   (upg_clk_o,
     reset,
     locked,
     clk_in1);
-  output upg_clk_i;
+  output upg_clk_o;
   input reset;
   output locked;
   input clk_in1;
@@ -26,21 +26,21 @@ module upg_clk_wiz
   (* IBUF_LOW_PWR *) wire clk_in1;
   wire locked;
   wire reset;
-  wire upg_clk_i;
+  wire upg_clk_o;
 
   upg_clk_wiz_clk_wiz inst
        (.clk_in1(clk_in1),
         .locked(locked),
         .reset(reset),
-        .upg_clk_i(upg_clk_i));
+        .upg_clk_o(upg_clk_o));
 endmodule
 
 module upg_clk_wiz_clk_wiz
-   (upg_clk_i,
+   (upg_clk_o,
     reset,
     locked,
     clk_in1);
-  output upg_clk_i;
+  output upg_clk_o;
   input reset;
   output locked;
   input clk_in1;
@@ -51,8 +51,8 @@ module upg_clk_wiz_clk_wiz
   wire clkfbout_upg_clk_wiz;
   wire locked;
   wire reset;
-  wire upg_clk_i;
-  wire upg_clk_i_upg_clk_wiz;
+  wire upg_clk_o;
+  wire upg_clk_o_upg_clk_wiz;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
@@ -86,8 +86,8 @@ module upg_clk_wiz_clk_wiz
         .O(clk_in1_upg_clk_wiz));
   (* BOX_TYPE = "PRIMITIVE" *) 
   BUFG clkout1_buf
-       (.I(upg_clk_i_upg_clk_wiz),
-        .O(upg_clk_i));
+       (.I(upg_clk_o_upg_clk_wiz),
+        .O(upg_clk_o));
   (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
@@ -147,7 +147,7 @@ module upg_clk_wiz_clk_wiz
         .CLKIN2(1'b0),
         .CLKINSEL(1'b1),
         .CLKINSTOPPED(NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED),
-        .CLKOUT0(upg_clk_i_upg_clk_wiz),
+        .CLKOUT0(upg_clk_o_upg_clk_wiz),
         .CLKOUT0B(NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED),
         .CLKOUT1(NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED),
         .CLKOUT1B(NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED),

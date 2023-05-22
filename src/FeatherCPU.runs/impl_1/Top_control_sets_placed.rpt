@@ -1,0 +1,108 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Tue May 23 01:23:36 2023
+| Host         : FIRST-MICROSOFT running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
+| Design       : Top
+| Device       : xc7a35t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    30 |
+|    Minimum number of control sets                        |    30 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    88 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    30 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     5 |
+| >= 6 to < 8        |     3 |
+| >= 8 to < 10       |     8 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    11 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              59 |           16 |
+| No           | No                    | Yes                    |              13 |            7 |
+| No           | Yes                   | No                     |             103 |           29 |
+| Yes          | No                    | No                     |              13 |            3 |
+| Yes          | No                    | Yes                    |             174 |           49 |
+| Yes          | Yes                   | No                     |              30 |            9 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|                Clock Signal                |                                                     Enable Signal                                                     |                                                        Set/Reset Signal                                                        | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  u_uart0/inst/upg_inst/rdStat_BUFG         |                                                                                                                       | rst_IBUF                                                                                                                       |                2 |              2 |         1.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/s_axi_wdata                                                                                     |                                                                                                                                |                1 |              3 |         3.00 |
+|  u_keyboard_segtube/kb/p_0_in__0           |                                                                                                                       |                                                                                                                                |                2 |              4 |         2.00 |
+|  u_keyboard_segtube/kb/p_0_in__0           | u_keyboard_segtube/kb/o_data[3]_i_1_n_0                                                                               | rst_IBUF                                                                                                                       |                1 |              4 |         4.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start2                                      | u_uart0/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_ce_clr                                  |                1 |              4 |         4.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/BAUD_RATE_I/en_16x_Baud                                        |                                                                                                                                |                1 |              4 |         4.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/s_axi_wdata                                                                                     | u_uart0/inst/upg_inst/s_axi_wdata[6]_i_1_n_0                                                                                   |                2 |              4 |         2.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                       | u_uart0/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/UARTLITE_RX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/SS[0] |                2 |              6 |         3.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                       | u_uart0/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/UARTLITE_TX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/SS[0] |                3 |              6 |         2.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/fifo_wr                           |                                                                                                                                |                1 |              7 |         7.00 |
+|  u_keyboard_segtube/sg/seg_clk             |                                                                                                                       | u_keyboard_segtube/sg/cho0                                                                                                     |                1 |              8 |         8.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                       | u_uart0/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst                                                  |                3 |              8 |         2.67 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/UARTLITE_RX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/fifo_wr |                                                                                                                                |                1 |              8 |         8.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i                               | u_uart0/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst                                                  |                2 |              8 |         4.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/uart_rdat                                                                                       |                                                                                                                                |                1 |              8 |         8.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/msg_indx[7]_i_1_n_0                                                                             | rst_IBUF                                                                                                                       |                4 |              8 |         2.00 |
+|  u_uart0/inst/upg_inst/rdStat_BUFG         | u_uart0/inst/upg_inst/s_axi_aresetn0                                                                                  | rst_IBUF                                                                                                                       |                5 |              8 |         1.60 |
+|  u_uart0/inst/upg_inst/rdStat_BUFG         | u_uart0/inst/upg_inst/byte_len[7]_i_1_n_0                                                                             | rst_IBUF                                                                                                                       |                2 |              9 |         4.50 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/BAUD_RATE_I/en_16x_Baud                                        | rst_IBUF                                                                                                                       |                3 |             10 |         3.33 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/wwait_cnt[15]_i_1_n_0                                                                           | rst_IBUF                                                                                                                       |                4 |             16 |         4.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG | u_uart0/inst/upg_inst/rwait_cnt[15]_i_1_n_0                                                                           | rst_IBUF                                                                                                                       |                5 |             16 |         3.20 |
+|  clk_IBUF_BUFG                             |                                                                                                                       |                                                                                                                                |                5 |             17 |         3.40 |
+|  u_keyboard_segtube/sg/seg_clk             |                                                                                                                       |                                                                                                                                |                3 |             18 |         6.00 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                       |                                                                                                                                |                6 |             20 |         3.33 |
+|  clk_IBUF_BUFG                             |                                                                                                                       | rst_IBUF                                                                                                                       |                6 |             21 |         3.50 |
+|  ena                                       |                                                                                                                       | u_keyboard_segtube/my_data[31]_i_1_n_0                                                                                         |                8 |             32 |         4.00 |
+|  u_uart0/inst/upg_inst/rdStat_BUFG         | u_uart0/inst/upg_inst/byte_cnt                                                                                        | rst_IBUF                                                                                                                       |                9 |             32 |         3.56 |
+|  u_uart0/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                       | rst_IBUF                                                                                                                       |               11 |             33 |         3.00 |
+|  u_uart0/inst/upg_inst/rdStat_BUFG         | u_uart0/inst/upg_inst/byte_num                                                                                        | rst_IBUF                                                                                                                       |                9 |             36 |         4.00 |
+|  u_uart0/inst/upg_inst/rdStat_BUFG         | u_uart0/inst/upg_inst/wr_byte_num_done                                                                                | rst_IBUF                                                                                                                       |               11 |             49 |         4.45 |
++--------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

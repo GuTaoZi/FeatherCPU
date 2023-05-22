@@ -3,25 +3,25 @@
 `include "ParamDef.vh"
 
 module Register(
-input   [`REG_IDX_LEN]  read_addr1,
-input   [`REG_IDX_LEN]  read_addr2,
-input   [`REG_IDX_LEN]  write_addr,
-input   [`REG_WIDTH]    write_data,
-input                   write_en,
-input                   clk,
-input                   rst,
-output [`REG_WIDTH] read_data1,
-output [`REG_WIDTH] read_data2,
-output [`REG_WIDTH] read_ra
-    );
+    input   [`REG_IDX_LEN]  i_read_addr1,
+    input   [`REG_IDX_LEN]  i_read_addr2,
+    input   [`REG_IDX_LEN]  i_write_addr,
+    input   [`REG_WIDTH]    i_write_data,
+    input                   i_write_en,
+    input                   i_clk,
+    input                   i_rst,
+    output [`REG_WIDTH] o_read_data1,
+    output [`REG_WIDTH] o_read_data2,
+    output [`REG_WIDTH] o_read_ra
+);
 
 reg [`REG_WIDTH] registers [`REG_NUMBERS : 0];
 
-assign read_ra = registers[2];
+assign o_read_ra = registers[2];
 
-always @(negedge clk)
+always @(negedge i_clk)
 begin
-    if(rst) begin
+    if(i_rst) begin
         registers[0] <= 32'h0000_0000;
         registers[1] <= 32'h0000_0000;
         registers[2] <= 32'h0000_3fe0;
@@ -55,13 +55,13 @@ begin
         registers[30] <= 32'h0000_0000;
         registers[31] <= 32'h0000_0000;
     end else begin
-        if(write_en && write_addr != 5'b00000) begin
-            registers[write_addr] <= write_data;
+        if(i_write_en && i_write_addr != 5'b00000) begin
+            registers[i_write_addr] <= i_write_data;
         end
     end
 end
 
-assign read_data1 = registers[read_addr1];
-assign read_data2 = registers[read_addr2];
+assign o_read_data1 = registers[i_read_addr1];
+assign o_read_data2 = registers[i_read_addr2];
 
 endmodule

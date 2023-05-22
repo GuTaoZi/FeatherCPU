@@ -56,7 +56,7 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// upg_clk_i__10.00000______0.000______50.0______290.478____133.882
+// upg_clk_o__10.00000______0.000______50.0______290.478____133.882
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -70,7 +70,7 @@
 module upg_clk_wiz 
  (
   // Clock out ports
-  output        upg_clk_i,
+  output        upg_clk_o,
   // Status and control signals
   input         reset,
   output        locked,
@@ -81,7 +81,7 @@ module upg_clk_wiz
   upg_clk_wiz_clk_wiz inst
   (
   // Clock out ports  
-  .upg_clk_i(upg_clk_i),
+  .upg_clk_o(upg_clk_o),
   // Status and control signals               
   .reset(reset), 
   .locked(locked),

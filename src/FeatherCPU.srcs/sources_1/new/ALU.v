@@ -4,40 +4,41 @@
 `include "ALUDef.vh"
 
 module ALU(
-input [`REG_WIDTH]    src1,
-input [`REG_WIDTH]    src2,
-input [`REG_WIDTH]    branch_val_i,
-input [`ALU_OP_LEN]   ALU_op,
-input                 rst,
-output [`REG_WIDTH]   ALU_ouput,
-output                overflow
-    );
+    input [`REG_WIDTH]    i_src1,
+    input [`REG_WIDTH]    i_src2,
+    input [`REG_WIDTH]    i_branch_val_i,
+    input [`ALU_OP_LEN]   i_ALU_op,
+    input                 i_rst,
+    output [`REG_WIDTH]   o_ALU_ouput,
+    output                o_overflow
+);
+
 wire [`REG_WIDTH] sum;
 wire [`REG_WIDTH] mul;
 wire [`REG_WIDTH] shift;
 wire [`REG_WIDTH] binary;
 wire [`REG_WIDTH] slt;
 
-assign sum      = ALU_op[0] ? src1 - src2 : src1 + src2;
-assign mul      = ALU_op[0] ? src1 / src2 : (ALU_op[1] ? src1 % src2 : src1 * src2);
-assign shift    = ALU_op[1] ? (ALU_op[0] ? (src1>>>src2) : (src1>>src2)) : (src1<<src2);
-assign binary   = ALU_op[0] ? (src1 | src2) : (ALU_op[1] ? (src1 ^ src2) : (src1 & src2));
-assign slt      = ALU_op[0] ? ($signed(src1) < $signed(src2) ? 1 : 0) : (src1 < src2 ? 1 : 0);
-assign beq      = (src1 == src2) ^ ALU_op[0];
+assign sum      = i_ALU_op[0] ? i_src1 - i_src2 : i_src1 + i_src2;
+assign mul      = i_ALU_op[0] ? i_src1 / i_src2 : (i_ALU_op[1] ? i_src1 % i_src2 : i_src1 * i_src2);
+assign shift    = i_ALU_op[1] ? (i_ALU_op[0] ? (i_src1>>>i_src2) : (i_src1>>i_src2)) : (i_src1<<i_src2);
+assign binary   = i_ALU_op[0] ? (i_src1 | i_src2) : (i_ALU_op[1] ? (i_src1 ^ i_src2) : (i_src1 & i_src2));
+assign slt      = i_ALU_op[0] ? ($signed(i_src1) < $signed(i_src2) ? 1 : 0) : (i_src1 < i_src2 ? 1 : 0);
+assign beq      = (i_src1 == i_src2) ^ i_ALU_op[0];
 
-assign ALU_ouput      = rst ? 0 : (
-    (ALU_op ^ `ALU_ADD) >> 2 == 0 ? sum :
-    (ALU_op ^ `ALU_MUL) >> 2 == 0 ? mul :
-    (ALU_op ^ `ALU_SLL) >> 2 == 0 ? shift :
-    (ALU_op ^ `ALU_AND) >> 2 == 0 ? binary :
-    (ALU_op ^ `ALU_SLT) >> 2 == 0 ? slt :
-    (ALU_op ^ `ALU_BEQ) >> 2 == 0 ? (beq ? branch_val_i : 4) :
+assign o_ALU_ouput      = i_rst ? 0 : (
+    (i_ALU_op ^ `ALU_ADD) >> 2 == 0 ? sum :
+    (i_ALU_op ^ `ALU_MUL) >> 2 == 0 ? mul :
+    (i_ALU_op ^ `ALU_SLL) >> 2 == 0 ? shift :
+    (i_ALU_op ^ `ALU_AND) >> 2 == 0 ? binary :
+    (i_ALU_op ^ `ALU_SLT) >> 2 == 0 ? slt :
+    (i_ALU_op ^ `ALU_BEQ) >> 2 == 0 ? (beq ? i_branch_val_i : 4) :
     0
 );
 
-assign overflow = rst ? 0 : (
-    (ALU_op == `ALU_ADD) ? ((src1[`REG_MAX_LEN]&src2[`REG_MAX_LEN]&~sum[`REG_MAX_LEN]) | (~src1[`REG_MAX_LEN]&~src2[`REG_MAX_LEN]&sum[`REG_MAX_LEN])) :
-    (ALU_op == `ALU_SUB) ? ((src1[`REG_MAX_LEN]&~src2[`REG_MAX_LEN]&~sum[`REG_MAX_LEN]) | (~src1[`REG_MAX_LEN]&src2[`REG_MAX_LEN]&sum[`REG_MAX_LEN])) :
+assign o_overflow = i_rst ? 0 : (
+    (i_ALU_op == `ALU_ADD) ? ((i_src1[`REG_MAX_LEN]&i_src2[`REG_MAX_LEN]&~sum[`REG_MAX_LEN]) | (~i_src1[`REG_MAX_LEN]&~i_src2[`REG_MAX_LEN]&sum[`REG_MAX_LEN])) :
+    (i_ALU_op == `ALU_SUB) ? ((i_src1[`REG_MAX_LEN]&~i_src2[`REG_MAX_LEN]&~sum[`REG_MAX_LEN]) | (~i_src1[`REG_MAX_LEN]&i_src2[`REG_MAX_LEN]&sum[`REG_MAX_LEN])) :
     0
 );
 

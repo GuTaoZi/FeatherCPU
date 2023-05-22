@@ -90,7 +90,7 @@ set_property ip_output_repo e:/Computer_Organization/FeatherCPU/src/FeatherCPU.c
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet e:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
+read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
 set_property used_in_implementation false [get_files -all e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_board.xdc]
 set_property used_in_implementation false [get_files -all e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xdc]
 set_property used_in_implementation false [get_files -all e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_ooc.xdc]

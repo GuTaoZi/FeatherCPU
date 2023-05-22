@@ -21,8 +21,7 @@ module inst_decoder(
 wire[6:0] opcode;
 wire[2:0] funct3;
 wire[6:0] funct7;
-wire[11:0] imm_I,imm_S;
-wire[31:0] imm_S,imm_B,imm_U,imm_J;
+wire[31:0] imm_I, imm_S,imm_B,imm_U,imm_J;
 //wire[4:0] rd,rs1,rs2;
 //wire o_rs1_ena;
 //wire o_rs2_ena;

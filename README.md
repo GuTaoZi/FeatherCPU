@@ -2,30 +2,38 @@
 
 <img src="https://s2.loli.net/2023/04/12/K7ciZAVULrT6GCt.png" alt="icon.png" width='600px' />
 
-A lightweight CPU core for basic RV32I instructions running on MINISYS. Project for CS214 Computer Organization.
+A lightweight CPU core for basic RV32I instructions running on Minisys. Project for CS214 Computer Organization.
 
-For Chinese README, see [README_CN](doc/README_CN.pdf).
+For Chinese README, see [README_CN](doc/README_CN.md).
 
 ## Contributors
 
-| SID      | Name                                              | Contributions | Contribution Rate |
-| -------- | ------------------------------------------------- | ------------- | ----------------- |
-| 12111624 | [GuTaoZi](https://github.com/GuTaoZi)             |               |                   |
-| 12112012 | [Jayfeather233](https://github.com/Jayfeather233) |               |                   |
+| SID      | Name                                              | Contribution Rate |
+| -------- | ------------------------------------------------- | ----------------- |
+| 12111624 | [GuTaoZi](https://github.com/GuTaoZi)             | 50%               |
+| 12112012 | [Jayfeather233](https://github.com/Jayfeather233) | 50%               |
+
+|      | Struct | ISA  | Doc  | IF   | ID   | EX   | MEM  | WB   | IO   | ASM  | Sim  | Video |
+| ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| 🍑    |        | ✔    | ✔    |      | ✔    | ✔    |      | ✔    | ✔    |      |      |       |
+| 🪶    | ✔      |      |      | ✔    |      | ✔    | ✔    | ✔    | ✔    | ✔    |      |       |
+
+\* Uncountable detailed contributions are omitted here.
 
 ## TODOs
 
 - [ ] CPU Features
   - [x] ISA Design
-  - [ ] Address Space Design
-  - [ ] Multi-cycle \& Pipeline Design
+  - [x] Address Space Design
+  - [x] Fast Single Cycle Design
+  - [ ] Debugging
 - [ ] CPU Interfaces
-  - [ ] Clock
-  - [ ] Reset
-  - [ ] Uart
-  - [ ] Others
+  - [x] Clock
+  - [x] Reset
+  - [x] Uart
+  - [x] Others: Keyboard, segment tubes
 - [ ] Internal Structures
-  - [ ] Module interconnections
+  - [x] Module interconnections
   - [ ] Module introduction
 - [ ] Tests
   - [ ] Basic testcases \#1

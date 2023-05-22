@@ -1,7 +1,7 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
--- Date        : Mon May 22 17:06:50 2023
+-- Date        : Tue May 23 01:19:46 2023
 -- Host        : FIRST-MICROSOFT running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_sim_netlist.vhdl
@@ -16,7 +16,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity upg_clk_wiz_clk_wiz is
   port (
-    upg_clk_i : out STD_LOGIC;
+    upg_clk_o : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
@@ -27,7 +27,7 @@ architecture STRUCTURE of upg_clk_wiz_clk_wiz is
   signal clk_in1_upg_clk_wiz : STD_LOGIC;
   signal clkfbout_buf_upg_clk_wiz : STD_LOGIC;
   signal clkfbout_upg_clk_wiz : STD_LOGIC;
-  signal upg_clk_i_upg_clk_wiz : STD_LOGIC;
+  signal upg_clk_o_upg_clk_wiz : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
@@ -72,8 +72,8 @@ clkin1_ibufg: unisim.vcomponents.IBUF
     );
 clkout1_buf: unisim.vcomponents.BUFG
      port map (
-      I => upg_clk_i_upg_clk_wiz,
-      O => upg_clk_i
+      I => upg_clk_o_upg_clk_wiz,
+      O => upg_clk_o
     );
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
@@ -135,7 +135,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKIN2 => '0',
       CLKINSEL => '1',
       CLKINSTOPPED => NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED,
-      CLKOUT0 => upg_clk_i_upg_clk_wiz,
+      CLKOUT0 => upg_clk_o_upg_clk_wiz,
       CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
       CLKOUT1 => NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED,
       CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
@@ -168,7 +168,7 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity upg_clk_wiz is
   port (
-    upg_clk_i : out STD_LOGIC;
+    upg_clk_o : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
@@ -184,6 +184,6 @@ inst: entity work.upg_clk_wiz_clk_wiz
       clk_in1 => clk_in1,
       locked => locked,
       reset => reset,
-      upg_clk_i => upg_clk_i
+      upg_clk_o => upg_clk_o
     );
 end STRUCTURE;
