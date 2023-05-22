@@ -33,24 +33,28 @@ module top(
     output [3:0] col
 );
 
-wire k_flg;
-wire [3:0]data;
-wire [31:0]dat = {4'b0000,data[3:0],sw[23:0]};
+reg [31:0] data;
+reg [31:0] my_data;
+wire [3:0] dt;
+wire ena;
 
-keyboard ukeyboard(
-    .clk(clk),
-    .rst(rst),
-    .row(row),
-    .col(col),
-    .data(data)
-);
+Keyboard kb(.clk(clk), .rst(rst), .row(row), .col(col), .data(dt), .enable(ena));
 
-segtube seg(
+always @(posedge ena) begin
+    my_data = {my_data[27:0], dt};
+    if(my_data[19:16] == 4'h1) begin
+        data = my_data;
+        my_data = 0;
+    end
+end
+
+segtube sg(
     .clk(clk),
-    .dat(dat),
+    .dat(my_data),
     .seg_cho(seg_cho),
     .seg_lit(seg_lit)
 );
+
 wire oo_clk;
 clk_wiz_0 cw0(.reset(rst), .clk_in1(clk), .clk_out1(oo_clk));
 
@@ -69,6 +73,7 @@ uart1 muart(
     .upg_done_o(uart_done),
     .upg_tx_o(upg_tx)
 );
-assign led = {uart_done,uart_addr,4'h0,row[3:0]};
+//assign led = {uart_done,uart_addr,4'h0,row[3:0]};
+assign led = data;
 
 endmodule

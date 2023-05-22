@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Mon May 22 15:48:57 2023
+| Date             : Mon May 22 19:35:56 2023
 | Host             : LAPTOP-Shadowstorm running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.002 |        5 |       --- |             --- |
-| Slice Logic             |    <0.001 |      830 |       --- |             --- |
-|   LUT as Logic          |    <0.001 |      266 |     63400 |            0.42 |
+| Slice Logic             |    <0.001 |      879 |       --- |             --- |
+|   LUT as Logic          |    <0.001 |      269 |     63400 |            0.42 |
+|   Register              |    <0.001 |      416 |    126800 |            0.33 |
 |   CARRY4                |    <0.001 |       31 |     15850 |            0.20 |
-|   Register              |    <0.001 |      373 |    126800 |            0.29 |
 |   F7/F8 Muxes           |    <0.001 |        4 |     63400 |           <0.01 |
-|   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
+|   BUFG                  |    <0.001 |        2 |        32 |            6.25 |
 |   LUT as Shift Register |    <0.001 |       10 |     19000 |            0.05 |
 |   Others                |     0.000 |       30 |       --- |             --- |
-| Signals                 |     0.001 |      649 |       --- |             --- |
+| Signals                 |    <0.001 |      674 |       --- |             --- |
 | MMCM                    |     0.106 |        1 |         6 |           16.67 |
-| I/O                     |     0.023 |       76 |       285 |           26.67 |
+| I/O                     |     0.022 |       52 |       285 |           18.25 |
 | Static Power            |     0.097 |          |           |                 |
 | Total                   |     0.229 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.019 |       0.003 |      0.015 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.018 |       0.003 |      0.015 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.078 |       0.060 |      0.018 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.010 |       0.006 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -149,7 +149,7 @@ Table of Contents
 | top      |     0.132 |
 |   cw0    |     0.107 |
 |     inst |     0.107 |
-|   seg    |     0.001 |
+|   sg     |     0.001 |
 +----------+-----------+
 
 

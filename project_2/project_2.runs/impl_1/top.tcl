@@ -132,7 +132,7 @@ OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
   set_property webtalk.parent_dir C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.cache/wt [current_project]
   set_property parent.project_path C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.xpr [current_project]
-  set_property ip_repo_paths c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/SEU_CSE_507_user_uart_bmpg_1.3 [current_project]
+  set_property ip_repo_paths C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/SEU_CSE_507_user_uart_bmpg_1.3 [current_project]
   update_ip_catalog
   set_property ip_output_repo C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
@@ -140,8 +140,8 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.runs/synth_1/top.dcp
-  read_ip -quiet c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/ip/uart1/uart1.xci
-  read_ip -quiet c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/ip/uart1/uart1.xci
+  read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/constrs_1/new/cons.xdc
 OPTRACE "read constraints: implementation" END { }

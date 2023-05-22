@@ -95,9 +95,9 @@ read_verilog -library xil_defaultlib {
   C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/segtube.v
   C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/top.v
 }
-read_ip -quiet c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/ip/uart1/uart1.xci
+read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/ip/uart1/uart1.xci
 
-read_ip -quiet c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
