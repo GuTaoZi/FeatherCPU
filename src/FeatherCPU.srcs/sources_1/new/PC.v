@@ -23,29 +23,35 @@
 module PC(
 input clk,
 input rst,
-input J,
 input Jal,
+input Jalr,
+input pc_en,
 input branch,
-input [`REG_WIDTH] J_val,   // from instruction
-input [`REG_WIDTH] Jal_val, // from register
-input [`REG_WIDTH] branch_val, // from ALU
+input [`REG_WIDTH] Jalr_reg_data, //rs1
+input [`REG_WIDTH] Jal_imm,
+input [`REG_WIDTH] branch_val,
 output [`REG_WIDTH] pc
     );
 reg [`REG_WIDTH] now_pc;
 wire [`REG_WIDTH] next_pc;
 assign pc = now_pc;
 
-always @(negedge clk)
+always @(posedge clk, posedge rst)
 begin
-    now_pc = next_pc;
+    if(rst) begin
+        now_pc = 0;
+    end else begin
+        if(pc_en) begin
+            now_pc = next_pc;
+        end
+    end
 end
 
 assign next_pc =
-rst     ?   0                                   :
-J       ?   {now_pc[31:20], J_val[19:0]} + 4    :
-Jal     ?   Jal_val + 4                         :
-branch  ?   now_pc + branch_val                 :
+rst     ?   0                           :
+Jalr    ?   Jalr_reg_data + Jal_imm     :
+Jal     ?   now_pc + Jal_imm            :
+branch  ?   now_pc + branch_val         :
             now_pc + 4;
-
 //TODO: $ra
 endmodule

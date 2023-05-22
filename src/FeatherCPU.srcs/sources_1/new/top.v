@@ -106,6 +106,7 @@ Register u_Register(
     .write_data(data_from_mem),
     .write_en(reg_write_en),
     .clk(cpu_clk),
+    .rst(rst),
     ///input///
     ///output///
     .read_data1(reg_data1),
@@ -183,11 +184,12 @@ key_bd kb(
 PC u_PC(
     .clk(cpu_clk),
     .rst(rst),
-    .J((inst_type==`J_TYPE && )),
     .Jal,
+    .Jalr,
+    .pc_en,
     .branch,
-    .J_val,   // from instruction
-    .Jal_val, // from register
+    .Jalr_reg_data,
+    .Jal_imm,
     .branch_val(branch_val), // from ALU
     ///input///
     ///output///
