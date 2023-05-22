@@ -46,6 +46,7 @@ assign cpu_clk = cnt[2];
 
 
 reg [2:0] state;
+reg actual_reg_write_en;
 
 always @(posedge cpu_clk) begin
     state = state + 1;
