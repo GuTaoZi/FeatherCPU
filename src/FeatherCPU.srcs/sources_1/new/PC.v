@@ -46,4 +46,6 @@ J       ?   {now_pc[31:20], J_val[19:0]} + 4    :
 Jal     ?   Jal_val + 4                         :
 branch  ?   now_pc + branch_val                 :
             now_pc + 4;
+
+//TODO: $ra
 endmodule
