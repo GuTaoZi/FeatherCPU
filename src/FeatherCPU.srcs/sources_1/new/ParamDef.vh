@@ -5,3 +5,4 @@
 `define REG_MAX_LEN         31
 `define INST_TYPES_WIDTH    3:0
 `define ALU_OP_LEN          5:0
+`define MMIO_sw_map_addr    14'b

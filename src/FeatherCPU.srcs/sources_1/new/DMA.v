@@ -25,7 +25,7 @@ output  [23:0]          hdw_led_data
 
 assign kick_off = ~uart_ena | uart_done;
 
-reg [5:0]           tran_pos;
+reg                 tran_pos;
 reg [`REG_WIDTH]    mem_addr;
 reg [`REG_WIDTH]    write_data;
 reg                 mem_read;
@@ -38,25 +38,31 @@ DataMem myDM(   .addr(kick_off ? mem_addr : uart_addr),
                 .clk(kick_off ? hdw_clk : uart_clk),
                 .read_data(read_data));
 
+reg reading_data = 0;
+
 always @(posedge cpu_clk) begin
+    if(reading_data) begin
+        hdw_led_data = read_data[23:0];
+        reading_data = 0;
+    end
     if(cpu_mem_ena) begin
         mem_addr = cpu_addr;
         mem_read = cpu_mem_read_ena;
         mem_write = cpu_mem_write_ena;
         write_data = cpu_write_data;
     end else begin
-        if(tran_pos[5]) begin
+        if(tran_pos) begin
             write_addr = `MMIO_sw_map_addr;
             write_data = {8'b0, hdw_switch_data};
             mem_read = 0;
             mem_write = 1;
         end else begin
             mem_addr = `MMIO_led_map_addr;
-            hdw_led_data = read_data[23:0];
+            reading_data = 1;
             mem_read = 1;
             mem_write = 0;
         end
-        tran_pos = tran_pos + 1'b1;
+        tran_pos = tran_pos ^ 1'b1;
     end
 end
 

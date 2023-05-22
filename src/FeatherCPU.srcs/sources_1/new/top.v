@@ -43,4 +43,19 @@ uart0 muart(
     .upg_tx_o(upg_tx)
 );
 
+reg [2:0] cnt;
+always @(posedge clk) begin
+    cnt = cnt + 1;
+end
+
+assign cpu_clk = cbt[2];
+
+
+reg [2:0] state;
+
+always @(posedge cpu_clk) begin
+    state = state + 1;
+
+end
+
 endmodule
