@@ -36,7 +36,7 @@ assign funct7 = i_inst[31:25];
 assign inst_type = (opcode==7'b011_0011)?`R_TYPE:
                    (opcode==7'b001_0011)?`I_TYPE:
                    (opcode==7'b000_0011)?`I_TYPE:
-                   (opcode==7'b111_0011)?`I_TYPE:
+                   (opcode==7'b111_0011)?`E_TYPE:
                    (opcode==7'b010_0011)?`S_TYPE:
                    (opcode==7'b110_0011)?`B_TYPE:
                    (opcode==7'b110_1111)?`J_TYPE:
@@ -92,13 +92,40 @@ assign o_imm = (inst_type==`R_TYPE)?32'h0:
 //    `ALU_ERR // err
 //);
 
+wire funct10 = {funct3,funct7};
+
 assign o_alu_op =
     (inst_type==`R_TYPE)?
+    ((funct10==`R_ADD||funct10==`R_ADDU)?`ALU_ADD:
+    (funct10==`R_SUB||funct10==`R_SUBU)?`ALU_SUB:
+    (funct10==`R_MUL)?`ALU_MUL:
+    (funct10==`R_DIV)?`ALU_DIV:
+    (funct10==`R_REM)?`ALU_REM:
+    (funct10==`R_SLL)?`ALU_SLL:
+    (funct10==`R_SLT)?`ALU_SLT:
+    (funct10==`R_SLTU)?`ALU_SLTU:
+    (funct10==`R_XOR)?`ALU_XOR:
+    (funct10==`R_SRL)?`ALU_SRL:
+    (funct10==`R_SRA)?`ALU_SRA:
+    (funct10==`R_OR)?`ALU_OR:
+    (funct10==`R_AND)?`ALU_AND:`ALU_ERR)
     :
     (inst_type==`I_TYPE)?
+    ((opcode==`I_LW)?`ALU_ADD:
+    (funct3==`I_ADDI)?`ALU_ADD:
+    (funct3==`I_SLTI)?`ALU_SLT:
+    (funct3==`I_SLLI)?`ALU_SLL:
+    (funct3==`I_SLTIU)?`ALU_SLTU:
+    ({funct3,o_imm[11:5]}==`I_SRLI)?`ALU_SRL:
+    ({funct3,o_imm[11:5]}==`I_SRAI)?`ALU_SRA:
+    (funct3==`I_ORI)?`ALU_OR:
+    (funct3==`I_ANDI)?`ALU_AND:`ALU_ERR)
     :
+    (inst_type==`S_TYPE)?
+    `ALU_ADD:
     (inst_type==`B_TYPE)?
-    :
+    ((funct3==`B_BEQ)?`ALU_BEQ:`ALU_BNE)
+    :`ALU_ERR;
 
 assign o_reg_dst    = !(inst_type==`S_TYPE||inst_type==`B_TYPE);
 assign o_mem_read   = (opcode==7'b000_0011);

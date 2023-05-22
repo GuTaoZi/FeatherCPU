@@ -22,6 +22,17 @@
 //|------------|-----| ---  |-----|-------|
 //| imm[11:0]  | rs1 |funct3| rd  |opcode |
 
+`define I_ADDI  3'b000
+`define I_SLLI  3'b001
+`define I_SLTI  3'b010
+`define I_SLTIU 3'b011
+`define I_XORI  3'b100
+`define I_SRLI  10'b101_000_0000
+`define I_SRAI  10'b101_010_0000
+`define I_ORI   3'b110
+`define I_ANDI  3'b111
+`define I_LW    7'b000_0011
+
 `define S_TYPE 3'h3
 //| ------- |-----|-----| ---  | -----  |-------|
 //|imm[11:5]| rs2 | rs1 |funct3|imm[4:0]|opcode |
@@ -29,6 +40,9 @@
 `define B_TYPE 3'h4
 //|   -   | ------  |-----|-----| ---  | ----  |   -   |-------|
 //|imm[12]|imm[10:5]| rs2 | rs1|funct3|imm[4:1]|imm[11]|opcode |
+
+`define B_BEQ   3'b000
+`define B_BNE   3'b001
 
 `define U_TYPE 3'h5
 //|--------------------|-----|-------|
