@@ -153,3 +153,8 @@ set_property PACKAGE_PIN K3 [get_ports {row[0]}]
 
 set_property PACKAGE_PIN P20 [get_ports rst]
 set_property IOSTANDARD LVCMOS33 [get_ports rst]
+
+set_property PACKAGE_PIN Y19 [get_ports upg_rx]
+set_property IOSTANDARD LVCMOS33 [get_ports upg_rx]
+set_property PACKAGE_PIN V18 [get_ports upg_tx]
+set_property IOSTANDARD LVCMOS33 [get_ports upg_tx]

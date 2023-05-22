@@ -2,8 +2,8 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Mon May 22 15:16:52 2023
-# Process ID: 4404
+# Start of session at: Mon May 22 15:46:50 2023
+# Process ID: 21812
 # Current directory: C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.runs/synth_1/top.vds
@@ -11,6 +11,9 @@
 # Running On: LAPTOP-Shadowstorm, OS: Windows, CPU Frequency: 2496 MHz, CPU Physical cores: 4, Host memory: 17007 MB
 #-----------------------------------------------------------
 source top.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/SEU_CSE_507_user_uart_bmpg_1.3'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.2/data/ip'.
 Command: read_checkpoint -auto_incremental -incremental C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/utils_1/imports/synth_1/top.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/utils_1/imports/synth_1/top.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -23,87 +26,124 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 25688
+INFO: [Synth 8-7075] Helper process launched with PID 21104
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+INFO: [Synth 8-11241] undeclared symbol 'uart_clk', assumed default net type 'wire' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/top.v:65]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1224.168 ; gain = 410.715
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 1233.941 ; gain = 408.980
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/top.v:23]
 INFO: [Synth 8-6157] synthesizing module 'keyboard' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/keyboard.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'keyboard' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/keyboard.v:1]
 INFO: [Synth 8-6157] synthesizing module 'segtube' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/segtube.v:4]
 INFO: [Synth 8-6155] done synthesizing module 'segtube' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/segtube.v:4]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.runs/synth_1/.Xil/Vivado-21812-LAPTOP-Shadowstorm/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.runs/synth_1/.Xil/Vivado-21812-LAPTOP-Shadowstorm/realtime/clk_wiz_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'locked' of module 'clk_wiz_0' is unconnected for instance 'cw0' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/top.v:55]
+WARNING: [Synth 8-7023] instance 'cw0' of module 'clk_wiz_0' has 4 connections declared, but only 3 given [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/top.v:55]
+INFO: [Synth 8-6157] synthesizing module 'uart1' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.runs/synth_1/.Xil/Vivado-21812-LAPTOP-Shadowstorm/realtime/uart1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'uart1' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.runs/synth_1/.Xil/Vivado-21812-LAPTOP-Shadowstorm/realtime/uart1_stub.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/top.v:23]
 WARNING: [Synth 8-6014] Unused sequential element tmp_reg was removed.  [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/sources_1/new/segtube.v:59]
-WARNING: [Synth 8-3917] design top has port led[23] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[22] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[21] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[20] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[19] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[18] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[17] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[16] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[15] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[14] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[13] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[12] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[11] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[10] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[9] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[8] driven by constant 0
 WARNING: [Synth 8-3917] design top has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design top has port led[6] driven by constant 0
 WARNING: [Synth 8-3917] design top has port led[5] driven by constant 0
 WARNING: [Synth 8-3917] design top has port led[4] driven by constant 0
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1313.922 ; gain = 500.469
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1325.395 ; gain = 500.434
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1313.922 ; gain = 500.469
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1325.395 ; gain = 500.434
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1313.922 ; gain = 500.469
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1325.395 ; gain = 500.434
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1313.922 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1325.395 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
+Parsing XDC File [c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc] for cell 'muart'
+Finished Parsing XDC File [c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc] for cell 'muart'
+Parsing XDC File [c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'cw0'
+Finished Parsing XDC File [c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'cw0'
 Parsing XDC File [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/constrs_1/new/cons.xdc]
 Finished Parsing XDC File [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/constrs_1/new/cons.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/constrs_1/new/cons.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1415.395 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1410.734 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1415.395 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1410.734 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tfgg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for led[8]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 1).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[8]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 2).
+Applied set_property IO_BUFFER_TYPE = NONE for led[18]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[18]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 4).
+Applied set_property IO_BUFFER_TYPE = NONE for led[19]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 5).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[19]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 6).
+Applied set_property IO_BUFFER_TYPE = NONE for led[20]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 7).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[20]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 8).
+Applied set_property IO_BUFFER_TYPE = NONE for led[21]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 9).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[21]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 10).
+Applied set_property IO_BUFFER_TYPE = NONE for led[22]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 11).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[22]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 12).
+Applied set_property IO_BUFFER_TYPE = NONE for led[9]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 13).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[9]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 14).
+Applied set_property IO_BUFFER_TYPE = NONE for led[10]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 15).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[10]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 16).
+Applied set_property IO_BUFFER_TYPE = NONE for led[11]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 17).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[11]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 18).
+Applied set_property IO_BUFFER_TYPE = NONE for led[12]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 19).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[12]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 20).
+Applied set_property IO_BUFFER_TYPE = NONE for led[13]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 21).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[13]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 22).
+Applied set_property IO_BUFFER_TYPE = NONE for led[14]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 23).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[14]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 24).
+Applied set_property IO_BUFFER_TYPE = NONE for led[15]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 25).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[15]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 26).
+Applied set_property IO_BUFFER_TYPE = NONE for led[16]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 27).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[16]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 28).
+Applied set_property IO_BUFFER_TYPE = NONE for led[17]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 29).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[17]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 30).
+Applied set_property IO_BUFFER_TYPE = NONE for led[23]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 99).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for led[23]. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 100).
+Applied set_property IO_BUFFER_TYPE = NONE for rst. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 101).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for rst. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 102).
+Applied set_property IO_BUFFER_TYPE = NONE for upg_rx. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 103).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for upg_rx. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 104).
+Applied set_property IO_BUFFER_TYPE = NONE for upg_tx. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 105).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for upg_tx. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/uart1/uart1/uart1_in_context.xdc, line 106).
+Applied set_property IO_BUFFER_TYPE = NONE for clk. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for clk. (constraint file  c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 4).
+Applied set_property KEEP_HIERARCHY = SOFT for muart. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for cw0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:16 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:17 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -138,46 +178,30 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3917] design top has port led[23] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[22] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[21] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[20] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[19] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[18] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[17] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[16] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[15] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[14] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[13] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[12] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[11] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[10] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[9] driven by constant 0
-WARNING: [Synth 8-3917] design top has port led[8] driven by constant 0
 WARNING: [Synth 8-3917] design top has port led[7] driven by constant 0
 WARNING: [Synth 8-3917] design top has port led[6] driven by constant 0
 WARNING: [Synth 8-3917] design top has port led[5] driven by constant 0
 WARNING: [Synth 8-3917] design top has port led[4] driven by constant 0
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:17 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:19 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:23 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:24 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:23 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:24 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:23 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:24 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -195,87 +219,92 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:27 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:27 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:27 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:27 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:27 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:27 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 Report BlackBoxes: 
-+-+--------------+----------+
-| |BlackBox name |Instances |
-+-+--------------+----------+
-+-+--------------+----------+
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
+|2     |uart1         |         1|
++------+--------------+----------+
 
 Report Cell Usage: 
-+------+-------+------+
-|      |Cell   |Count |
-+------+-------+------+
-|1     |BUFG   |     1|
-|2     |CARRY4 |    11|
-|3     |LUT1   |     3|
-|4     |LUT2   |     5|
-|5     |LUT3   |     1|
-|6     |LUT4   |     9|
-|7     |LUT5   |     9|
-|8     |LUT6   |     5|
-|9     |MUXF7  |     4|
-|10    |FDRE   |    62|
-|11    |FDSE   |     7|
-|12    |IBUF   |    30|
-|13    |OBUF   |    44|
-+------+-------+------+
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |clk_wiz |     1|
+|2     |uart1   |     1|
+|3     |CARRY4  |    11|
+|4     |LUT1    |     3|
+|5     |LUT2    |     5|
+|6     |LUT3    |     1|
+|7     |LUT4    |     9|
+|8     |LUT5    |     9|
+|9     |LUT6    |     5|
+|10    |MUXF7   |     4|
+|11    |FDRE    |    62|
+|12    |FDSE    |     7|
+|13    |IBUF    |    28|
+|14    |OBUF    |    20|
++------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:27 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 1410.734 ; gain = 585.773
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:26 . Memory (MB): peak = 1415.395 ; gain = 500.469
-Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:27 . Memory (MB): peak = 1415.395 ; gain = 601.941
+Synthesis finished with 0 errors, 0 critical warnings and 5 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:28 . Memory (MB): peak = 1410.734 ; gain = 500.434
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:30 . Memory (MB): peak = 1410.734 ; gain = 585.773
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1415.395 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1410.734 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 15 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-140] Inserted 2 IBUFs to IO ports without IO buffers.
+INFO: [Opt 31-141] Inserted 8 OBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1415.395 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1410.734 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: 8a68d37d
+Synth Design complete, checksum: 7be22397
 INFO: [Common 17-83] Releasing license: Synthesis
-29 Infos, 42 Warnings, 0 Critical Warnings and 0 Errors encountered.
+39 Infos, 12 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:33 . Memory (MB): peak = 1415.395 ; gain = 996.215
+synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:36 . Memory (MB): peak = 1410.734 ; gain = 980.594
 INFO: [Common 17-1381] The checkpoint 'C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.runs/synth_1/top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon May 22 15:17:32 2023...
+INFO: [Common 17-206] Exiting Vivado at Mon May 22 15:47:34 2023...

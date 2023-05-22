@@ -147,3 +147,7 @@ set_property src_info {type:XDC file:1 line:152 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN K3 [get_ports {row[0]}]
 set_property src_info {type:XDC file:1 line:154 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN P20 [get_ports rst]
+set_property src_info {type:XDC file:1 line:157 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN Y19 [get_ports upg_rx]
+set_property src_info {type:XDC file:1 line:159 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN V18 [get_ports upg_tx]

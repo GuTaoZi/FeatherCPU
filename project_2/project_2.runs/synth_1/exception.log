@@ -1,0 +1,4 @@
+ERROR: Exception caught trying to open file C:\Users\jayfe\Desktop\course\DTwo\CO\FeatherCPU\project_2\project_2.runs\synth_1/runme.log
+	Exception name: Error
+	Exception error code: 70
+	Exception message: 没有权限

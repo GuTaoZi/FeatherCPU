@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Mon May 22 15:18:10 2023
+| Date         : Mon May 22 15:48:18 2023
 | Host         : LAPTOP-Shadowstorm running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     5 |
-|    Minimum number of control sets                        |     5 |
+| Total control sets                                       |    30 |
+|    Minimum number of control sets                        |    30 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    19 |
+| Unused register locations in slices containing registers |    91 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     5 |
-| >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     1 |
-| >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     1 |
-| >= 10 to < 12      |     0 |
+| Total control sets |    30 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |     4 |
+| >= 6 to < 8        |     3 |
+| >= 8 to < 10       |     8 |
+| >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     0 |
-| >= 16              |     3 |
+| >= 14 to < 16      |     1 |
+| >= 16              |    10 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,26 +58,51 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              36 |           12 |
-| No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              29 |            8 |
-| Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               4 |            1 |
+| No           | No                    | No                     |              56 |           20 |
+| No           | No                    | Yes                    |              13 |            5 |
+| No           | Yes                   | No                     |              71 |           22 |
+| Yes          | No                    | No                     |              13 |            6 |
+| Yes          | No                    | Yes                    |             190 |           57 |
+| Yes          | Yes                   | No                     |              30 |            8 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+----------------+------------------+------------------+----------------+--------------+
-|  Clock Signal  |  Enable Signal | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+----------------+------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG | ukeyboard/data | rst_IBUF         |                1 |              4 |         4.00 |
-|  seg/seg_clk   |                | seg/cho0         |                2 |              8 |         4.00 |
-|  seg/seg_clk   |                |                  |                6 |             18 |         3.00 |
-|  clk_IBUF_BUFG |                |                  |                6 |             18 |         3.00 |
-|  clk_IBUF_BUFG |                | rst_IBUF         |                6 |             21 |         3.50 |
-+----------------+----------------+------------------+------------------+----------------+--------------+
++------------------------------------------+---------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|               Clock Signal               |                                                    Enable Signal                                                    |                                                       Set/Reset Signal                                                       | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------------------------------+---------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/upg_done_o_i_1_n_0                                                                              | rst_IBUF                                                                                                                     |                1 |              1 |         1.00 |
+|  muart/inst/upg_inst/rdStat_BUFG         |                                                                                                                     | rst_IBUF                                                                                                                     |                1 |              2 |         2.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/s_axi_wdata                                                                                     |                                                                                                                              |                2 |              3 |         1.50 |
+|  clk_IBUF_BUFG                           | ukeyboard/data                                                                                                      | rst_IBUF                                                                                                                     |                1 |              4 |         4.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/s_axi_wdata                                                                                     | muart/inst/upg_inst/s_axi_wdata[6]_i_1_n_0                                                                                   |                1 |              4 |         4.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start2                                      | muart/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_ce_clr                                  |                1 |              4 |         4.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/BAUD_RATE_I/en_16x_Baud                                        |                                                                                                                              |                1 |              4 |         4.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                     | muart/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/UARTLITE_RX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/SS[0] |                2 |              6 |         3.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                     | muart/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/UARTLITE_TX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/SS[0] |                2 |              6 |         3.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/fifo_wr                           |                                                                                                                              |                1 |              7 |         7.00 |
+|  seg/seg_clk                             |                                                                                                                     | seg/cho0                                                                                                                     |                1 |              8 |         8.00 |
+|  muart/inst/upg_inst/rdStat_BUFG         | muart/inst/upg_inst/s_axi_aresetn0                                                                                  | rst_IBUF                                                                                                                     |                3 |              8 |         2.67 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                     | muart/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst                                                  |                4 |              8 |         2.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/msg_indx[7]_i_1_n_0                                                                             | rst_IBUF                                                                                                                     |                4 |              8 |         2.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/uart_rdat                                                                                       |                                                                                                                              |                3 |              8 |         2.67 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rdata_i                               | muart/inst/upg_inst/axi_uart_inst/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst                                                  |                3 |              8 |         2.67 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/UARTLITE_RX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/fifo_wr |                                                                                                                              |                1 |              8 |         8.00 |
+|  muart/inst/upg_inst/rdStat_BUFG         | muart/inst/upg_inst/byte_len[7]_i_1_n_0                                                                             | rst_IBUF                                                                                                                     |                2 |              9 |         4.50 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/axi_uart_inst/U0/UARTLITE_CORE_I/BAUD_RATE_I/en_16x_Baud                                        | rst_IBUF                                                                                                                     |                2 |             10 |         5.00 |
+|  muart/inst/upg_inst/rdStat_BUFG         | muart/inst/upg_inst/upg_adr_o[14]_i_1_n_0                                                                           | rst_IBUF                                                                                                                     |                5 |             15 |         3.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/rwait_cnt[15]_i_1_n_0                                                                           | rst_IBUF                                                                                                                     |                4 |             16 |         4.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG | muart/inst/upg_inst/wwait_cnt[15]_i_1_n_0                                                                           | rst_IBUF                                                                                                                     |                5 |             16 |         3.20 |
+|  seg/seg_clk                             |                                                                                                                     |                                                                                                                              |                4 |             18 |         4.50 |
+|  clk_IBUF_BUFG                           |                                                                                                                     |                                                                                                                              |                6 |             18 |         3.00 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                     |                                                                                                                              |               10 |             20 |         2.00 |
+|  clk_IBUF_BUFG                           |                                                                                                                     | rst_IBUF                                                                                                                     |                6 |             21 |         3.50 |
+|  muart/inst/upg_inst/rdStat_BUFG         | muart/inst/upg_inst/byte_cnt                                                                                        | rst_IBUF                                                                                                                     |                9 |             32 |         3.56 |
+|  muart/inst/upg_inst/upg_clk_i_IBUF_BUFG |                                                                                                                     | rst_IBUF                                                                                                                     |               11 |             33 |         3.00 |
+|  muart/inst/upg_inst/rdStat_BUFG         | muart/inst/upg_inst/byte_num                                                                                        | rst_IBUF                                                                                                                     |               11 |             36 |         3.27 |
+|  muart/inst/upg_inst/rdStat_BUFG         | muart/inst/upg_inst/wr_byte_num_done                                                                                | rst_IBUF                                                                                                                     |               13 |             49 |         3.77 |
++------------------------------------------+---------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
 
 
