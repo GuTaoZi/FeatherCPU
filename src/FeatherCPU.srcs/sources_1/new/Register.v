@@ -9,6 +9,7 @@ input   [`REG_IDX_LEN]  write_addr,
 input   [`REG_WIDTH]    write_data,
 input                   RegWrite,
 input                   clk,
+input                   rst,
 output [`REG_WIDTH] read_data1,
 output [`REG_WIDTH] read_data2
     );
@@ -24,5 +25,7 @@ end
 
 assign read_data1 = registers[read_addr1];
 assign read_data2 = registers[read_addr2];
+
+//TODO: sp
 
 endmodule
