@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="uart0_synth_1" LaunchPart="xc7a35tfgg484-1" LaunchTime="1684740122">
+<GenRun Id="uart0_synth_1" LaunchPart="xc7a35tfgg484-1" LaunchTime="1684740602">
   <File Type="PA-TCL" Name="uart0.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="uart0_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="uart0_reports.tcl"/>
@@ -10,7 +10,7 @@
   <File Type="VDS-TIMINGSUMMARY" Name="uart0_timing_summary_synth.rpt"/>
   <File Type="VDS-TIMING-PB" Name="uart0_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/uart0">
-    <File Path="$PSRCDIR/sources_1/ip/uart0/uart0.xci">
+    <File Path="$PSRCDIR/sources_1/ip/uart0_1/uart0.xci">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -23,7 +23,7 @@
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/uart0">
-    <File Path="$PSRCDIR/sources_1/ip/uart0/uart0.xci">
+    <File Path="$PSRCDIR/sources_1/ip/uart0_1/uart0.xci">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

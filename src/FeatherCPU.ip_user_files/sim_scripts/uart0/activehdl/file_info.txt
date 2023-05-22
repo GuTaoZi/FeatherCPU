@@ -1,6 +1,0 @@
-xpm_memory.sv,systemverilog,xpm,../../../../../../../../../../../../Xilinx/Vivado/2022.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv,
-xpm_VCOMP.vhd,vhdl,xpm,../../../../../../../../../../../../Xilinx/Vivado/2022.2/data/ip/xpm/xpm_VCOMP.vhd,
-uart_bmpg.v,verilog,xil_defaultlib,../../../../FeatherCPU.gen/sources_1/ip/uart0/uart_bmpg.v,
-upg.v,verilog,xil_defaultlib,../../../../FeatherCPU.gen/sources_1/ip/uart0/upg.v,
-uart0.v,verilog,xil_defaultlib,../../../../FeatherCPU.gen/sources_1/ip/uart0/sim/uart0.v,
-glbl.v,Verilog,xil_defaultlib,glbl.v
