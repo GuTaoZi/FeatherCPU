@@ -24,7 +24,12 @@ module top(
 input clk,
 input rst,
 input upg_rx,
-output upg_tx
+input [3:0] kb_row,
+output [3:0] kb_col,
+output upg_tx,
+output [23:0] led_o,
+output [7:0] seg_cho,
+output [7:0] seg_lit
     );
     
 wire upg_clk;
@@ -69,7 +74,7 @@ end
 wire [31:0] pc;
 wire [31:0] inst;
 
-InsMem(
+InsMem if(
     .pc(pc),
     .clk(clk),
     .uart_ena(uart_ena),
@@ -91,7 +96,7 @@ wire reg_dst_en;
 wire branch_en;
 wire branch_
 
-inst_decoder(
+inst_decoder id(
     .i_inst(inst),
     .o_rs1_idx(rs1_idx_raw),
     .o_rs2_idx(rs2_idx_raw),
@@ -104,6 +109,66 @@ inst_decoder(
     .o_mem_to_reg,
     .o_alu_src,
     .o_reg_write
+);
+
+Register reg(
+.read_addr1,
+.read_addr2,
+.write_addr,
+.write_data,
+.RegWrite,
+.clk(cpu_clk),
+///input///
+///output///
+.read_data1,
+.read_data2
+);
+
+ALU alu(
+.src1,
+.src2,
+.branch_val_i,
+.ALU_op(alu_op_raw),
+.rst(rst),
+///input///
+///output///
+.opt,
+.branch_val_o,
+.overflow
+);
+
+wire [31:0] hdw_switch_data;
+
+DMA dma(
+.hdw_clk(clk),
+.cpu_clk(hdw_clk),
+.cpu_mem_ena, // If CPU need DMemory
+.cpu_addr,
+.cpu_write_data,
+.cpu_mem_read_ena,
+.cpu_mem_write_ena,
+.hdw_switch_data(hdw_switch_data[23:0]),
+.uart_ena(uart_ena),
+.uart_done(uart_done),
+.uart_clk(uart_clk),
+.uart_addr(uart_addr),
+.uart_data(uart_data),
+///input////
+///output///
+.read_data,
+.hdw_led_data(led_o)
+);
+
+key_bd kb(
+.clk(clk),
+.rst(rst),
+.row(kb_row),
+///input///
+///output///
+.col(kb_col),
+.data(hdw_switch_data),
+.seg_cho(seg_cho),
+.seg_lit(seg_lit)
 );
 
 endmodule
