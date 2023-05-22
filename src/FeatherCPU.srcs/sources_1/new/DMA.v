@@ -52,7 +52,7 @@ always @(posedge cpu_clk) begin
         write_data = cpu_write_data;
     end else begin
         if(tran_pos) begin
-            write_addr = `MMIO_sw_map_addr;
+            mem_addr = `MMIO_sw_map_addr;
             write_data = {8'b0, hdw_switch_data};
             mem_read = 0;
             mem_write = 1;
