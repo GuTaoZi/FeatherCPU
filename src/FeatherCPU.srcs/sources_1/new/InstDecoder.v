@@ -105,6 +105,10 @@ assign o_alu_op =
     `ALU_ADD:
     (inst_type==`B_TYPE)?
     ((funct3==`B_BEQ)?`ALU_BEQ:`ALU_BNE)
+    :
+    (opcode==`J_JALR)?`ALU_ADD
+    :
+    (opcode==`U_TYPE)?`ALU_SLL
     :`ALU_ERR;
 
 assign o_mem_read   = (opcode==7'b000_0011);

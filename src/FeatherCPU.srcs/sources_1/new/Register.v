@@ -11,10 +11,13 @@ input                   write_en,
 input                   clk,
 input                   rst,
 output [`REG_WIDTH] read_data1,
-output [`REG_WIDTH] read_data2
+output [`REG_WIDTH] read_data2,
+output [`REG_WIDTH] read_ra
     );
 
 reg [`REG_WIDTH] registers [`REG_NUMBERS : 0];
+
+assign read_ra = registers[2];
 
 always @(negedge clk)
 begin

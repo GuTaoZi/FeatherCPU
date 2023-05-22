@@ -51,6 +51,8 @@
 `define J_TYPE 3'h6
 //|   -   |----------|   -   | -------- |-----|-------|
 //|imm[20]|imm[10:1] |imm[11]|imm[19:12]| rd  |opcode |
+`define J_JAL   7'b110_1111
+`define J_JALR   7'b110_0111
 
 `define E_TYPE 3'h7
 //INSTRUCTION TYPE ERROR

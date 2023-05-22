@@ -10,7 +10,6 @@ input [`REG_WIDTH]    branch_val_i,
 input [`ALU_OP_LEN]   ALU_op,
 input                 rst,
 output [`REG_WIDTH]   ALU_ouput,
-output [`REG_WIDTH]   branch_val_o,
 output                overflow
     );
 wire [`REG_WIDTH] sum;
@@ -32,10 +31,9 @@ assign ALU_ouput      = rst ? 0 : (
     (ALU_op ^ `ALU_SLL) >> 2 == 0 ? shift :
     (ALU_op ^ `ALU_AND) >> 2 == 0 ? binary :
     (ALU_op ^ `ALU_SLT) >> 2 == 0 ? slt :
+    (ALU_op ^ `ALU_BEQ) >> 2 == 0 ? (beq ? branch_val_i : 4) :
     0
 );
-
-assign branch_val_o = beq ? branch_val_i : 0;
 
 assign overflow = rst ? 0 : (
     (ALU_op == `ALU_ADD) ? ((src1[`REG_MAX_LEN]&src2[`REG_MAX_LEN]&~sum[`REG_MAX_LEN]) | (~src1[`REG_MAX_LEN]&~src2[`REG_MAX_LEN]&sum[`REG_MAX_LEN])) :

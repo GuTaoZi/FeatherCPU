@@ -2,16 +2,16 @@
 `include "ParamDef.vh"
 
 module top(
-input clk,
-input rst,
-input upg_rx,
-input [3:0] kb_row,
-output [3:0] kb_col,
-output upg_tx,
-output [23:0] led_o,
-output [7:0] seg_cho,
-output [7:0] seg_lit
-    );
+    input clk,
+    input rst,
+    input upg_rx,
+    input [3:0] kb_row,
+    output [3:0] kb_col,
+    output upg_tx,
+    output [23:0] led_o,
+    output [7:0] seg_cho,
+    output [7:0] seg_lit
+);
     
 wire upg_clk;
 wire uart_ena;
@@ -46,11 +46,10 @@ assign cpu_clk = cnt[2];
 
 
 reg [2:0] state;
-reg actual_reg_write_en;
 
 always @(posedge cpu_clk) begin
     state = state + 1;
-
+    // hihihihihihi
 end
 
 wire [31:0] pc;
@@ -75,11 +74,14 @@ wire [`REG_WIDTH] imm_raw;
 wire [`REG_WIDTH] data_from_mem;
 
 wire [`ALU_OP_LEN] alu_op;
+
 wire mem_read_en;
 wire mem_write_en;
+// DONE while state == 2'b11 !!!!!!!!!!!!!!!!!!!!!!
+
 wire mem_to_reg_en;
 wire alu_src_from_2_regs;
-wire reg_write_en;
+wire reg_write_en_from_id;
 wire [2:0] inst_type;
 
 inst_decoder u_inst_decoder(
@@ -93,19 +95,21 @@ inst_decoder u_inst_decoder(
     .o_mem_write(mem_write_en),
     .o_mem_to_reg(mem_to_reg_en),
     .o_alu_src(alu_src_from_2_regs),
-    .o_reg_write(reg_write_en),
+    .o_reg_write(reg_write_en_from_id),
     .o_inst_type(inst_type)
 );
 
 wire [`REG_WIDTH] reg_data1;
 wire [`REG_WIDTH] reg_data2;
 
+wire register_write_enable_of_id_and_pc=(state==2'b00)&(reg_write_en_from_id | (inst_type==`J_TYPE));
+
 Register u_Register(
     .read_addr1(rs1_idx_raw),
     .read_addr2(rs2_idx_raw),
     .write_addr(rd_idx_raw),
     .write_data(data_from_mem),
-    .write_en(reg_write_en),
+    .write_en(register_write_enable_of_id_and_pc),
     .clk(cpu_clk),
     .rst(rst),
     ///input///
@@ -120,7 +124,8 @@ wire [`REG_WIDTH] src1 =
 (inst_type==`R_TYPE)?(reg_data1):   // rd = rs1 ? rs2
 (inst_type==`I_TYPE)?(reg_data1):   // rs = rs1 ? imm
 (inst_type==`B_TYPE)?(reg_data1):   // rs1 == rs2
-(inst_type==`U_TYPE)?(imm_raw):0;   // imm << 12
+(inst_type==`U_TYPE)?(imm_raw):     // imm << 12
+(inst[6:0]==`J_JALR)?(reg_data1):0; // pc = rs1 + imm
 
 wire [`REG_WIDTH] src2 =
 (inst[6:0]==`I_LW)?(imm_raw):
@@ -128,10 +133,10 @@ wire [`REG_WIDTH] src2 =
 (inst_type==`R_TYPE)?(reg_data2):
 (inst_type==`I_TYPE)?(imm_raw):
 (inst_type==`B_TYPE)?(reg_data2):
-(inst_type==`U_TYPE)?(12):0;
+(inst_type==`U_TYPE)?(4'd12):
+(inst[6:0]==`J_JALR)?(imm_raw):0;
 
 wire [`REG_WIDTH] alu_opt;
-wire [`REG_WIDTH] branch_val;
 wire overflow_raw;
 
 
@@ -144,7 +149,6 @@ ALU alu(
     ///input///
     ///output///
     .ALU_ouput(alu_opt),
-    .branch_val_o(branch_val),
     .overflow(overflow_raw)
 );
 
@@ -170,7 +174,7 @@ DMA dma(
     .hdw_led_data(led_o)
 );
 
-key_bd kb(
+Keyboard_N_Segtube u_keyboard_segtube(
     .clk(clk),
     .rst(rst),
     .row(kb_row),
@@ -182,19 +186,21 @@ key_bd kb(
     .seg_lit(seg_lit)
 );
 
+wire [`REG_WIDTH] pc_write_into_rs1;
+
 PC u_PC(
     .clk(cpu_clk),
     .rst(rst),
-    .Jal,
-    .Jalr,
-    .pc_en,
-    .branch,
-    .Jalr_reg_data,
-    .Jal_imm,
-    .branch_val(branch_val), // from ALU
+    .Jal((inst[6:0]==`J_JAL)?1'b1:1'b0),
+    .Jalr((inst[6:0]==`J_JALR)?1'b1:1'b0),
+    .pc_en((state==2'b00)),
+    .branch((inst_type==`B_TYPE)?1'b1:1'b0),
+    .Jal_imm(imm_raw),
+    .alu_val(alu_opt), // from ALU
     ///input///
     ///output///
-    .pc(pc)
+    .pc(pc),
+    .pc_rb(pc_write_into_rs1)
 );
 
 endmodule

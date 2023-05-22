@@ -27,10 +27,10 @@ input Jal,
 input Jalr,
 input pc_en,
 input branch,
-input [`REG_WIDTH] Jalr_reg_data, //rs1
 input [`REG_WIDTH] Jal_imm,
-input [`REG_WIDTH] branch_val,
-output [`REG_WIDTH] pc
+input [`REG_WIDTH] alu_val,
+output [`REG_WIDTH] pc,
+output reg [`REG_WIDTH] pc_rb
     );
 reg [`REG_WIDTH] now_pc;
 wire [`REG_WIDTH] next_pc;
@@ -42,6 +42,7 @@ begin
         now_pc = 0;
     end else begin
         if(pc_en) begin
+            pc_rb = now_pc + 4;
             now_pc = next_pc;
         end
     end
@@ -49,9 +50,9 @@ end
 
 assign next_pc =
 rst     ?   0                           :
-Jalr    ?   Jalr_reg_data + Jal_imm     :
+Jalr    ?   alu_val                     :
 Jal     ?   now_pc + Jal_imm            :
-branch  ?   now_pc + branch_val         :
+branch  ?   now_pc + alu_val            :
             now_pc + 4;
 //TODO: $ra
 endmodule

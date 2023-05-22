@@ -1,4 +1,4 @@
-module key_bd(
+module Keyboard_N_Segtube(
     input clk,
     input rst,
     input  [3:0]        row,
