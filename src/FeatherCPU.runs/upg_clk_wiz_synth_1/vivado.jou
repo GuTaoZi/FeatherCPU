@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Mon May 22 17:05:45 2023
+# Process ID: 15680
+# Current directory: E:/Computer_Organization/FeatherCPU/src/FeatherCPU.runs/upg_clk_wiz_synth_1
+# Command line: vivado.exe -log upg_clk_wiz.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source upg_clk_wiz.tcl
+# Log file: E:/Computer_Organization/FeatherCPU/src/FeatherCPU.runs/upg_clk_wiz_synth_1/upg_clk_wiz.vds
+# Journal file: E:/Computer_Organization/FeatherCPU/src/FeatherCPU.runs/upg_clk_wiz_synth_1\vivado.jou
+# Running On: FIRST-MICROSOFT, OS: Windows, CPU Frequency: 1498 MHz, CPU Physical cores: 4, Host memory: 16745 MB
+#-----------------------------------------------------------
+source upg_clk_wiz.tcl -notrace

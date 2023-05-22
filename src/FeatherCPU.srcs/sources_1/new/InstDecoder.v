@@ -11,7 +11,6 @@ module inst_decoder(
     output[`REG_WIDTH] o_imm,
     output[`ALU_OP_LEN] o_alu_op,
     output o_reg_dst,
-    output o_branch,
     output o_mem_read,
     output o_mem_write,
     output o_mem_to_reg,
@@ -74,27 +73,34 @@ assign o_imm = (inst_type==`R_TYPE)?32'h0:
                (inst_type==`J_TYPE)?imm_J:
                (inst_type==`U_TYPE)?imm_U:32'hffff_ffff;
 
-assign o_alu_op = funct3?(
-    (funct3==3'b001)? `ALU_SLL: // sll
-    (funct3==3'b010)? `ALU_SLT: // slt
-    (funct3==3'b011)? `ALU_SLT: // sltu
-    (funct3==3'b100)? ((funct7[0])?`ALU_DIV:`ALU_XOR): // div : xor
-    (funct3==3'b101)? ((funct7[5])?`ALU_SRA:`ALU_SRL): // sra : srl
-    (funct3==3'b110)? ((funct7[0])?`ALU_REM:`ALU_OR):  // rem : or
-    (funct3==3'b111)? `ALU_AND: // and
-    `ALU_ERR // err
-):
-(
-    (funct7==7'b000_0000)? `ALU_ADD: // add
-    (funct7==7'b000_0001)? `ALU_MUL: // mul
-    (funct7==7'b000_0010)? `ALU_ADD: // addu
-    (funct7==7'b010_0000)? `ALU_SUB: // sub
-    (funct7==7'b000_0100)? `ALU_SUB: // subu
-    `ALU_ERR // err
-);
+//assign o_alu_op = funct3?(
+//    (funct3==3'b001)? `ALU_SLL: // sll
+//    (funct3==3'b010)? `ALU_SLT: // slt
+//    (funct3==3'b011)? `ALU_SLT: // sltu
+//    (funct3==3'b100)? ((funct7[0])?`ALU_DIV:`ALU_XOR): // div : xor
+//    (funct3==3'b101)? ((funct7[5])?`ALU_SRA:`ALU_SRL): // sra : srl
+//    (funct3==3'b110)? ((funct7[0])?`ALU_REM:`ALU_OR):  // rem : or
+//    (funct3==3'b111)? `ALU_AND: // and
+//    `ALU_ERR // err
+//):
+//(
+//    (funct7==7'b000_0000)? `ALU_ADD: // add
+//    (funct7==7'b000_0001)? `ALU_MUL: // mul
+//    (funct7==7'b000_0010)? `ALU_ADD: // addu
+//    (funct7==7'b010_0000)? `ALU_SUB: // sub
+//    (funct7==7'b000_0100)? `ALU_SUB: // subu
+//    `ALU_ERR // err
+//);
+
+assign o_alu_op =
+    (inst_type==`R_TYPE)?
+    :
+    (inst_type==`I_TYPE)?
+    :
+    (inst_type==`B_TYPE)?
+    :
 
 assign o_reg_dst    = !(inst_type==`S_TYPE||inst_type==`B_TYPE);
-assign o_branch     = (inst_type==`B_TYPE);
 assign o_mem_read   = (opcode==7'b000_0011);
 assign o_mem_write  = (inst_type==`S_TYPE);
 assign o_mem_to_reg = (opcode==7'b000_0011);

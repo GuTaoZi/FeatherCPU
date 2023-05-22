@@ -261,24 +261,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
             <td></td>
         </tr>
         <tr>
-            <td>lb</td>
-            <td>Load Byte</td>
-            <td>0000011</td>
-            <td>000</td>
-            <td></td>
-            <td>rd = M[rs1+imm][0:7]</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>lh</td>
-            <td>Load Half</td>
-            <td>0000011</td>
-            <td>001</td>
-            <td></td>
-            <td>rd = M[rs1+imm][0:15]</td>
-            <td></td>
-        </tr>
-        <tr>
             <td>lw</td>
             <td>Load Word</td>
             <td>0000011</td>
@@ -286,24 +268,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
             <td></td>
             <td>rd = M[rs1+imm][0:31]</td>
             <td></td>
-        </tr>
-        <tr>
-            <td>lbu</td>
-            <td>Load Byte (U)</td>
-            <td>0000011</td>
-            <td>100</td>
-            <td></td>
-            <td>rd = M[rs1+imm][0:7]</td>
-            <td>zero-extends</td>
-        </tr>
-        <tr>
-            <td>lhu</td>
-            <td>Load Half (U)</td>
-            <td>0000011</td>
-            <td>101</td>
-            <td></td>
-            <td>rd = M[rs1+imm][0:15]</td>
-            <td>zero-extends</td>
         </tr>
         <tr>
             <td>ecall</td>
@@ -326,7 +290,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </table>
 </details>
 
-
 ### S type
 
 <details>
@@ -339,20 +302,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
         <td><b>Description</b></td>
     </tr>
     <tr>
-        <td>sb</td>
-        <td>Store Byte</td>
-        <td>0100011</td>
-        <td>000</td>
-        <td>M[rs1+imm][0:7]=rs2[0:7]</td>
-    </tr>
-    <tr>
-        <td>sh</td>
-        <td>Store Half</td>
-        <td>0100011</td>
-        <td>001</td>
-        <td>M[rs1+imm][0:15]=rs2[0:15]</td>
-    </tr>
-    <tr>
         <td>sw</td>
         <td>Store Word</td>
         <td>0100011</td>
@@ -361,6 +310,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
+
 
 
 ### B type 

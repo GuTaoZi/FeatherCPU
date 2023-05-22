@@ -2,6 +2,22 @@
 //|-------|-----|-----| ---  |-----|-------|
 //|funct7 | rs2 | rs1 |funct3| rd  |opcode |
 
+`define R_ADD   10'b000_000_0000
+`define R_MUL   10'b000_000_0001
+`define R_ADDU  10'b000_000_0010
+`define R_SUB   10'b000_010_0000
+`define R_SUBU  10'b000_000_0100
+`define R_SLL   10'b001_000_0000
+`define R_SLT   10'b010_000_0000
+`define R_SLTU  10'b011_000_0000
+`define R_XOR   10'b100_000_0000
+`define R_DIV   10'b100_000_0001
+`define R_SRL   10'b101_000_0000
+`define R_SRA   10'b110_000_0000
+`define R_OR    10'b110_000_0000
+`define R_REM   10'b110_000_0001
+`define R_AND   10'b111_000_0000
+
 `define I_TYPE 3'h2
 //|------------|-----| ---  |-----|-------|
 //| imm[11:0]  | rs1 |funct3| rd  |opcode |
