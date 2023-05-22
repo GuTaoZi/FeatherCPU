@@ -2,10 +2,11 @@ module filter(
 input       clk,
 input       rst,
 input       inp,
-output reg  opt,
-parameter len = 21
+output reg  opt
 );
 
+
+parameter len = 21;
 reg las_state = 0;
 reg [len:0] cnt = 0;
 
@@ -19,7 +20,7 @@ always @(posedge clk) begin
             cnt = 0;
             opt = las_state;
         end else begin
-            cnt += 1'b1;
+            cnt = cnt + 1'b1;
             if(cnt[21]) begin
                 las_state = inp;
                 opt = inp;
