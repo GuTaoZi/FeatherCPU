@@ -1,46 +1,101 @@
 module keyboard(
     input clk,
     input rst,
-    input  [3:0]     row,
-    output reg [3:0] col,
+    input  [3:0]    row,
+    output [3:0]    col,
     output reg [3:0] data
 );
 
-reg [10:0] clkcnt;
+reg [20:0] clkcnt = 0;
 
 always @(posedge clk)
 begin
-    clkcnt <= clkcnt +1'b1;
+    if(rst) begin
+        clkcnt = 0;
+    end else begin
+        clkcnt <= clkcnt +1'b1;
+    end
 end
 
-wire [1:0] keyclk = clkcnt[10:9];
+wire [1:0] keyclk = clkcnt[20:19];
+assign col = 4'b1111 ^ (1<<keyclk);
+reg lock = 0;
 
 always @(posedge clk)
 begin
-//    case (keyclk)
-//        2'b00: col = 4'b1110;
-//        2'b01: col = 4'b1101;
-//        2'b10: col = 4'b1011;
-//        2'b11: col = 4'b0111;
-//    endcase
-    col = 4'b1111 ^ (1<<keyclk);
-    case({row,col})
-        8'b1110_1110: data = 4'h1;
-        8'b1101_1110: data = 4'h4;
-        8'b1011_1110: data = 4'h7;
-        8'b0111_1110: data = 4'hf;
-        8'b1110_1101: data = 4'h2;
-        8'b1101_1101: data = 4'h5;
-        8'b1011_1101: data = 4'h8;
-        8'b0111_1101: data = 4'h0;
-        8'b1110_1011: data = 4'h3;
-        8'b1101_1011: data = 4'h6;
-        8'b1011_1011: data = 4'h9;
-        8'b0111_1011: data = 4'he;
-        8'b1110_0111: data = 4'ha;
-        8'b1101_0111: data = 4'hb;
-        8'b1011_0111: data = 4'hc;
-        8'b0111_0111: data = 4'hd;
-        default: data = 4'h0;
-    endcase
+    if(rst) begin
+        data = 0;
+    end else begin
+        case({row,col})
+            8'b1110_1110: begin
+                if(lock == 1'b0) data = 4'h1;
+                lock = 1'b1;
+            end
+            8'b1101_1110: begin
+                if(lock == 1'b0) data = 4'h4;
+                lock = 1'b1;
+            end
+            8'b1011_1110: begin
+                if(lock == 1'b0) data = 4'h7;
+                lock = 1'b1;
+            end
+            8'b0111_1110: begin
+                if(lock == 1'b0) data = 4'hf;
+                lock = 1'b1;
+            end
+            8'b1110_1101: begin
+                if(lock == 1'b0) data = 4'h2;
+                lock = 1'b1;
+            end
+            8'b1101_1101: begin
+                if(lock == 1'b0) data = 4'h5;
+                lock = 1'b1;
+            end
+            8'b1011_1101: begin
+                if(lock == 1'b0) data = 4'h8;
+                lock = 1'b1;
+            end
+            8'b0111_1101: begin
+                if(lock == 1'b0) data = 4'h0;
+                lock = 1'b1;
+            end
+            8'b1110_1011: begin
+                if(lock == 1'b0) data = 4'h3;
+                lock = 1'b1;
+            end
+            8'b1101_1011: begin
+                if(lock == 1'b0) data = 4'h6;
+                lock = 1'b1;
+            end
+            8'b1011_1011: begin
+                if(lock == 1'b0) data = 4'h9;
+                lock = 1'b1;
+            end
+            8'b0111_1011: begin
+                if(lock == 1'b0) data = 4'he;
+                lock = 1'b1;
+            end
+            8'b1110_0111: begin
+                if(lock == 1'b0) data = 4'ha;
+                lock = 1'b1;
+            end
+            8'b1101_0111: begin
+                if(lock == 1'b0) data = 4'hb;
+                lock = 1'b1;
+            end
+            8'b1011_0111: begin
+                if(lock == 1'b0) data = 4'hc;
+                lock = 1'b1;
+            end
+            8'b0111_0111: begin
+                if(lock == 1'b0) data = 4'hd;
+                lock = 1'b1;
+            end
+            default: begin
+                data = data;
+                lock = 1'b0;
+            end
+        endcase
+    end
 end
+endmodule

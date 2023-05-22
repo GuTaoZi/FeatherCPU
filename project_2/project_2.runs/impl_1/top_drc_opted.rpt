@@ -1,13 +1,13 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Mon May 22 14:17:38 2023
-| Host         : FIRST-MICROSOFT running 64-bit major release  (build 9200)
+| Date         : Mon May 22 15:18:08 2023
+| Host         : LAPTOP-Shadowstorm running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_opted.rpt -pb top_drc_opted.pb -rpx top_drc_opted.rpx
 | Design       : top
 | Device       : xc7a100tfgg484-1
 | Speed File   : -1
-| Design State : Fully Placed
+| Design State : Synthesized
 ------------------------------------------------------------------------------------------------
 
 Report DRC

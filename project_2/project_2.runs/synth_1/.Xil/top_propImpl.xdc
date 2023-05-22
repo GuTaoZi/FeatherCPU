@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:E:/Computer_Organization/test/project_2/project_2.srcs/constrs_1/new/cons.xdc rfile:../../../project_2.srcs/constrs_1/new/cons.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/project_2/project_2.srcs/constrs_1/new/cons.xdc rfile:../../../project_2.srcs/constrs_1/new/cons.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN Y18 [get_ports clk]
 set_property src_info {type:XDC file:1 line:4 export:INPUT save:INPUT read:READ} [current_design]
