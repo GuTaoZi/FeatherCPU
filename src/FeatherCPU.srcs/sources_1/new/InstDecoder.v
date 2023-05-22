@@ -16,7 +16,7 @@ module inst_decoder(
     output o_mem_write,
     output o_mem_to_reg,
     output o_alu_src,
-    output o_reg_write
+    output o_reg_write,
 );
 
 wire[6:0] opcode;
