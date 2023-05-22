@@ -10,7 +10,7 @@ input                   uart_done,
 input                   uart_clk,
 input   [13:0]          uart_addr,
 input   [`REG_WIDTH]    uart_data,
-output  [`INST_LEN]     ins
+output  [`INST_LEN]     inst
     );
 
 assign kick_off = ~uart_ena | uart_done;
@@ -18,7 +18,7 @@ assign kick_off = ~uart_ena | uart_done;
 ins_mem im( .addra(kick_off ? pc[13:0] : uart_addr),
             .clka(kick_off ? clk : uart_clk),
             .dina(kick_off ? 0 : uart_data),
-            .douta(ins),
+            .douta(inst),
             .wea(~kick_off));
 
 endmodule

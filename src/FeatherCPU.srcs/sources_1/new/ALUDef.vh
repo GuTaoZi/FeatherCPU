@@ -14,9 +14,13 @@
 `define ALU_XOR 6'b0100_10
 
 `define ALU_SLTU 6'b0101_00
+<<<<<<< HEAD
 `define ALU_SLT  6'b0101_01
 
 `define ALU_BEQ  6'b0110_00
 `define ALU_BNE  6'b0110_01
 
 `define ALU_ERR 6'b1111_11
+=======
+`define ALU_SLT  6'b0101_01
+>>>>>>> 7f8d85018670a4fddfd9470ada6116c7d8a6c5c3

@@ -1,0 +1,7 @@
+verilog xil_defaultlib --include "../../../ipstatic" \
+"../../../../FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_clk_wiz.v" \
+"../../../../FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
