@@ -26,8 +26,8 @@ input rst,
 input J,
 input Jal,
 input branch,
-input [`REG_WIDTH] Jal_val, // from register
 input [`REG_WIDTH] J_val,   // from instruction
+input [`REG_WIDTH] Jal_val, // from register
 input [`REG_WIDTH] branch_val, // from ALU
 output [`REG_WIDTH] pc
     );
@@ -44,6 +44,6 @@ assign next_pc =
 rst     ?   0                                   :
 J       ?   {now_pc[31:20], J_val[19:0]} + 4    :
 Jal     ?   Jal_val + 4                         :
-branch  ?   now_pc + branch_val + 4             :
+branch  ?   now_pc + branch_val                 :
             now_pc + 4;
 endmodule

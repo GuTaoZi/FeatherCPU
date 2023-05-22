@@ -7,7 +7,7 @@ input   [`REG_IDX_LEN]  read_addr1,
 input   [`REG_IDX_LEN]  read_addr2,
 input   [`REG_IDX_LEN]  write_addr,
 input   [`REG_WIDTH]    write_data,
-input                   RegWrite,
+input                   write_en,
 input                   clk,
 output [`REG_WIDTH] read_data1,
 output [`REG_WIDTH] read_data2
@@ -17,7 +17,7 @@ reg [`REG_WIDTH] registers [`REG_NUMBERS : 0];
 
 always @(negedge clk)
 begin
-    if(RegWrite && write_addr != 5'b00000) begin
+    if(write_en && write_addr != 5'b00000) begin
         registers[write_addr] <= write_data;
     end
 end

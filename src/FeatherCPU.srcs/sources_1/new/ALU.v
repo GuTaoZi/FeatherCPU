@@ -9,7 +9,7 @@ input [`REG_WIDTH]    src2,
 input [`REG_WIDTH]    branch_val_i,
 input [`ALU_OP_LEN]   ALU_op,
 input                 rst,
-output [`REG_WIDTH]   opt,
+output [`REG_WIDTH]   ALU_ouput,
 output [`REG_WIDTH]   branch_val_o,
 output                overflow
     );
@@ -26,7 +26,7 @@ assign binary   = ALU_op[0] ? (src1 | src2) : (ALU_op[1] ? (src1 ^ src2) : (src1
 assign slt      = ALU_op[0] ? ($signed(src1) < $signed(src2) ? 1 : 0) : (src1 < src2 ? 1 : 0);
 assign beq      = (src1 == src2) ^ ALU_op[0];
 
-assign opt      = rst ? 0 : (
+assign ALU_ouput      = rst ? 0 : (
     (ALU_op ^ `ALU_ADD) >> 2 == 0 ? sum :
     (ALU_op ^ `ALU_MUL) >> 2 == 0 ? mul :
     (ALU_op ^ `ALU_SLL) >> 2 == 0 ? shift :
