@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "E:/Computer_Organization/FeatherCPU/src/FeatherCPU.runs/impl_1/Top.tcl"
+  variable script "C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/impl_1/Top.tcl"
   variable category "vivado_impl"
 }
 
@@ -129,20 +129,20 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir E:/Computer_Organization/FeatherCPU/src/FeatherCPU.cache/wt [current_project]
-  set_property parent.project_path E:/Computer_Organization/FeatherCPU/src/FeatherCPU.xpr [current_project]
-  set_property ip_repo_paths E:/Computer_Organization/FeatherCPU/SEU_CSE_507_user_uart_bmpg_1.3 [current_project]
+  set_property webtalk.parent_dir C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.cache/wt [current_project]
+  set_property parent.project_path C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.xpr [current_project]
+  set_property ip_repo_paths C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/SEU_CSE_507_user_uart_bmpg_1.3 [current_project]
   update_ip_catalog
-  set_property ip_output_repo E:/Computer_Organization/FeatherCPU/src/FeatherCPU.cache/ip [current_project]
+  set_property ip_output_repo C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.runs/synth_1/Top.dcp
-  read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/ins_mem/ins_mem.xci
-  read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/data_mem/data_mem.xci
-  read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
-  read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
+  add_files -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/Top.dcp
+  read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/data_mem/data_mem.xci
+  read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/ins_mem/ins_mem.xci
+  read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
+  read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
 OPTRACE "read constraints: implementation" START { }
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
@@ -300,4 +300,35 @@ OPTRACE "route_design write_checkpoint" END { }
 
 OPTRACE "route_design misc" END { }
 OPTRACE "Phase: Route Design" END { }
+OPTRACE "Phase: Write Bitstream" START { ROLLUP_AUTO }
+OPTRACE "write_bitstream setup" START { }
+start_step write_bitstream
+set ACTIVE_STEP write_bitstream
+set rc [catch {
+  create_msg_db write_bitstream.pb
+OPTRACE "read constraints: write_bitstream" START { }
+OPTRACE "read constraints: write_bitstream" END { }
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+  catch { write_mem_info -force -no_partial_mmi Top.mmi }
+OPTRACE "write_bitstream setup" END { }
+OPTRACE "write_bitstream" START { }
+  write_bitstream -force Top.bit 
+OPTRACE "write_bitstream" END { }
+OPTRACE "write_bitstream misc" START { }
+OPTRACE "read constraints: write_bitstream_post" START { }
+OPTRACE "read constraints: write_bitstream_post" END { }
+  catch {write_debug_probes -quiet -force Top}
+  catch {file copy -force Top.ltx debug_nets.ltx}
+  close_msg_db -file write_bitstream.pb
+} RESULT]
+if {$rc} {
+  step_failed write_bitstream
+  return -code error $RESULT
+} else {
+  end_step write_bitstream
+  unset ACTIVE_STEP 
+}
+
+OPTRACE "write_bitstream misc" END { }
+OPTRACE "Phase: Write Bitstream" END { }
 OPTRACE "impl_1" END { }

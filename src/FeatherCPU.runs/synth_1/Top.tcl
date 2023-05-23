@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "E:/Computer_Organization/FeatherCPU/src/FeatherCPU.runs/synth_1/Top.tcl"
+  variable script "C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/Top.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,6 +70,7 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 2
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tfgg484-1
 
@@ -77,47 +78,47 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir E:/Computer_Organization/FeatherCPU/src/FeatherCPU.cache/wt [current_project]
-set_property parent.project_path E:/Computer_Organization/FeatherCPU/src/FeatherCPU.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.cache/wt [current_project]
+set_property parent.project_path C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_repo_paths e:/Computer_Organization/FeatherCPU/SEU_CSE_507_user_uart_bmpg_1.3 [current_project]
+set_property ip_repo_paths c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/SEU_CSE_507_user_uart_bmpg_1.3 [current_project]
 update_ip_catalog
-set_property ip_output_repo e:/Computer_Organization/FeatherCPU/src/FeatherCPU.cache/ip [current_project]
+set_property ip_output_repo c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog {
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ParamDef.vh
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ALUDef.vh
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InstDef.vh
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ParamDef.vh
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ALUDef.vh
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InstDef.vh
 }
 read_verilog -library xil_defaultlib {
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ALU.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DMA.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DataMem.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InsMem.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InstDecoder.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/Key_Seg.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/Keyboard.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/PC.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/Register.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/segtube.v
-  E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/top.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ALU.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DMA.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DataMem.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InsMem.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InstDecoder.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/Key_Seg.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/Keyboard.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/PC.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/Register.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/segtube.v
+  C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/top.v
 }
-read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/ins_mem/ins_mem.xci
-set_property used_in_implementation false [get_files -all e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/ins_mem/ins_mem_ooc.xdc]
+read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/data_mem/data_mem.xci
+set_property used_in_implementation false [get_files -all c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/data_mem/data_mem_ooc.xdc]
 
-read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/data_mem/data_mem.xci
-set_property used_in_implementation false [get_files -all e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/data_mem/data_mem_ooc.xdc]
+read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/ins_mem/ins_mem.xci
+set_property used_in_implementation false [get_files -all c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/ins_mem/ins_mem_ooc.xdc]
 
-read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
+read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
 
-read_ip -quiet E:/Computer_Organization/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
-set_property used_in_implementation false [get_files -all e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_board.xdc]
-set_property used_in_implementation false [get_files -all e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xdc]
-set_property used_in_implementation false [get_files -all e:/Computer_Organization/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_ooc.xdc]
+read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
+set_property used_in_implementation false [get_files -all c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -128,7 +129,11 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc dont_touch.xdc
+set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/utils_1/imports/synth_1/Top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
