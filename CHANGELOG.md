@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.3.4] - 2023-05-23
 
+### Added
+
+- Some usability assembly testcases
+
 ### Changed
 
 - Organize the project structure a little bit
@@ -15,7 +19,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- A bug of uart found (might relate to PC ports or Project caches) and fixed
 - Fix some micro-bugs, now synthesis design passed
+
+### Removed
+
+- Project cache files and folders, only upload source files
 
 ## [0.3.3] - 2023-05-22
 
