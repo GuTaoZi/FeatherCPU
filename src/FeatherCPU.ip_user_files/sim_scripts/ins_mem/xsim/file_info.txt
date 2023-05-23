@@ -1,2 +1,0 @@
-ins_mem.v,verilog,xil_defaultlib,../../../../FeatherCPU.gen/sources_1/ip/ins_mem/sim/ins_mem.v,
-glbl.v,Verilog,xil_defaultlib,glbl.v
