@@ -25,14 +25,16 @@ int main(int argc, char **argv){
     std::ifstream afile;
     afile.open(ifile, std::ios::in);
     bool flg = false;
+    int cnt = 0;
     if(afile.is_open()){
-        std::string  line;
+        std::string line;
         while (!afile.eof()) {
             getline(afile, line);
             if(line.length()==8){
                 if(flg) coe_header += ",\n";
                 flg = true;
                 coe_header += line;
+                cnt += 1;
             }
         }
         afile.close();
@@ -40,6 +42,10 @@ int main(int argc, char **argv){
         cerr<<"Cannot open file"<<endl;
         return -1;
     }
+    for(; cnt<16384; cnt++){
+        coe_header += ",\n00000000";
+    }
+    coe_header += ";\n";
     ofstream ofs(ofile);
     ofs<<coe_header;
     ofs.close();
