@@ -42,14 +42,17 @@ always @(posedge clk) begin
     cnt = cnt + 1;
 end
 
-assign cpu_clk = cnt[2];
+assign cpu_clk = cnt[1];
 
 
 reg [2:0] state;
 
-always @(posedge cpu_clk) begin
-    state = state + 1;
-    // hihihihihihi
+always @(negedge cnt[0]) begin
+    if(rst) begin
+        state = 2'b00;
+    end else begin
+        state = state + 1'b1;
+    end
 end
 
 wire [31:0] pc;
@@ -106,7 +109,7 @@ inst_decoder u_inst_decoder(
 wire [`REG_WIDTH] reg_data1;
 wire [`REG_WIDTH] reg_data2;
 
-wire register_write_enable_of_id_and_pc=(state==2'b00)&(reg_write_en_from_id | (inst_type==`J_TYPE));
+wire register_write_enable_of_id_and_pc=(state==2'b11)&(reg_write_en_from_id | (inst_type==`J_TYPE));
 
 Register u_Register(
     .i_read_addr1(rs1_idx_raw),
@@ -160,8 +163,8 @@ wire [`REG_WIDTH] hdw_switch_data;
 
 DMA dma(
     .hdw_clk(clk),
-    .cpu_clk(hdw_clk),
-    .cpu_mem_ena(mem_read_en | mem_write_en), // If CPU need DMemory
+    .cpu_clk(cpu_clk),
+    .cpu_mem_ena((mem_read_en | mem_write_en) & state == 2'b10), // If CPU need DMemory
     .cpu_addr(alu_opt),
     .cpu_write_data(reg_data2),
     .cpu_mem_read_ena(mem_read_en),

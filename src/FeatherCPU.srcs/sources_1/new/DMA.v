@@ -42,7 +42,7 @@ DataMem myDM(
 
 reg reading_data = 0;
 
-always @(posedge cpu_clk) begin
+always @(negedge cpu_clk) begin
     if(reading_data) begin
         hdw_led_data = read_data[23:0];
         reading_data = 0;
