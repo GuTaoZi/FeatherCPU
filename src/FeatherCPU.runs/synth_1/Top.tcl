@@ -71,8 +71,9 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
-create_project -in_memory -part xc7a35tfgg484-1
+create_project -in_memory -part xc7a100tfgg484-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
@@ -129,6 +130,9 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc
+set_property used_in_implementation false [get_files C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc]
+
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
@@ -137,7 +141,7 @@ read_checkpoint -auto_incremental -incremental C:/Users/jayfe/Desktop/course/DTw
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top Top -part xc7a35tfgg484-1
+synth_design -top Top -part xc7a100tfgg484-1
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"

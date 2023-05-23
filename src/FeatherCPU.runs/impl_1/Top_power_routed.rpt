@@ -1,11 +1,11 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Tue May 23 19:51:58 2023
+| Date             : Tue May 23 20:25:39 2023
 | Host             : LAPTOP-Shadowstorm running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_power_routed.rpt -pb Top_power_summary_routed.pb -rpx Top_power_routed.rpx
 | Design           : Top
-| Device           : xc7a35tfgg484-1
+| Device           : xc7a100tfgg484-1
 | Design State     : routed
 | Grade            : commercial
 | Process          : typical
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.208        |
+| Total On-Chip Power (W)  | 0.284        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.136        |
-| Device Static (W)        | 0.072        |
-| Effective TJA (C/W)      | 2.8          |
-| Max Ambient (C)          | 84.4         |
-| Junction Temperature (C) | 25.6         |
+| Dynamic (W)              | 0.185        |
+| Device Static (W)        | 0.099        |
+| Effective TJA (C/W)      | 2.7          |
+| Max Ambient (C)          | 84.2         |
+| Junction Temperature (C) | 25.8         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,21 +52,21 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.001 |        5 |       --- |             --- |
+| Clocks                  |     0.002 |        5 |       --- |             --- |
 | Slice Logic             |     0.001 |     2927 |       --- |             --- |
-|   LUT as Logic          |     0.001 |      781 |     20800 |            3.75 |
-|   Register              |    <0.001 |     1602 |     41600 |            3.85 |
-|   CARRY4                |    <0.001 |       39 |      8150 |            0.48 |
+|   LUT as Logic          |     0.001 |      779 |     63400 |            1.23 |
+|   Register              |    <0.001 |     1602 |    126800 |            1.26 |
+|   CARRY4                |    <0.001 |       39 |     15850 |            0.25 |
 |   BUFG                  |    <0.001 |        5 |        32 |           15.63 |
-|   F7/F8 Muxes           |    <0.001 |      180 |     32600 |            0.55 |
-|   LUT as Shift Register |    <0.001 |       10 |      9600 |            0.10 |
+|   F7/F8 Muxes           |    <0.001 |      180 |     63400 |            0.28 |
+|   LUT as Shift Register |    <0.001 |       10 |     19000 |            0.05 |
 |   Others                |     0.000 |      129 |       --- |             --- |
-| Signals                 |     0.004 |     2387 |       --- |             --- |
-| Block RAM               |    <0.001 |       29 |        50 |           58.00 |
-| MMCM                    |     0.106 |        1 |         5 |           20.00 |
-| I/O                     |     0.023 |       52 |       250 |           20.80 |
-| Static Power            |     0.072 |          |           |                 |
-| Total                   |     0.208 |          |           |                 |
+| Signals                 |     0.004 |     2393 |       --- |             --- |
+| Block RAM               |    <0.001 |       29 |       135 |           21.48 |
+| MMCM                    |     0.106 |        1 |         6 |           16.67 |
+| I/O                     |     0.071 |       52 |       285 |           18.25 |
+| Static Power            |     0.099 |          |           |                 |
+| Total                   |     0.284 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,11 +76,11 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.017 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.074 |       0.061 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.023 |       0.007 |      0.016 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.080 |       0.062 |      0.018 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.024 |       0.020 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18    |       1.800 |     0.012 |       0.011 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -116,7 +116,7 @@ Table of Contents
 
 +-----------------------+--------------------------+
 | Ambient Temp (C)      | 25.0                     |
-| ThetaJA (C/W)         | 2.8                      |
+| ThetaJA (C/W)         | 2.7                      |
 | Airflow (LFM)         | 250                      |
 | Heat Sink             | medium (Medium Profile)  |
 | ThetaSA (C/W)         | 4.6                      |
@@ -147,10 +147,11 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| Top                  |     0.136 |
+| Top                  |     0.185 |
 |   dma                |     0.003 |
 |     myDM             |     0.002 |
 |   u_keyboard_segtube |     0.002 |
+|     sg               |     0.001 |
 |   u_upg_clk_wiz      |     0.107 |
 |     inst             |     0.107 |
 +----------------------+-----------+

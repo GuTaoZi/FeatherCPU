@@ -2,8 +2,8 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Tue May 23 19:49:38 2023
-# Process ID: 22868
+# Start of session at: Tue May 23 20:23:20 2023
+# Process ID: 18268
 # Current directory: C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1
 # Command line: vivado.exe -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
 # Log file: C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/Top.vds
@@ -18,18 +18,34 @@ INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.2/dat
 Command: read_checkpoint -auto_incremental -incremental C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/utils_1/imports/synth_1/Top.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/utils_1/imports/synth_1/Top.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
-Command: synth_design -top Top -part xc7a35tfgg484-1
+Command: synth_design -top Top -part xc7a100tfgg484-1
 Starting synth_design
+WARNING: [Vivado_Tcl 4-393] The 'Synthesis' target of the following IPs are stale, please generate the output products using the generate_target or synth_ip command before running synth_design.
+C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/data_mem/data_mem.xci
+C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/ins_mem/ins_mem.xci
+C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
+C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
+
+WARNING: [Vivado_Tcl 4-393] The 'Implementation' target of the following IPs are stale, please generate the output products using the generate_target or synth_ip command before running synth_design.
+C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
+C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
+
+INFO: [IP_Flow 19-2162] IP 'data_mem' is locked:
+* Current project part 'xc7a100tfgg484-1' and the part 'xc7a35tfgg484-1' used to customize the IP 'data_mem' do not match.
+INFO: [IP_Flow 19-2162] IP 'ins_mem' is locked:
+* Current project part 'xc7a100tfgg484-1' and the part 'xc7a35tfgg484-1' used to customize the IP 'ins_mem' do not match.
 INFO: [IP_Flow 19-2162] IP 'uart0' is locked:
-* IP definition 'uart_bmpg (1.3)' for IP 'uart0' (customized with software release 2022.2) was not found in the IP Catalog.
-Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
-INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
-INFO: [Device 21-403] Loading part xc7a35tfgg484-1
+* IP definition 'uart_bmpg (1.3)' for IP 'uart0' (customized with software release 2022.2) was not found in the IP Catalog. * Current project part 'xc7a100tfgg484-1' and the part 'xc7a35tfgg484-1' used to customize the IP 'uart0' do not match.
+INFO: [IP_Flow 19-2162] IP 'upg_clk_wiz' is locked:
+* Current project part 'xc7a100tfgg484-1' and the part 'xc7a35tfgg484-1' used to customize the IP 'upg_clk_wiz' do not match.
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tfgg484-1
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 15924
+INFO: [Synth 8-7075] Helper process launched with PID 24692
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 INFO: [Synth 8-11241] undeclared symbol 'beq', assumed default net type 'wire' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ALU.v:27]
 INFO: [Synth 8-11241] undeclared symbol 'kick_off', assumed default net type 'wire' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DMA.v:26]
@@ -39,18 +55,18 @@ INFO: [Synth 8-11241] undeclared symbol 'uart_clk', assumed default net type 'wi
 INFO: [Synth 8-11241] undeclared symbol 'cpu_clk', assumed default net type 'wire' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/top.v:45]
 INFO: [Synth 8-11241] undeclared symbol 'alu_op_raw', assumed default net type 'wire' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/top.v:100]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1217.020 ; gain = 408.684
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1235.309 ; gain = 408.918
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Top' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/top.v:4]
-INFO: [Synth 8-6157] synthesizing module 'upg_clk_wiz' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-22868-LAPTOP-Shadowstorm/realtime/upg_clk_wiz_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'upg_clk_wiz' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-22868-LAPTOP-Shadowstorm/realtime/upg_clk_wiz_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'upg_clk_wiz' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-18268-LAPTOP-Shadowstorm/realtime/upg_clk_wiz_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'upg_clk_wiz' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-18268-LAPTOP-Shadowstorm/realtime/upg_clk_wiz_stub.v:5]
 WARNING: [Synth 8-7071] port 'locked' of module 'upg_clk_wiz' is unconnected for instance 'u_upg_clk_wiz' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/top.v:22]
 WARNING: [Synth 8-7023] instance 'u_upg_clk_wiz' of module 'upg_clk_wiz' has 4 connections declared, but only 3 given [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/top.v:22]
-INFO: [Synth 8-6157] synthesizing module 'uart0' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-22868-LAPTOP-Shadowstorm/realtime/uart0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'uart0' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-22868-LAPTOP-Shadowstorm/realtime/uart0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'uart0' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-18268-LAPTOP-Shadowstorm/realtime/uart0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'uart0' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-18268-LAPTOP-Shadowstorm/realtime/uart0_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'InsMem' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InsMem.v:5]
-INFO: [Synth 8-6157] synthesizing module 'ins_mem' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-22868-LAPTOP-Shadowstorm/realtime/ins_mem_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'ins_mem' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-22868-LAPTOP-Shadowstorm/realtime/ins_mem_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'ins_mem' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-18268-LAPTOP-Shadowstorm/realtime/ins_mem_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'ins_mem' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-18268-LAPTOP-Shadowstorm/realtime/ins_mem_stub.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'InsMem' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InsMem.v:5]
 WARNING: [Synth 8-689] width (32) of port connection 'i_uart_done' does not match port width (1) of module 'InsMem' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/top.v:65]
 INFO: [Synth 8-6157] synthesizing module 'inst_decoder' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/InstDecoder.v:6]
@@ -64,8 +80,8 @@ INFO: [Synth 8-6157] synthesizing module 'ALU' [C:/Users/jayfe/Desktop/course/DT
 INFO: [Synth 8-6155] done synthesizing module 'ALU' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/ALU.v:6]
 INFO: [Synth 8-6157] synthesizing module 'DMA' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DMA.v:5]
 INFO: [Synth 8-6157] synthesizing module 'DataMem' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DataMem.v:5]
-INFO: [Synth 8-6157] synthesizing module 'data_mem' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-22868-LAPTOP-Shadowstorm/realtime/data_mem_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'data_mem' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-22868-LAPTOP-Shadowstorm/realtime/data_mem_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'data_mem' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-18268-LAPTOP-Shadowstorm/realtime/data_mem_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'data_mem' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/.Xil/Vivado-18268-LAPTOP-Shadowstorm/realtime/data_mem_stub.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'DataMem' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DataMem.v:5]
 WARNING: [Synth 8-689] width (32) of port connection 'i_mem_read' does not match port width (1) of module 'DataMem' [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DMA.v:37]
 INFO: [Synth 8-6155] done synthesizing module 'DMA' (0#1) [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/new/DMA.v:5]
@@ -131,18 +147,18 @@ WARNING: [Synth 8-7129] Port i_pc[16] in module InsMem is either unconnected or 
 WARNING: [Synth 8-7129] Port i_pc[15] in module InsMem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_pc[14] in module InsMem is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1318.305 ; gain = 509.969
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1336.301 ; gain = 509.910
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1318.305 ; gain = 509.969
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1336.301 ; gain = 509.910
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1318.305 ; gain = 509.969
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1336.301 ; gain = 509.910
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1318.305 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1336.301 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -155,29 +171,82 @@ Parsing XDC File [c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCP
 Finished Parsing XDC File [c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/uart0_1/uart0/uart0_in_context.xdc] for cell 'u_uart0'
 Parsing XDC File [c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz/upg_clk_wiz_in_context.xdc] for cell 'u_upg_clk_wiz'
 Finished Parsing XDC File [c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/upg_clk_wiz/upg_clk_wiz/upg_clk_wiz_in_context.xdc] for cell 'u_upg_clk_wiz'
+Parsing XDC File [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc]
+WARNING: [Vivado 12-584] No ports matched 'sw[23]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:53]
+WARNING: [Vivado 12-584] No ports matched 'sw[22]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:54]
+WARNING: [Vivado 12-584] No ports matched 'sw[21]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:55]
+WARNING: [Vivado 12-584] No ports matched 'sw[20]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:56]
+WARNING: [Vivado 12-584] No ports matched 'sw[19]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:57]
+WARNING: [Vivado 12-584] No ports matched 'sw[18]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:58]
+WARNING: [Vivado 12-584] No ports matched 'sw[17]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:59]
+WARNING: [Vivado 12-584] No ports matched 'sw[16]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:60]
+WARNING: [Vivado 12-584] No ports matched 'sw[15]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:61]
+WARNING: [Vivado 12-584] No ports matched 'sw[14]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:62]
+WARNING: [Vivado 12-584] No ports matched 'sw[13]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:63]
+WARNING: [Vivado 12-584] No ports matched 'sw[12]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:64]
+WARNING: [Vivado 12-584] No ports matched 'sw[11]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:65]
+WARNING: [Vivado 12-584] No ports matched 'sw[10]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:66]
+WARNING: [Vivado 12-584] No ports matched 'sw[9]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:67]
+WARNING: [Vivado 12-584] No ports matched 'sw[8]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:68]
+WARNING: [Vivado 12-584] No ports matched 'sw[7]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:69]
+WARNING: [Vivado 12-584] No ports matched 'sw[6]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:70]
+WARNING: [Vivado 12-584] No ports matched 'sw[5]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:71]
+WARNING: [Vivado 12-584] No ports matched 'sw[4]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:72]
+WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:73]
+WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:74]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:75]
+WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:76]
+WARNING: [Vivado 12-584] No ports matched 'sw[23]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:77]
+WARNING: [Vivado 12-584] No ports matched 'sw[22]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:78]
+WARNING: [Vivado 12-584] No ports matched 'sw[21]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:79]
+WARNING: [Vivado 12-584] No ports matched 'sw[20]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:80]
+WARNING: [Vivado 12-584] No ports matched 'sw[19]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:81]
+WARNING: [Vivado 12-584] No ports matched 'sw[18]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:82]
+WARNING: [Vivado 12-584] No ports matched 'sw[17]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:83]
+WARNING: [Vivado 12-584] No ports matched 'sw[16]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:84]
+WARNING: [Vivado 12-584] No ports matched 'sw[15]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:85]
+WARNING: [Vivado 12-584] No ports matched 'sw[14]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:86]
+WARNING: [Vivado 12-584] No ports matched 'sw[13]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:87]
+WARNING: [Vivado 12-584] No ports matched 'sw[12]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:88]
+WARNING: [Vivado 12-584] No ports matched 'sw[11]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:89]
+WARNING: [Vivado 12-584] No ports matched 'sw[10]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:90]
+WARNING: [Vivado 12-584] No ports matched 'sw[9]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:91]
+WARNING: [Vivado 12-584] No ports matched 'sw[8]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:92]
+WARNING: [Vivado 12-584] No ports matched 'sw[7]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:93]
+WARNING: [Vivado 12-584] No ports matched 'sw[6]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:94]
+WARNING: [Vivado 12-584] No ports matched 'sw[5]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:95]
+WARNING: [Vivado 12-584] No ports matched 'sw[4]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:96]
+WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:97]
+WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:98]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:99]
+WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc:100]
+Finished Parsing XDC File [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/Top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1423.711 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1441.234 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 1423.711 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1441.234 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'dma/myDM/dm' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'u_InsMem/im' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
-Loading part: xc7a35tfgg484-1
+Loading part: xc7a100tfgg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -189,10 +258,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for u_InsMem/im. (constraint file  au
 Applied set_property KEEP_HIERARCHY = SOFT for u_uart0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for u_upg_clk_wiz. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:15 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:16 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -232,8 +301,8 @@ Finished RTL Component Statistics
 Start Part Resource Summary
 ---------------------------------------------------------------------------------
 Part Resources:
-DSPs: 90 (col length:60)
-BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
@@ -272,7 +341,7 @@ WARNING: [Synth 8-7129] Port i_pc[16] in module InsMem is either unconnected or 
 WARNING: [Synth 8-7129] Port i_pc[15] in module InsMem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_pc[14] in module InsMem is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:22 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -296,19 +365,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:27 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:27 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:29 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:30 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:30 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:31 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -326,37 +395,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:27 ; elapsed = 00:00:34 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:27 ; elapsed = 00:00:34 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -397,27 +466,27 @@ Report Cell Usage:
 |19    |OBUF        |    45|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.234 ; gain = 614.844
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 19 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1423.754 ; gain = 509.969
-Synthesis Optimization Complete : Time (s): cpu = 00:00:27 ; elapsed = 00:00:35 . Memory (MB): peak = 1423.754 ; gain = 615.418
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:33 . Memory (MB): peak = 1441.234 ; gain = 509.910
+Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.234 ; gain = 614.844
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1423.754 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1441.234 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 199 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1423.754 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1441.234 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 Synth Design complete, checksum: 8816bc09
 INFO: [Common 17-83] Releasing license: Synthesis
-63 Infos, 81 Warnings, 0 Critical Warnings and 0 Errors encountered.
+67 Infos, 132 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:40 . Memory (MB): peak = 1423.754 ; gain = 996.684
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:41 . Memory (MB): peak = 1441.234 ; gain = 1011.879
 INFO: [Common 17-1381] The checkpoint 'C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.runs/synth_1/Top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue May 23 19:50:26 2023...
+INFO: [Common 17-206] Exiting Vivado at Tue May 23 20:24:10 2023...

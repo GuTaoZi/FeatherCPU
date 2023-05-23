@@ -123,8 +123,9 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
+  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
-  create_project -in_memory -part xc7a35tfgg484-1
+  create_project -in_memory -part xc7a100tfgg484-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
@@ -144,10 +145,11 @@ OPTRACE "add files" START { }
   read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
   read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/upg_clk_wiz/upg_clk_wiz.xci
 OPTRACE "read constraints: implementation" START { }
+  read_xdc C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/constrs_1/new/cons.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }
-  link_design -top Top -part xc7a35tfgg484-1 
+  link_design -top Top -part xc7a100tfgg484-1 
 OPTRACE "link_design" END { }
 OPTRACE "gray box cells" START { }
 OPTRACE "gray box cells" END { }

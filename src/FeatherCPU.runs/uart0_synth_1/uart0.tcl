@@ -74,7 +74,7 @@ set_param chipscope.maxJobs 2
 set_param xicom.use_bs_reader 1
 set_param project.vivado.isBlockSynthRun true
 OPTRACE "Creating in-memory project" START { }
-create_project -in_memory -part xc7a35tfgg484-1
+create_project -in_memory -part xc7a100tfgg484-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
@@ -82,7 +82,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.cache/wt [current_project]
 set_property parent.project_path C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.xpr [current_project]
-set_property XPM_LIBRARIES XPM_MEMORY [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_repo_paths c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/SEU_CSE_507_user_uart_bmpg_1.3 [current_project]
@@ -91,7 +91,7 @@ set_property ip_output_repo c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
+read_ip -quiet C:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.srcs/sources_1/ip/uart0_1/uart0.xci
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -112,7 +112,7 @@ if { $cacheID == "" } {
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top uart0 -part xc7a35tfgg484-1 -incremental_mode off -mode out_of_context
+synth_design -top uart0 -part xc7a100tfgg484-1 -incremental_mode off -mode out_of_context
 OPTRACE "synth_design" END { }
 OPTRACE "Write IP Cache" START { }
 

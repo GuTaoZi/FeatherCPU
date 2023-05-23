@@ -1,14 +1,14 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-// Date        : Mon May 22 15:30:48 2023
+// Date        : Tue May 23 20:23:17 2023
 // Host        : LAPTOP-Shadowstorm running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/jayfe/Desktop/course/DTwo/CO/FeatherCPU/src/FeatherCPU.gen/sources_1/ip/uart0_1/uart0_sim_netlist.v
 // Design      : uart0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7a35tfgg484-1
+// Device      : xc7a100tfgg484-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
