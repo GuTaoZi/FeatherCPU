@@ -16,6 +16,13 @@ module Top(
     output [7:0]    seg_lit
 );
 
+wire debug_btn_fil;
+filter debug_btn_filter(
+.i_clk(fpga_clk),
+.i_rst(rst),
+.i_inp(debug_btn),
+.o_output(debug_btn_fil));
+
 reg [1:0] debug_state;
 // 00: show keyboard input
 // 01: show current instruction
@@ -23,11 +30,11 @@ reg [1:0] debug_state;
 // 11: show value of reg[sw[23:16]]
 // plus one at negedge of debug_btn(P5) 
 
-always @(negedge debug_btn, posedge rst)
+always @(negedge debug_btn_fil, posedge rst)
 begin
     if(rst)
         debug_state = 2'b00;
-    else if(~debug_btn)
+    else if(~debug_btn_fil)
         debug_state = debug_state+1'b1;
 end
     
@@ -182,6 +189,9 @@ ALU alu(
 
 wire [`SWITCH_WIDTH] hdw_switch_data;
 wire [`REG_WIDTH] hdw_keybd_data;
+wire [`LED_WIDTH] hdw_led_data;
+
+assign led_o = {state,22'b0} | hdw_led_data;
 
 filter ack_btn_filter(
 .i_clk(fpga_clk),
@@ -198,7 +208,7 @@ DMA dma(
     .cpu_mem_read_ena(mem_read_en),
     .cpu_mem_write_ena(mem_write_en),
     .hdw_sw_data(hdw_switch_data),
-    .hdw_ack_but(ack_btn_fil)
+    .hdw_ack_but(ack_btn_fil),
     .uart_ena(uart_ena),
     .uart_done(uart_done),
     .uart_clk(uart_clk),
@@ -207,7 +217,7 @@ DMA dma(
     ///input////
     ///output///
     .read_data(data_from_mem),
-    .hdw_led_data(led_o)
+    .hdw_led_data(hdw_led_data)
 );
 
 wire seg_custom_en = (debug_state==2'b00)?1'b0:1'b1;
