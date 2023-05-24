@@ -17,5 +17,8 @@ initial begin
     #1000;
     inp = 1;
     #1000;
+    inp = 0;
+    #1000;
+    inp = 1;
 end
 endmodule

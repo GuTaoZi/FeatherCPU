@@ -21,7 +21,7 @@ always @(posedge i_clk) begin
             o_output = las_state;
         end else begin
             cnt = cnt + 1'b1;
-            if(cnt[21]==1'b1) begin
+            if(cnt[len]==1'b1) begin
                 las_state = i_inp;
                 o_output = i_inp;
                 cnt = 0;
