@@ -180,7 +180,7 @@ ALU alu(
     .o_overflow(overflow_raw)
 );
 
-wire [`REG_WIDTH] hdw_switch_data = sw;
+wire [`SWITCH_WIDTH] hdw_switch_data;
 wire [`REG_WIDTH] hdw_keybd_data;
 
 filter ack_btn_filter(
@@ -197,7 +197,7 @@ DMA dma(
     .cpu_write_data(reg_data2),
     .cpu_mem_read_ena(mem_read_en),
     .cpu_mem_write_ena(mem_write_en),
-    .hdw_sw_data(hdw_switch_data[23:0]),
+    .hdw_sw_data(hdw_switch_data),
     .hdw_ack_but(ack_btn_fil)
     .uart_ena(uart_ena),
     .uart_done(uart_done),

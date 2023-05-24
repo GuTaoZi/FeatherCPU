@@ -42,7 +42,7 @@
 	jal end
 
 case0:
-		input(t1, 0, ip2lp1, ip2lp2)
+		input(t1, ip2lp1)
 		andi t1, t1, 127
 		add s0, t1, zero
 		addi t2, zero, 1
@@ -58,7 +58,7 @@ case0:
 		sw t2, 2(s11)
 		jal end
 case1:
-		input(t1, 0, ip3lp1, ip3lp2)
+		input(t1, ip3lp1)
 		andi t1, t1, 255
 		add s0, t1, zero
 		addi t2, zero, 1
@@ -74,8 +74,8 @@ case1:
 		sw t2, 2(s11)
 		jal end
 case2:
-		input(t1, 0, ip4lp1, ip4lp2)
-		input(t3, 0, ip5lp1, ip5lp2)
+		input(t1, ip4lp1)
+		input(t3, ip5lp1)
 		andi t1, t1, 255
 		andi t3, t3, 255
 		or t4, t1, t3
@@ -88,8 +88,8 @@ case2:
 		sw t4, 2(s11)
 		jal end
 case3:
-		input(t1, 0, ip6lp1, ip6lp2)
-		input(t3, 0, ip7lp1, ip7lp2)
+		input(t1, ip6lp1)
+		input(t3, ip7lp1)
 		andi t1, t1, 255
 		andi t3, t3, 255
 		or t4, t1, t3   # t4 = t1 or t3
@@ -101,8 +101,8 @@ case3:
 		sw t4, 2(s11)
 		jal end
 case4:
-		input(t1, 0, ip8lp1, ip8lp2)
-		input(t3, 0, ip9lp1, ip9lp2)
+		input(t1, ip8lp1)
+		input(t3, ip9lp1)
 		andi t1, t1, 255
 		andi t3, t3, 255
 		xor t4, t1, t3   # t4 = t1 xor t3
@@ -114,8 +114,8 @@ case4:
 		sw t4, 2(s11)
 		jal end
 case5:
-		input(t1, 0, ip10lp1, ip10lp2)
-		input(t3, 0, ip11lp1, ip11lp2)
+		input(t1, ip10lp1)
+		input(t3, ip11lp1)
 		andi t1, t1, 255
 		andi t3, t3, 255
 		sltu t4, t1, t3   # t4 = unsigned (t1 < t3)
@@ -127,8 +127,8 @@ case5:
 		sw t4, 2(s11)
 		jal end
 case6:
-		input(t1, 0, ip12lp1, ip12lp2)
-		input(t3, 0, ip13lp1, ip13lp2)
+		input(t1, ip12lp1)
+		input(t3, ip13lp1)
 		andi t1, t1, 255
 		andi t3, t3, 255
 		slt t4, t1, t3   # t4 = (t1 < t3)
@@ -140,8 +140,8 @@ case6:
 		sw t4, 2(s11)
 		jal end
 case7:
-		input(t1, 0, ip14lp1, ip14lp2)
-		input(t3, 0, ip15lp1, ip15lp2)
+		input(t1, ip14lp1)
+		input(t3, ip15lp1)
 		andi t1, t1, 255
 		andi t3, t3, 255
 		add t4, zero, zero

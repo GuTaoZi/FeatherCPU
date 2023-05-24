@@ -22,7 +22,7 @@ module DMA(
     input   [`REG_WIDTH]    uart_data,
 
     output  [`REG_WIDTH]    read_data,
-    output reg [`LED_WIDTH]       hdw_led_data
+    output reg [`LED_WIDTH] hdw_led_data
 );
 
 assign kick_off = ~uart_ena | uart_done;
