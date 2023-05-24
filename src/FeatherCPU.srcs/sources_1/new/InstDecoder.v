@@ -15,7 +15,7 @@ module inst_decoder(
     output o_mem_to_reg,
     output o_alu_src,
     output o_reg_write,
-    output [2:0] o_inst_type
+    output [`INST_TYPES_WIDTH] o_inst_type
 );
 
 wire[6:0] opcode;
@@ -31,7 +31,7 @@ assign opcode = i_inst[6:0];
 assign funct3 = i_inst[14:12];
 assign funct7 = i_inst[31:25];
 
-assign o_inst_type = (opcode==7'b011_0011)?`R_TYPE:
+assign o_inst_type=(opcode==7'b011_0011)?`R_TYPE:
                    (opcode==7'b001_0011)?`I_TYPE:
                    (opcode==7'b000_0011)?`I_TYPE:
                    (opcode==7'b111_0011)?`E_TYPE:
