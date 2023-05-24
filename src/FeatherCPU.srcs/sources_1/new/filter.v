@@ -6,7 +6,7 @@ output reg  o_output
 );
 
 
-parameter len = 21;
+parameter len = 5;
 reg las_state = 0;
 reg [len:0] cnt = 0;
 

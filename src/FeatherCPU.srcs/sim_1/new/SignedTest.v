@@ -1,15 +1,21 @@
 `timescale 1ns / 1ps
 
-module SignedTest(
+module SignedTest();
+reg clk = 0;
+reg rst = 0;
+reg inp = 0;
+wire opt;
+filter ft(
+.i_clk(clk),
+.i_rst(rst),
+.i_inp(inp),
+.o_output(opt));
 
-    );
-reg [3:0]A=4'b1000;
-reg [3:0]B=4'b0100;
-reg [3:0]C;
-reg [3:0]D;
-always @*
-begin
-    C=A-B;
-    D=$signed(A)-$signed(B);
+always #5 clk = ~clk;
+
+initial begin
+    #1000;
+    inp = 1;
+    #1000;
 end
 endmodule
