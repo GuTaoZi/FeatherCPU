@@ -45,20 +45,9 @@ assign inst_type = (opcode==7'b011_0011)?`R_TYPE:
 assign imm_I = {{20{i_inst[31]}},i_inst[31:20]};
 assign imm_S = {{20{i_inst[31]}},i_inst[31:25],i_inst[11:7]};
 assign imm_B = {{20{i_inst[31]}},i_inst[19:12],i_inst[20],i_inst[30:21],1'b0};
-assign imm_J = {{12{i_inst[31]}}, i_inst[19:12],i_inst[20], i_inst[30:21],1'b0};
+assign imm_JAL = {{12{i_inst[31]}}, i_inst[19:12],i_inst[20], i_inst[30:21],1'b0};
+assign imm_JALR = {{20{i_inst[31]}},i_inst[31:20]};
 assign imm_U = {i_inst[31:12]};
-
-//assign o_rs1_ena = (opcode==7'b110_1111||
-//                    opcode==7'b110_0111||
-//                    opcode==7'b011_0111||
-//                    opcode==7'b001_0111)?1'b0:1'b1;
-
-//assign o_rs2_ena = (!o_rs1_ena ||
-//                    opcode==7'b001_0011||
-//                    opcode==7'b000_0011||
-//                    opcode==7'b111_0011)?1'b0:1'b1;
-
-//assign o_imm_ena = (opcode==7'b011_0011)?1'b0:1'b1;
 
 assign o_rd_idx = i_inst[11:7];
 assign o_rs1_idx = i_inst[19:15];
@@ -68,7 +57,7 @@ assign o_imm = (inst_type==`R_TYPE)?32'h0:
                (inst_type==`I_TYPE)?imm_I:
                (inst_type==`S_TYPE)?imm_S:
                (inst_type==`B_TYPE)?imm_B:
-               (inst_type==`J_TYPE)?imm_J:
+               (inst_type==`J_TYPE)?((opcode==`J_JAL)?imm_JAL:imm_JALR):
                (inst_type==`U_TYPE)?imm_U:32'hffff_ffff;
 
 wire funct10 = {funct3,funct7};
@@ -100,12 +89,11 @@ assign o_alu_op =
     (funct3==`I_ORI)?`ALU_OR:
     (funct3==`I_ANDI)?`ALU_AND:`ALU_ERR)
     :
-    (inst_type==`S_TYPE)?
-    `ALU_ADD:
+    (inst_type==`S_TYPE)?`ALU_ADD:
     (inst_type==`B_TYPE)?
     ((funct3==`B_BEQ)?`ALU_BEQ:`ALU_BNE)
     :
-    (opcode==`J_JALR)?`ALU_ADD
+    (inst_type==`J_TYPE)?`ALU_ADD
     :
     (opcode==`U_TYPE)?`ALU_SLL
     :`ALU_ERR;

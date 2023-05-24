@@ -45,7 +45,7 @@ end
 assign cpu_clk = cnt[1];
 
 
-reg [2:0] state;
+reg [1:0] state;
 
 always @(negedge cnt[0]) begin
     if(rst) begin
@@ -87,7 +87,7 @@ wire mem_write_en;
 wire mem_to_reg_en;
 wire alu_src_from_2_regs;
 wire reg_write_en_from_id;
-wire [2:0] inst_type;
+wire [`INST_TYPES_WIDTH] inst_type;
 
 inst_decoder u_inst_decoder(
     .i_inst(inst),
@@ -109,13 +109,17 @@ inst_decoder u_inst_decoder(
 wire [`REG_WIDTH] reg_data1;
 wire [`REG_WIDTH] reg_data2;
 
-wire register_write_enable_of_id_and_pc=(state==2'b11)&(reg_write_en_from_id | (inst_type==`J_TYPE));
+wire [`REG_WIDTH] alu_opt;
+wire overflow_raw;
+
+wire register_write_enable_of_id_and_pc=(state==2'b11)&(reg_write_en_from_id);
+wire data_write_into_register = (inst[6:0]==`I_LW)?data_from_mem:alu_opt;
 
 Register u_Register(
     .i_read_addr1(rs1_idx_raw),
     .i_read_addr2(rs2_idx_raw),
     .i_write_addr(rd_idx_raw),
-    .i_write_data(data_from_mem),
+    .i_write_data(data_write_into_register),
     .i_write_en(register_write_enable_of_id_and_pc),
     .i_clk(cpu_clk),
     .i_rst(rst),
@@ -142,10 +146,6 @@ wire [`REG_WIDTH] src2 =
 (inst_type==`B_TYPE)?(reg_data2):
 (inst_type==`U_TYPE)?(4'd12):
 (inst[6:0]==`J_JALR)?(imm_raw):0;
-
-wire [`REG_WIDTH] alu_opt;
-wire overflow_raw;
-
 
 ALU alu(
     .i_src1(src1),

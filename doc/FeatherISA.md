@@ -278,8 +278,6 @@ Instructions with \* are custom instructions beyond `RV32I`.
         </tr>
     </table>
 </details>
-
-
 ### S type
 
 <details>
@@ -378,4 +376,3 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
-
