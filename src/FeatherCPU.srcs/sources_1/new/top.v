@@ -33,14 +33,16 @@ reg [2:0] debug_state;
 // 100: show value of state
 // plus one at negedge of debug_btn(P5) 
 
-always @(negedge debug_btn, posedge rst)
+always @(negedge debug_btn)
 begin
     if(rst)
         debug_state = 3'b000;
     else if(~debug_btn)
+    begin
         debug_state = debug_state+1'b1;
         if(debug_state == debug_state_cnt+1)
             debug_state = 3'b000;
+    end
 end
 
 reg [21:0] cntw;
