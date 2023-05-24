@@ -5,5 +5,6 @@
 `define REG_MAX_LEN         31
 `define INST_TYPES_WIDTH    3:0
 `define ALU_OP_LEN          5:0
-`define MMIO_sw_map_addr     14'b1111_1111_11_0000
-`define MMIO_led_map_addr    14'b1111_1111_11_1000
+`define MMIO_keybd_map_addr  14'b1111_1111_11_0000
+`define MMIO_led_map_addr    14'b1111_1111_11_0010
+`define MMIO_sw_map_addr     14'b1111_1111_11_0100

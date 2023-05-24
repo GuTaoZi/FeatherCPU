@@ -11,7 +11,8 @@ module DMA(
     input                   cpu_mem_read_ena,
     input                   cpu_mem_write_ena,
 
-    input   [23:0]          hdw_switch_data,
+    input   [23:0]          hdw_sw_data,
+    input   [23:0]          hdw_keybd_data,
 
     input                   uart_ena,
     input                   uart_done,
@@ -25,7 +26,7 @@ module DMA(
 
 assign kick_off = ~uart_ena | uart_done;
 
-reg                 tran_pos;
+reg [1:0]           tran_pos;
 reg [`REG_WIDTH]    mem_addr;
 reg [`REG_WIDTH]    write_data;
 reg                 mem_read;
@@ -53,9 +54,14 @@ always @(negedge cpu_clk) begin
         mem_write = cpu_mem_write_ena;
         write_data = cpu_write_data;
     end else begin
-        if(tran_pos) begin
+        if(tran_pos == 2'b00) begin
             mem_addr = `MMIO_sw_map_addr;
-            write_data = {8'b0, hdw_switch_data};
+            write_data = {8'b0, hdw_sw_data};
+            mem_read = 0;
+            mem_write = 1;
+        end else if(tran_pos == 2'b01) begin
+            mem_addr = `MMIO_keybd_map_addr;
+            write_data = {8'b0, hdw_keybd_data};
             mem_read = 0;
             mem_write = 1;
         end else begin
@@ -64,7 +70,7 @@ always @(negedge cpu_clk) begin
             mem_read = 1;
             mem_write = 0;
         end
-        tran_pos = tran_pos ^ 1'b1;
+        tran_pos = tran_pos + 1'b1;
     end
 end
 

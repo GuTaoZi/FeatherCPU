@@ -20,7 +20,11 @@ wire [`REG_WIDTH] binary;
 wire [`REG_WIDTH] slt;
 
 assign sum      = i_ALU_op[0] ? i_src1 - i_src2 : i_src1 + i_src2;
-assign mul      = i_ALU_op[0] ? i_src1 / i_src2 : (i_ALU_op[1] ? i_src1 % i_src2 : i_src1 * i_src2);
+
+assign mul      =   i_ALU_op[0] ? $signed(i_src1) / $signed(i_src2) :
+                    i_ALU_op[1] ? $signed(i_src1) % $signed(i_src2) :
+                                  $signed(i_src1) * $signed(i_src2);
+
 assign shift    = i_ALU_op[1] ? (i_ALU_op[0] ? (i_src1>>>i_src2) : (i_src1>>i_src2)) : (i_src1<<i_src2);
 assign binary   = i_ALU_op[0] ? (i_src1 | i_src2) : (i_ALU_op[1] ? (i_src1 ^ i_src2) : (i_src1 & i_src2));
 assign slt      = i_ALU_op[0] ? ($signed(i_src1) < $signed(i_src2) ? 1 : 0) : (i_src1 < i_src2 ? 1 : 0);
