@@ -2,16 +2,33 @@
 `include "ParamDef.vh"
 
 module Top(
-    input clk,
-    input rst,
-    input upg_rx,
-    input [3:0] kb_row,
-    output [3:0] kb_col,
-    output upg_tx,
-    output [23:0] led_o,
-    output [7:0] seg_cho,
-    output [7:0] seg_lit
+    input           clk,
+    input           rst,
+    input           upg_rx,
+    input  [3:0]    kb_row,
+    input           debug_btn,
+    input  [23:0]   sw,
+    output [3:0]    kb_col,
+    output          upg_tx,
+    output [23:0]   led_o,
+    output [7:0]    seg_cho,
+    output [7:0]    seg_lit
 );
+
+reg [1:0] debug_state;
+// 00: show keyboard input
+// 01: show current instruction
+// 10: show current pc
+// 11: show value of reg[sw[23:16]]
+// plus one at negedge of debug_btn(P5) 
+
+always @(posedge debug_btn, posedge rst)
+begin
+    if(rst)
+        debug_state = 2'b00;
+    else if(debug_btn)
+        debug_state = debug_state+1'b1;
+end
     
 wire upg_clk;
 wire uart_ena;
@@ -108,6 +125,7 @@ inst_decoder u_inst_decoder(
 
 wire [`REG_WIDTH] reg_data1;
 wire [`REG_WIDTH] reg_data2;
+wire [`REG_WIDTH] reg_debug;
 
 wire [`REG_WIDTH] alu_opt;
 wire overflow_raw;
@@ -123,10 +141,12 @@ Register u_Register(
     .i_write_en(register_write_enable_of_id_and_pc),
     .i_clk(cpu_clk),
     .i_rst(rst),
+    .i_debug_idx(sw[23:19]),
     ///input///
     ///output///
     .o_read_data1(reg_data1),
-    .o_read_data2(reg_data2)
+    .o_read_data2(reg_data2),
+    .o_debug_data(reg_debug)
 );
 
 wire [`REG_WIDTH] src1 = 
@@ -181,10 +201,17 @@ DMA dma(
     .hdw_led_data(led_o)
 );
 
+wire seg_custom_en = (debug_state==2'b00)?1'b0:1'b1;
+wire [31:0] seg_custom_data =({(4'd9+debug_state),28'h0})|
+            ((debug_state==2'b01)?inst:
+            (debug_state==2'b10)?pc:reg_debug);
+
 Keyboard_N_Segtube u_keyboard_segtube(
     .i_clk(clk),
     .i_rst(rst),
     .i_row(kb_row),
+    .i_custom_en(seg_custom_en),
+    .i_custom_data(seg_custom_data),
     ///input///
     ///output///
     .o_col(kb_col),
