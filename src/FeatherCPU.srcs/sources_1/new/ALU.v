@@ -37,7 +37,7 @@ assign o_ALU_ouput      = i_rst ? 0 : (
     (i_ALU_op ^ `ALU_AND) >> 2 == 0 ? binary :
     (i_ALU_op ^ `ALU_SLT) >> 2 == 0 ? slt :
     (i_ALU_op ^ `ALU_BEQ) >> 2 == 0 ? (beq ? i_branch_val_i : 4) :
-    0
+    114514
 );
 
 assign o_overflow = i_rst ? 0 : (

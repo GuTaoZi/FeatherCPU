@@ -16,7 +16,7 @@ module Top(
     output [7:0]    seg_lit
 );
 
-reg [21:0] cntw;
+reg [25:0] cntw;
 always @(posedge fpga_clk) begin
     if(rst) begin
         cntw = 0;
@@ -26,7 +26,7 @@ always @(posedge fpga_clk) begin
 end
 
 wire clk;
-assign clk = sw[0] ? cntw[21] : fpga_clk;
+assign clk = sw[0] ? cntw[25] : fpga_clk;
 
 
 //wire debug_btn_fil;
@@ -36,21 +36,19 @@ assign clk = sw[0] ? cntw[21] : fpga_clk;
 //.i_inp(debug_btn),
 //.o_output(debug_btn_fil));
 
-reg [2:0] debug_state;
+reg [2:0] debug_state = 0;
 // 00: show keyboard input
 // 01: show current instruction
 // 10: show current pc
 // 11: show value of reg[sw[23:16]]
 // plus one at negedge of debug_btn(P5) 
 
-always @(negedge debug_btn, posedge rst)
+always @(negedge debug_btn)
 begin
-    if(rst)
-        debug_state = 3'b000;
-    else if(~debug_btn)
+    if(~debug_btn)
     begin
         debug_state = debug_state+1'b1;
-        if(debug_state == 5)
+        if(debug_state == 7)
             debug_state = 3'b000;
     end
 end
@@ -79,9 +77,13 @@ uart0 u_uart0(
     .upg_tx_o(upg_tx)
 );
 
-reg [2:0] cnt;
-always @(negedge clk) begin
-    cnt = cnt + 1;
+reg [2:0] cnt = 0;
+always @(negedge clk, posedge rst) begin
+    if(rst) begin
+        cnt = 0;
+    end else begin
+        cnt = cnt + 1;
+    end
 end
 
 assign cpu_clk = cnt[1];
@@ -89,7 +91,7 @@ assign cpu_clk = cnt[1];
 
 reg [1:0] state;
 
-always @(negedge cnt[0]) begin
+always @(negedge cnt[0], posedge rst) begin
     if(rst) begin
         state = 2'b00;
     end else begin
@@ -116,7 +118,7 @@ InsMem u_InsMem(
 // direct from decoder, some of them might be none of use (like non-sense rd)
 wire [`REG_IDX_LEN] rs1_idx_raw;
 wire [`REG_IDX_LEN] rs2_idx_raw;
-wire [`REG_IDX_LEN] rd_idx_raw;
+wire [`REG_IDX_LEN] rd_idx_raw = inst[11:7];
 wire [`REG_WIDTH] imm_raw;
 wire [`REG_WIDTH] data_from_mem;
 
@@ -128,8 +130,8 @@ wire mem_write_en;
 
 wire mem_to_reg_en;
 wire alu_src_from_2_regs;
-wire reg_write_en_from_id;
 wire [`INST_TYPES_WIDTH] inst_type;
+wire reg_write_en_from_id = !(inst_type == `S_TYPE || inst_type ==`B_TYPE);
 
 inst_decoder u_inst_decoder(
     .i_inst(inst),
@@ -137,14 +139,14 @@ inst_decoder u_inst_decoder(
     ///output///
     .o_rs1_idx(rs1_idx_raw),
     .o_rs2_idx(rs2_idx_raw),
-    .o_rd_idx(rd_idx_raw),
+//    .o_rd_idx(rd_idx_raw),
     .o_imm(imm_raw),
     .o_alu_op(alu_op_raw),
     .o_mem_read(mem_read_en),
     .o_mem_write(mem_write_en),
     .o_mem_to_reg(mem_to_reg_en),
     .o_alu_src(alu_src_from_2_regs),
-    .o_reg_write(reg_write_en_from_id),
+//    .o_reg_write(reg_write_en_from_id),
     .o_inst_type(inst_type)
 );
 
@@ -181,7 +183,8 @@ wire [`REG_WIDTH] src1 =
 (inst_type==`I_TYPE)?(reg_data1):   // rs = rs1 ? imm
 (inst_type==`B_TYPE)?(reg_data1):   // rs1 == rs2
 (inst_type==`U_TYPE)?(imm_raw):     // imm << 12
-(inst[6:0]==`J_JALR)?(reg_data1):0; // pc = rs1 + imm
+(inst[6:0]==`J_JALR)?(reg_data1):
+(inst[6:0]==`J_JAL)?0:0; // pc = rs1 + imm
 
 wire [`REG_WIDTH] src2 =
 (inst[6:0]==`I_LW)?(imm_raw):
@@ -190,7 +193,8 @@ wire [`REG_WIDTH] src2 =
 (inst_type==`I_TYPE)?(imm_raw):
 (inst_type==`B_TYPE)?(reg_data2):
 (inst_type==`U_TYPE)?(4'd12):
-(inst[6:0]==`J_JALR)?(imm_raw):0;
+(inst[6:0]==`J_JALR)?(imm_raw):
+(inst[6:0]==`J_JAL)?(imm_raw):0;
 
 ALU alu(
     .i_src1(src1),
@@ -224,10 +228,10 @@ DMA dma(
     .cpu_mem_write_ena(mem_write_en),
     .hdw_sw_data(hdw_switch_data),
     .hdw_ack_but(ack_btn_fil),
-    .uart_ena(uart_ena),
+    .uart_ena(uart_ena & uart_addr[14]),
     .uart_done(uart_done),
     .uart_clk(uart_clk),
-    .uart_addr(uart_addr),
+    .uart_addr(uart_addr[13:0]),
     .uart_data(uart_data),
     ///input////
     ///output///
@@ -235,11 +239,16 @@ DMA dma(
     .hdw_led_data(hdw_led_data)
 );
 
+wire [`REG_WIDTH] nxt_pc;
 wire seg_custom_en = (debug_state==3'b000)?1'b0:1'b1;
 wire [31:0] seg_custom_data =({(4'd0 + debug_state),28'h0})|
             ((debug_state==3'b001)?inst:
             (debug_state==3'b010)?pc:
-            (debug_state==3'b011)?reg_debug:state);
+            (debug_state==3'b011)?reg_debug:
+            (debug_state==3'b100)?state:
+            (debug_state==3'b101)?alu_opt:
+            (debug_state==3'b110)?rd_idx_raw:
+            data_write_into_register);
 
 Keyboard_N_Segtube u_keyboard_segtube(
     .i_clk(fpga_clk),
@@ -260,7 +269,7 @@ wire i_Jal = (inst[6:0]==`J_JAL)?1'b1:1'b0;
 wire i_Jalr = (inst[6:0]==`J_JALR)?1'b1:1'b0;
 wire i_pc_en =(state==2'b00)?1'b1:1'b0;
 wire i_branch = (inst_type==`B_TYPE)?1'b1:1'b0;
-wire [3:0] pc_bundle = {i_Jal,i_Jalr,i_pc_en,i_branch};
+wire [5:0] pc_bundle = {i_Jal,i_Jalr,i_pc_en,i_branch,cpu_clk, register_write_enable_of_id_and_pc};
 
 PC u_PC(
     .i_clk(cpu_clk),
@@ -274,9 +283,10 @@ PC u_PC(
     ///input///
     ///output///
     .o_pc(pc),
+    .o_next_pc(nxt_pc),
     .o_pc_rb(pc_write_into_rs1)
 );
 
-assign led_o = {pc_bundle, 20'hff} | hdw_led_data;
+assign led_o = {pc_bundle, 18'hff} | hdw_led_data;
 
 endmodule

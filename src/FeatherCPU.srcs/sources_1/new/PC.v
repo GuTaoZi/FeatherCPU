@@ -30,11 +30,13 @@ module PC(
     input [`REG_WIDTH] i_Jal_imm,
     input [`REG_WIDTH] i_alu_val,
     output [`REG_WIDTH] o_pc,
+    output [`REG_WIDTH] o_next_pc,
     output reg [`REG_WIDTH] o_pc_rb
 );
-reg [`REG_WIDTH] now_pc;
+reg [`REG_WIDTH] now_pc = 0;
 wire [`REG_WIDTH] next_pc;
 assign o_pc = now_pc;
+assign o_next_pc = next_pc;
 
 always @(negedge i_clk, posedge i_rst)
 begin

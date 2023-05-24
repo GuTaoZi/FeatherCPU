@@ -9,7 +9,7 @@ module Keyboard(
 
 reg [20:0] clkcnt = 0;
 
-always @(posedge i_clk)
+always @(posedge i_clk, posedge i_rst)
 begin
     if(i_rst) begin
         clkcnt = 0;
