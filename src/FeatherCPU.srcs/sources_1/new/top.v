@@ -273,7 +273,7 @@ wire i_Jal = (inst[6:0]==`J_JAL)?1'b1:1'b0;
 wire i_Jalr = (inst[6:0]==`J_JALR)?1'b1:1'b0;
 wire i_pc_en =(state==2'b00)?1'b1:1'b0;
 wire i_branch = (inst_type==`B_TYPE)?1'b1:1'b0;
-wire pc_bundle = {i_Jal,i_Jalr,i_pc_en,i_branch};
+wire [3:0] pc_bundle = {i_Jal,i_Jalr,i_pc_en,i_branch};
 
 PC u_PC(
     .i_clk(cpu_clk),
