@@ -35,7 +35,6 @@ assign clk = sw[0] ? cntw[21] : fpga_clk;
 //.i_rst(rst),
 //.i_inp(debug_btn),
 //.o_output(debug_btn_fil));
-parameter debug_state_cnt = 4;
 
 reg [2:0] debug_state;
 // 00: show keyboard input
@@ -44,29 +43,17 @@ reg [2:0] debug_state;
 // 11: show value of reg[sw[23:16]]
 // plus one at negedge of debug_btn(P5) 
 
-always @(negedge debug_btn)
+always @(negedge debug_btn, posedge rst)
 begin
     if(rst)
         debug_state = 3'b000;
     else if(~debug_btn)
     begin
         debug_state = debug_state+1'b1;
-        if(debug_state == debug_state_cnt+1)
+        if(debug_state == 5)
             debug_state = 3'b000;
     end
 end
-
-reg [21:0] cntw;
-always @(posedge fpga_clk) begin
-    if(rst) begin
-        cntw = 0;
-    end else begin
-        cntw = cntw + 1'b1;
-    end
-end
-
-wire clk;
-assign clk = sw[0] ? cntw[21] : fpga_clk;
     
 wire upg_clk;
 wire uart_ena;
@@ -117,7 +104,7 @@ InsMem u_InsMem(
     .i_pc(pc),
     .i_clk(cpu_clk),
     .i_uart_ena(uart_ena),
-    .i_uart_done(uart_addr[14] == 1'b1 ? 1 : uart_done),
+    .i_uart_done(uart_addr[14] == 1'b1 ? 1'b1 : uart_done),
     .i_uart_clk(uart_clk),
     .i_uart_addr(uart_addr[13:0]),
     .i_uart_data(uart_data),
@@ -217,7 +204,7 @@ ALU alu(
     .o_overflow(overflow_raw)
 );
 
-wire [`SWITCH_WIDTH] hdw_switch_data;
+wire [`SWITCH_WIDTH] hdw_switch_data = sw;
 wire [`REG_WIDTH] hdw_keybd_data;
 wire [`LED_WIDTH] hdw_led_data;
 

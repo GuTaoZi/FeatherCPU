@@ -3,7 +3,7 @@
 `include "ParamDef.vh"
 
 module DataMem(
-    input   [13:2]          i_addr,
+    input   [13:0]          i_addr,
     input   [`REG_WIDTH]    i_write_data,
     input                   i_mem_read,
     input                   i_mem_write,

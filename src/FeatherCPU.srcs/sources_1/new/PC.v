@@ -36,7 +36,7 @@ reg [`REG_WIDTH] now_pc;
 wire [`REG_WIDTH] next_pc;
 assign o_pc = now_pc;
 
-always @(negedge i_clk)
+always @(negedge i_clk, posedge i_rst)
 begin
     if(i_rst) begin
         now_pc = 0;
@@ -54,5 +54,5 @@ i_Jalr    ?   i_alu_val                     :
 i_Jal     ?   now_pc + i_Jal_imm            :
 i_branch  ?   now_pc + i_alu_val            :
             now_pc + 4;
-//TODO: $ra
+
 endmodule
