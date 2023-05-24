@@ -1,0 +1,24 @@
+
+*** Running vivado
+    with args -log data_mem.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source data_mem.tcl
+
+
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source data_mem.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'e:/Computer_Organization/FeatherCPU_bak/src/FeatherCPU.srcs/sources_1/ip/SEU_CSE_507_user_uart_bmpg_1.3'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'E:/Xilinx/Vivado/2022.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: data_mem
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry bc470c8a780e9399 to dir: E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/data_mem_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.cache/ip/2022.2/b/c/bc470c8a780e9399/ins_mem.dcp to E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/data_mem_synth_1/data_mem.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.cache/ip/2022.2/b/c/bc470c8a780e9399/ins_mem_sim_netlist.v to E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/data_mem_synth_1/data_mem_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.cache/ip/2022.2/b/c/bc470c8a780e9399/ins_mem_sim_netlist.vhdl to E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/data_mem_synth_1/data_mem_sim_netlist.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.cache/ip/2022.2/b/c/bc470c8a780e9399/ins_mem_stub.v to E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/data_mem_synth_1/data_mem_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file e:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.cache/ip/2022.2/b/c/bc470c8a780e9399/ins_mem_stub.vhdl to E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/data_mem_synth_1/data_mem_stub.vhdl.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP data_mem, cache-ID = bc470c8a780e9399.
+INFO: [Common 17-206] Exiting Vivado at Wed May 24 12:59:03 2023...

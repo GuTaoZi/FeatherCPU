@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="ins_mem_synth_1" LaunchDir="E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/ins_mem_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="upg_clk_wiz_synth_1" LaunchDir="E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/upg_clk_wiz_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="data_mem_synth_1" LaunchDir="E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/data_mem_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado" IsOrderedIPRun="true">
+		<Parent Id="ins_mem_synth_1"/>
+	</Run>
+	<Run Id="synth_1" LaunchDir="E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="ins_mem_synth_1"/>
+		<Parent Id="upg_clk_wiz_synth_1"/>
+		<Parent Id="data_mem_synth_1"/>
+	</Run>
+	<Run Id="impl_1" LaunchDir="E:/Computer_Organization/FeatherCPU/src/FeatherCPU/FeatherCPU.runs/impl_1" FlowId="Vivado_Implementation" FromStepId="init_design" ToStepId="write_bitstream">
+		<Parent Id="synth_1"/>
+		<Parent Id="ins_mem_synth_1"/>
+		<Parent Id="upg_clk_wiz_synth_1"/>
+		<Parent Id="data_mem_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+
