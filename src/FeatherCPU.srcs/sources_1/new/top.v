@@ -2,12 +2,13 @@
 `include "ParamDef.vh"
 
 module Top(
-    input           clk,
+    input           fpga_clk,
     input           rst,
     input           upg_rx,
     input  [3:0]    kb_row,
     input           debug_btn,
     input  [23:0]   sw,
+    input           ack_btn,
     output [3:0]    kb_col,
     output          upg_tx,
     output [23:0]   led_o,
@@ -38,7 +39,7 @@ wire uart_done;
 
 upg_clk_wiz u_upg_clk_wiz(
     .reset(rst),
-    .clk_in1(clk),
+    .clk_in1(fpga_clk),
     .upg_clk_o(upg_clk)
 );
 
@@ -55,7 +56,7 @@ uart0 u_uart0(
 );
 
 reg [2:0] cnt;
-always @(posedge clk) begin
+always @(posedge fpga_clk) begin
     cnt = cnt + 1;
 end
 
@@ -77,7 +78,7 @@ wire [31:0] inst;
 
 InsMem u_InsMem(
     .i_pc(pc),
-    .i_clk(clk),
+    .i_clk(cpu_clk),
     .i_uart_ena(uart_ena),
     .i_uart_done(uart_addr[14] == 1'b1 ? 1 : uart_done),
     .i_uart_clk(uart_clk),
@@ -181,8 +182,14 @@ ALU alu(
 
 wire [`REG_WIDTH] hdw_switch_data;
 
+filter ack_btn_filter(
+.i_clk(fpga_clk),
+.i_rst(rst),
+.i_inp(ack_btn),
+.o_output(ack_btn_fil));
+
 DMA dma(
-    .hdw_clk(clk),
+    .hdw_clk(fpga_clk),
     .cpu_clk(cpu_clk),
     .cpu_mem_ena((mem_read_en | mem_write_en) & state == 2'b10), // If CPU need DMemory
     .cpu_addr(alu_opt),
@@ -190,6 +197,7 @@ DMA dma(
     .cpu_mem_read_ena(mem_read_en),
     .cpu_mem_write_ena(mem_write_en),
     .hdw_switch_data(hdw_switch_data[23:0]),
+    .hdw_ack_but(ack_btn_fil),
     .uart_ena(uart_ena),
     .uart_done(uart_done),
     .uart_clk(uart_clk),
@@ -207,7 +215,7 @@ wire [31:0] seg_custom_data =({(4'd9+debug_state),28'h0})|
             (debug_state==2'b10)?pc:reg_debug);
 
 Keyboard_N_Segtube u_keyboard_segtube(
-    .i_clk(clk),
+    .i_clk(fpga_clk),
     .i_rst(rst),
     .i_row(kb_row),
     .i_custom_en(seg_custom_en),

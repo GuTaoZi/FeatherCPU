@@ -15,7 +15,7 @@ module InsMem(
 
 assign kick_off = ~i_uart_ena | i_uart_done;
 
-ins_mem im( .addra(kick_off ? i_pc[13:0] : i_uart_addr),
+ins_mem im( .addra(kick_off ? i_pc[15:2] : i_uart_addr),
             .clka(kick_off ? i_clk : i_uart_clk),
             .dina(kick_off ? 0 : i_uart_data),
             .douta(o_inst),

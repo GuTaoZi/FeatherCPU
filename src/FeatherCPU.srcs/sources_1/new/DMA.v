@@ -13,6 +13,7 @@ module DMA(
 
     input   [23:0]          hdw_sw_data,
     input   [23:0]          hdw_keybd_data,
+    input                   hdw_ack_but,
 
     input                   uart_ena,
     input                   uart_done,
@@ -33,7 +34,7 @@ reg                 mem_read;
 reg                 mem_write;
 
 DataMem myDM(
-    .i_addr(kick_off ? mem_addr : uart_addr),
+    .i_addr(kick_off ? mem_addr[15:2] : uart_addr),
     .i_write_data(kick_off ? write_data : uart_data),
     .i_mem_read(kick_off ? mem_read : 0),
     .i_mem_write(kick_off ? mem_write : ~uart_done),
@@ -42,6 +43,8 @@ DataMem myDM(
 );
 
 reg reading_data = 0;
+
+reg las_ack = 0;
 
 always @(negedge cpu_clk) begin
     if(reading_data) begin
@@ -54,23 +57,33 @@ always @(negedge cpu_clk) begin
         mem_write = cpu_mem_write_ena;
         write_data = cpu_write_data;
     end else begin
-        if(tran_pos == 2'b00) begin
-            mem_addr = `MMIO_sw_map_addr;
-            write_data = {8'b0, hdw_sw_data};
-            mem_read = 0;
-            mem_write = 1;
-        end else if(tran_pos == 2'b01) begin
-            mem_addr = `MMIO_keybd_map_addr;
-            write_data = {8'b0, hdw_keybd_data};
-            mem_read = 0;
-            mem_write = 1;
+        if(las_ack != hdw_ack_but) begin
+            if(hdw_ack_but == 1'b0) begin
+                mem_addr = `MMIO_ack_map_addr;
+                write_data = 32'h0000_0001;
+                mem_read = 1'b0;
+                mem_write = 1'b1;
+            end
+            las_ack = hdw_ack_but;
         end else begin
-            mem_addr = `MMIO_led_map_addr;
-            reading_data = 1;
-            mem_read = 1;
-            mem_write = 0;
+            if(tran_pos == 2'b00) begin
+                mem_addr = `MMIO_sw_map_addr;
+                write_data = {8'b0, hdw_sw_data};
+                mem_read = 0;
+                mem_write = 1;
+            end else if(tran_pos == 2'b01) begin
+                mem_addr = `MMIO_keybd_map_addr;
+                write_data = {8'b0, hdw_keybd_data};
+                mem_read = 0;
+                mem_write = 1;
+            end else begin
+                mem_addr = `MMIO_led_map_addr;
+                reading_data = 1;
+                mem_read = 1;
+                mem_write = 0;
+            end
+            tran_pos = tran_pos + 1'b1;
         end
-        tran_pos = tran_pos + 1'b1;
     end
 end
 

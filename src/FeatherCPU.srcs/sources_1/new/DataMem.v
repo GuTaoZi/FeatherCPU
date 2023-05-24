@@ -3,7 +3,7 @@
 `include "ParamDef.vh"
 
 module DataMem(
-    input   [`REG_WIDTH]    i_addr,
+    input   [13:2]          i_addr,
     input   [`REG_WIDTH]    i_write_data,
     input                   i_mem_read,
     input                   i_mem_write,
@@ -12,6 +12,6 @@ module DataMem(
 );
 wire [`REG_WIDTH] mem_out;
 assign o_read_data = i_mem_read ? mem_out : 32'b0;
-data_mem dm(.addra(i_addr[13:0]), .clka(i_clk), .dina(i_write_data), .douta(mem_out), .wea(i_mem_write));
+data_mem dm(.addra(i_addr), .clka(i_clk), .dina(i_write_data), .douta(mem_out), .wea(i_mem_write));
 
 endmodule

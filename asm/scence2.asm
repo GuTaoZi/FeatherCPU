@@ -102,7 +102,7 @@ case5:
 		andi s5, s4, 128 # s5 = sign of s0+s1
 		
 		beq s2, s3, case5_fail
-		beq s3, s5, case5_fail
+		beq s2, s5, case5_fail
 		addi s6, zero, 1
 		slli s6, s6, 8
 		or s6, s6, s4
@@ -111,5 +111,32 @@ case5:
 	case5_fail: # no overflow
 		sw s6, 2(s11)
 		jal end
+case6:
+		input(s0, 0, case4_1, case4_2)
+		input(s1, 0, case4_3, case4_4)
+		andi s0, s0, 255
+		andi s1, s1, 255
+		mul s2, s0, s1
+		sw s2, 2(s11)
+		jal end
+case7:
+		input(s0, 0, case4_1, case4_2)
+		input(s1, 0, case4_3, case4_4)
+		andi s0, s0, 255
+		andi s1, s1, 255
+		div s4, s0, s1
+		rem s5, s0, s1
+		
+		add s1, zero, zero
+		addi s2, zero, 1
+		sll s2, s2, 22
+	edl_lp2:
+		addi s1, s1, 1
+		and s3, s1, s2
+		beq s3, s2, remin
+		sw s4, 2(s11)
+		jal edl_lp2
+	remin:	sw s5, 2(s11)
+		jal edl_lp2
 
 end:	jal end

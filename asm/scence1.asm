@@ -1,22 +1,26 @@
-.macro input(%addr, %shift, %name1, %name2) # using: t2, t6
-%name1:
-	lw %addr, %shift(s11)
-	and t2, %addr, s10
-	bne t2, s10, %name1
-%name2:
-	lw t6, %shift(t1)
-	and t2, t6, s10
-	beq t2, s10, %name2
+.macro input(%addr, %name1) # using: t2, t6
+	addi t6, zero, 1
+%name1 :
+	lw t2, 12(s11)
+	bne t2, t6, %name1
+
+	lw %addr, 0(s11)
+
+	sw zero, 12(s11)
 .end_macro
 .text
 	addi t1, zero, 1
 	slli s10, t1, 16    # s10: end mask
 	
-	addi s11, zero, 63
-	slli s11, s11, 8
-	addi s11, s11, 240 # s11: MMIO base addr
+	addi s11, zero, 255
+	slli s11, s11, 16
+	addi s11, s11, 192 # s11: MMIO base addr
+	# s11 + 0 -> keybd
+	# s11 + 4 -> led
+	# s11 + 8 -> switch
+	# s11 + 12 -> ack_btn
 
-	input(t3, 4, ip1lp1, ip1lp2)
+	lw t3, 8(s11)
 	
 	andi t3, t3, 7
 	add t4, zero, zero
