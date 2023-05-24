@@ -1,7 +1,7 @@
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets debug_btn_IBUF]
 
-set_property IOSTANDARD LVCMOS33 [get_ports clk]
-set_property PACKAGE_PIN Y18 [get_ports clk]
+set_property IOSTANDARD LVCMOS33 [get_ports fpga_clk]
+set_property PACKAGE_PIN Y18 [get_ports fpga_clk]
 
 set_property PACKAGE_PIN K17 [get_ports {led_o[23]}]
 set_property PACKAGE_PIN L13 [get_ports {led_o[22]}]
@@ -158,6 +158,9 @@ set_property IOSTANDARD LVCMOS33 [get_ports rst]
 
 set_property PACKAGE_PIN R1 [get_ports debug_btn]
 set_property IOSTANDARD LVCMOS33 [get_ports debug_btn]
+
+set_property PACKAGE_PIN P4 [get_ports ack_btn]
+set_property IOSTANDARD LVCMOS33 [get_ports ack_btn]
 
 set_property PACKAGE_PIN Y19 [get_ports upg_rx]
 set_property IOSTANDARD LVCMOS33 [get_ports upg_rx]
