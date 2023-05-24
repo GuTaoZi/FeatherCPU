@@ -1,11 +1,13 @@
 .macro input(%addr, %name1) # using: t2, t6
 	addi t6, zero, 1
+	sw t6, 4(s11)
 %name1 :
 	lw t2, 12(s11)
 	bne t2, t6, %name1
 
 	lw %addr, 0(s11)
 
+	sw zero, 4(s11)
 	sw zero, 12(s11)
 .end_macro
 .text
