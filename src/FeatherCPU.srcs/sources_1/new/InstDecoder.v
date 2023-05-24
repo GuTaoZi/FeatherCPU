@@ -31,7 +31,7 @@ assign opcode = i_inst[6:0];
 assign funct3 = i_inst[14:12];
 assign funct7 = i_inst[31:25];
 
-assign inst_type = (opcode==7'b011_0011)?`R_TYPE:
+assign o_inst_type = (opcode==7'b011_0011)?`R_TYPE:
                    (opcode==7'b001_0011)?`I_TYPE:
                    (opcode==7'b000_0011)?`I_TYPE:
                    (opcode==7'b111_0011)?`E_TYPE:
@@ -53,17 +53,17 @@ assign o_rd_idx = i_inst[11:7];
 assign o_rs1_idx = i_inst[19:15];
 assign o_rs2_idx = i_inst[24:20];
 
-assign o_imm = (inst_type==`R_TYPE)?32'h0:
-               (inst_type==`I_TYPE)?imm_I:
-               (inst_type==`S_TYPE)?imm_S:
-               (inst_type==`B_TYPE)?imm_B:
-               (inst_type==`J_TYPE)?((opcode==`J_JAL)?imm_JAL:imm_JALR):
-               (inst_type==`U_TYPE)?imm_U:32'hffff_ffff;
+assign o_imm = (o_inst_type==`R_TYPE)?32'h0:
+               (o_inst_type==`I_TYPE)?imm_I:
+               (o_inst_type==`S_TYPE)?imm_S:
+               (o_inst_type==`B_TYPE)?imm_B:
+               (o_inst_type==`J_TYPE)?((opcode==`J_JAL)?imm_JAL:imm_JALR):
+               (o_inst_type==`U_TYPE)?imm_U:32'hffff_ffff;
 
 wire funct10 = {funct3,funct7};
 
 assign o_alu_op =
-    (inst_type==`R_TYPE)?
+    (o_inst_type==`R_TYPE)?
     ((funct10==`R_ADD||funct10==`R_ADDU)?`ALU_ADD:
     (funct10==`R_SUB||funct10==`R_SUBU)?`ALU_SUB:
     (funct10==`R_MUL)?`ALU_MUL:
@@ -78,7 +78,7 @@ assign o_alu_op =
     (funct10==`R_OR)?`ALU_OR:
     (funct10==`R_AND)?`ALU_AND:`ALU_ERR)
     :
-    (inst_type==`I_TYPE)?
+    (o_inst_type==`I_TYPE)?
     ((opcode==`I_LW)?`ALU_ADD:
     (funct3==`I_ADDI)?`ALU_ADD:
     (funct3==`I_SLTI)?`ALU_SLT:
@@ -89,19 +89,19 @@ assign o_alu_op =
     (funct3==`I_ORI)?`ALU_OR:
     (funct3==`I_ANDI)?`ALU_AND:`ALU_ERR)
     :
-    (inst_type==`S_TYPE)?`ALU_ADD:
-    (inst_type==`B_TYPE)?
+    (o_inst_type==`S_TYPE)?`ALU_ADD:
+    (o_inst_type==`B_TYPE)?
     ((funct3==`B_BEQ)?`ALU_BEQ:`ALU_BNE)
     :
-    (inst_type==`J_TYPE)?`ALU_ADD
+    (o_inst_type==`J_TYPE)?`ALU_ADD
     :
     (opcode==`U_TYPE)?`ALU_SLL
     :`ALU_ERR;
 
 assign o_mem_read   = (opcode==7'b000_0011);
-assign o_mem_write  = (inst_type==`S_TYPE);
+assign o_mem_write  = (o_inst_type==`S_TYPE);
 assign o_mem_to_reg = (opcode==7'b000_0011);
-assign o_alu_src    = (inst_type==`R_TYPE||inst_type==`S_TYPE||inst_type==`B_TYPE);
-assign o_reg_write  = !(inst_type==`S_TYPE||inst_type==`B_TYPE);
+assign o_alu_src    = (o_inst_type==`R_TYPE||o_inst_type==`S_TYPE||o_inst_type==`B_TYPE);
+assign o_reg_write  = !(o_inst_type==`S_TYPE||o_inst_type==`B_TYPE);
 
 endmodule

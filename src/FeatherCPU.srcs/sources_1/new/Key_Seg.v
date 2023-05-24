@@ -2,6 +2,8 @@ module Keyboard_N_Segtube(
     input i_clk,
     input i_rst,
     input  [3:0]        i_row,
+    input i_custom_en,
+    input  [31:0]       i_custom_data,
     output [3:0]        o_col,
     output reg [31:0]   o_data,
     output [7:0]        o_seg_cho,
@@ -31,7 +33,7 @@ end
 
 segtube sg(
     .i_clk(i_clk),
-    .i_dat(my_data),
+    .i_dat(i_custom_en?i_custom_data:my_data),
     .o_seg_cho(o_seg_cho),
     .o_seg_lit(o_seg_lit)
 );

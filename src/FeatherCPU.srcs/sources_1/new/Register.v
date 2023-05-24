@@ -10,9 +10,10 @@ module Register(
     input                   i_write_en,
     input                   i_clk,
     input                   i_rst,
+    input   [`REG_IDX_LEN]  i_debug_idx,
     output [`REG_WIDTH] o_read_data1,
     output [`REG_WIDTH] o_read_data2,
-    output [`REG_WIDTH] o_read_ra
+    output [`REG_WIDTH] o_debug_data
 );
 
 reg [`REG_WIDTH] registers [`REG_NUMBERS : 0];
@@ -63,5 +64,6 @@ end
 
 assign o_read_data1 = registers[i_read_addr1];
 assign o_read_data2 = registers[i_read_addr2];
+assign o_debug_data = registers[i_debug_idx];
 
 endmodule
