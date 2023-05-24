@@ -16,12 +16,12 @@ module Top(
     output [7:0]    seg_lit
 );
 
-wire debug_btn_fil;
-filter debug_btn_filter(
-.i_clk(fpga_clk),
-.i_rst(rst),
-.i_inp(debug_btn),
-.o_output(debug_btn_fil));
+//wire debug_btn_fil;
+//filter debug_btn_filter(
+//.i_clk(fpga_clk),
+//.i_rst(rst),
+//.i_inp(debug_btn),
+//.o_output(debug_btn_fil));
 
 reg [1:0] debug_state;
 // 00: show keyboard input
@@ -30,13 +30,25 @@ reg [1:0] debug_state;
 // 11: show value of reg[sw[23:16]]
 // plus one at negedge of debug_btn(P5) 
 
-always @(negedge debug_btn_fil, posedge rst)
+always @(negedge debug_btn, posedge rst)
 begin
     if(rst)
         debug_state = 2'b00;
-    else if(~debug_btn_fil)
+    else if(~debug_btn)
         debug_state = debug_state+1'b1;
 end
+
+reg [21:0] cntw;
+always @(posedge fpga_clk) begin
+    if(rst) begin
+        cntw = 0;
+    end else begin
+        cntw = cntw + 1'b1;
+    end
+end
+
+wire clk;
+assign clk = sw[0] ? cntw[21] : fpga_clk;
     
 wire upg_clk;
 wire uart_ena;
@@ -191,8 +203,6 @@ wire [`SWITCH_WIDTH] hdw_switch_data;
 wire [`REG_WIDTH] hdw_keybd_data;
 wire [`LED_WIDTH] hdw_led_data;
 
-assign led_o = {state,22'b0} | hdw_led_data;
-
 filter ack_btn_filter(
 .i_clk(fpga_clk),
 .i_rst(rst),
@@ -240,14 +250,19 @@ Keyboard_N_Segtube u_keyboard_segtube(
 );
 
 wire [`REG_WIDTH] pc_write_into_rs1;
+wire i_Jal = (inst[6:0]==`J_JAL)?1'b1:1'b0;
+wire i_Jalr = (inst[6:0]==`J_JALR)?1'b1:1'b0;
+wire i_pc_en =(state==2'b00)?1'b1:1'b0;
+wire i_branch = (inst_type==`B_TYPE)?1'b1:1'b0;
+wire pc_bundle = {i_Jal,i_Jalr,i_pc_en,i_branch};
 
 PC u_PC(
     .i_clk(cpu_clk),
     .i_rst(rst),
-    .i_Jal((inst[6:0]==`J_JAL)?1'b1:1'b0),
-    .i_Jalr((inst[6:0]==`J_JALR)?1'b1:1'b0),
-    .i_pc_en((state==2'b00)?1'b1:1'b0),
-    .i_branch((inst_type==`B_TYPE)?1'b1:1'b0),
+    .i_Jal(i_Jal),
+    .i_Jalr(i_Jalr),
+    .i_pc_en(i_pc_en),
+    .i_branch(i_branch),
     .i_Jal_imm(imm_raw),
     .i_alu_val(alu_opt), // from ALU
     ///input///
@@ -255,5 +270,7 @@ PC u_PC(
     .o_pc(pc),
     .o_pc_rb(pc_write_into_rs1)
 );
+
+assign led_o = {pc_bundle, 28'h0} | hdw_led_data;
 
 endmodule
