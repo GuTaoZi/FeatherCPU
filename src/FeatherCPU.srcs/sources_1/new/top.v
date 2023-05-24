@@ -35,20 +35,25 @@ assign clk = sw[0] ? cntw[21] : fpga_clk;
 //.i_rst(rst),
 //.i_inp(debug_btn),
 //.o_output(debug_btn_fil));
+parameter debug_state_cnt = 4;
 
-reg [1:0] debug_state;
+reg [2:0] debug_state;
 // 00: show keyboard input
 // 01: show current instruction
 // 10: show current pc
 // 11: show value of reg[sw[23:16]]
 // plus one at negedge of debug_btn(P5) 
 
-always @(negedge debug_btn, posedge rst)
+always @(negedge debug_btn)
 begin
     if(rst)
-        debug_state = 2'b00;
+        debug_state = 3'b000;
     else if(~debug_btn)
+    begin
         debug_state = debug_state+1'b1;
+        if(debug_state == debug_state_cnt+1)
+            debug_state = 3'b000;
+    end
 end
 
 reg [21:0] cntw;
@@ -243,10 +248,11 @@ DMA dma(
     .hdw_led_data(hdw_led_data)
 );
 
-wire seg_custom_en = (debug_state==2'b00)?1'b0:1'b1;
-wire [31:0] seg_custom_data =({(4'd9+debug_state),28'h0})|
-            ((debug_state==2'b01)?inst:
-            (debug_state==2'b10)?pc:reg_debug);
+wire seg_custom_en = (debug_state==3'b000)?1'b0:1'b1;
+wire [31:0] seg_custom_data =({(4'd0 + debug_state),28'h0})|
+            ((debug_state==3'b001)?inst:
+            (debug_state==3'b010)?pc:
+            (debug_state==3'b011)?reg_debug:state);
 
 Keyboard_N_Segtube u_keyboard_segtube(
     .i_clk(fpga_clk),
@@ -284,6 +290,6 @@ PC u_PC(
     .o_pc_rb(pc_write_into_rs1)
 );
 
-assign led_o = {pc_bundle, 28'h0} | hdw_led_data;
+assign led_o = {pc_bundle, 20'hff} | hdw_led_data;
 
 endmodule
