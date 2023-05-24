@@ -7,10 +7,10 @@ module Top(
     input           upg_rx,
     input  [3:0]    kb_row,
     input           debug_btn,
-    input  [23:0]   sw,
+    input  [`SWITCH_WIDTH]   sw,
     output [3:0]    kb_col,
     output          upg_tx,
-    output [23:0]   led_o,
+    output [`LED_WIDTH]   led_o,
     output [7:0]    seg_cho,
     output [7:0]    seg_lit
 );
@@ -22,11 +22,11 @@ reg [1:0] debug_state;
 // 11: show value of reg[sw[23:16]]
 // plus one at negedge of debug_btn(P5) 
 
-always @(posedge debug_btn, posedge rst)
+always @(negedge debug_btn, posedge rst)
 begin
     if(rst)
         debug_state = 2'b00;
-    else if(debug_btn)
+    else if(~debug_btn)
         debug_state = debug_state+1'b1;
 end
     
@@ -95,7 +95,7 @@ wire [`REG_IDX_LEN] rd_idx_raw;
 wire [`REG_WIDTH] imm_raw;
 wire [`REG_WIDTH] data_from_mem;
 
-wire [`ALU_OP_LEN] alu_op;
+wire [`ALU_OP_LEN] alu_op_raw;
 
 wire mem_read_en;
 wire mem_write_en;
@@ -179,7 +179,8 @@ ALU alu(
     .o_overflow(overflow_raw)
 );
 
-wire [`REG_WIDTH] hdw_switch_data;
+wire [`REG_WIDTH] hdw_switch_data = sw;
+wire [`REG_WIDTH] hdw_keybd_data;
 
 DMA dma(
     .hdw_clk(clk),
@@ -189,7 +190,8 @@ DMA dma(
     .cpu_write_data(reg_data2),
     .cpu_mem_read_ena(mem_read_en),
     .cpu_mem_write_ena(mem_write_en),
-    .hdw_switch_data(hdw_switch_data[23:0]),
+    .hdw_sw_data(hdw_switch_data),
+    .hdw_keybd_data(hdw_keybd_data),
     .uart_ena(uart_ena),
     .uart_done(uart_done),
     .uart_clk(uart_clk),
@@ -215,7 +217,7 @@ Keyboard_N_Segtube u_keyboard_segtube(
     ///input///
     ///output///
     .o_col(kb_col),
-    .o_data(hdw_switch_data),
+    .o_data(hdw_keybd_data),
     .o_seg_cho(seg_cho),
     .o_seg_lit(seg_lit)
 );

@@ -11,8 +11,8 @@ module DMA(
     input                   cpu_mem_read_ena,
     input                   cpu_mem_write_ena,
 
-    input   [23:0]          hdw_sw_data,
-    input   [23:0]          hdw_keybd_data,
+    input   [`SWITCH_WIDTH]          hdw_sw_data,
+    input   [31:0]          hdw_keybd_data,
 
     input                   uart_ena,
     input                   uart_done,
@@ -21,7 +21,7 @@ module DMA(
     input   [`REG_WIDTH]    uart_data,
 
     output  [`REG_WIDTH]    read_data,
-    output reg [23:0]       hdw_led_data
+    output reg [`LED_WIDTH]       hdw_led_data
 );
 
 assign kick_off = ~uart_ena | uart_done;
@@ -35,7 +35,7 @@ reg                 mem_write;
 DataMem myDM(
     .i_addr(kick_off ? mem_addr : uart_addr),
     .i_write_data(kick_off ? write_data : uart_data),
-    .i_mem_read(kick_off ? mem_read : 0),
+    .i_mem_read(kick_off ? mem_read : 1'b0),
     .i_mem_write(kick_off ? mem_write : ~uart_done),
     .i_clk(kick_off ? hdw_clk : uart_clk),
     .o_read_data(read_data)
@@ -45,7 +45,7 @@ reg reading_data = 0;
 
 always @(negedge cpu_clk) begin
     if(reading_data) begin
-        hdw_led_data = read_data[23:0];
+        hdw_led_data = read_data[`LED_WIDTH];
         reading_data = 0;
     end
     if(cpu_mem_ena) begin
