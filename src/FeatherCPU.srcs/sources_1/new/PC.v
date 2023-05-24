@@ -36,7 +36,7 @@ reg [`REG_WIDTH] now_pc;
 wire [`REG_WIDTH] next_pc;
 assign o_pc = now_pc;
 
-always @(negedge i_clk, posedge i_rst)
+always @(negedge i_clk)
 begin
     if(i_rst) begin
         now_pc = 0;

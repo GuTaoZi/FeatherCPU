@@ -56,7 +56,7 @@ uart0 u_uart0(
 );
 
 reg [2:0] cnt;
-always @(posedge fpga_clk) begin
+always @(negedge fpga_clk) begin
     cnt = cnt + 1;
 end
 
@@ -236,7 +236,7 @@ PC u_PC(
     .i_rst(rst),
     .i_Jal((inst[6:0]==`J_JAL)?1'b1:1'b0),
     .i_Jalr((inst[6:0]==`J_JALR)?1'b1:1'b0),
-    .i_pc_en((state==2'b00)),
+    .i_pc_en((state==2'b00)?1'b1:1'b0),
     .i_branch((inst_type==`B_TYPE)?1'b1:1'b0),
     .i_Jal_imm(imm_raw),
     .i_alu_val(alu_opt), // from ALU
