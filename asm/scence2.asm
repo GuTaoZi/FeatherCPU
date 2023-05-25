@@ -11,11 +11,8 @@
 	sw zero, 12(s11)
 .end_macro
 .text
-	addi t1, zero, 1
-	slli s10, t1, 16    # s10: end mask
-	
 	addi s11, zero, 255
-	slli s11, s11, 16
+	slli s11, s11, 8
 	addi s11, s11, 192 # s11: MMIO base addr
 	# s11 + 0 -> keybd
 	# s11 + 4 -> led

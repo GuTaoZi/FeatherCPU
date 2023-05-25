@@ -35,7 +35,7 @@ begin
 end
 
 assign next_pc =
-i_rst     ?   0                           :
+i_rst     ?   0                             :
 i_Jalr    ?   i_alu_val                     :
 i_Jal     ?   now_pc + i_Jal_imm            :
 i_branch  ?   now_pc + i_alu_val            :

@@ -20,7 +20,7 @@ module inst_decoder(
 wire[6:0] opcode;
 wire[2:0] funct3;
 wire[6:0] funct7;
-wire[31:0] imm_I, imm_S,imm_B,imm_U,imm_J;
+wire[31:0] imm_I, imm_S,imm_B,imm_U,imm_JAL,imm_JALR;
 //wire[4:0] rd,rs1,rs2;
 //wire o_rs1_ena;
 //wire o_rs2_ena;
@@ -43,7 +43,7 @@ assign o_inst_type=(opcode==7'b011_0011)?`R_TYPE:
 
 assign imm_I = {{20{i_inst[31]}},i_inst[31:20]};
 assign imm_S = {{20{i_inst[31]}},i_inst[31:25],i_inst[11:7]};
-assign imm_B = {{20{i_inst[31]}},i_inst[19:12],i_inst[20],i_inst[30:21],1'b0};
+assign imm_B = {{20{i_inst[31]}},i_inst[7],i_inst[30:25],i_inst[11:8],1'b0};
 assign imm_JAL = {{12{i_inst[31]}}, i_inst[19:12],i_inst[20], i_inst[30:21],1'b0};
 assign imm_JALR = {{20{i_inst[31]}},i_inst[31:20]};
 assign imm_U = {i_inst[31:12]};

@@ -12,7 +12,7 @@ module DMA(
     input                   cpu_mem_write_ena,
 
     input   [`SWITCH_WIDTH] hdw_sw_data,
-    input   [31:0]          hdw_keybd_data,
+    input   [`REG_WIDTH]    hdw_keybd_data,
     input                   hdw_ack_but,
 
     input                   uart_ena,
@@ -22,7 +22,8 @@ module DMA(
     input   [`REG_WIDTH]    uart_data,
 
     output  [`REG_WIDTH]    read_data,
-    output reg [`LED_WIDTH] hdw_led_data
+    output reg [`LED_WIDTH] hdw_led_data,
+    output reg              o_dma_write
 );
 
 assign kick_off = ~uart_ena | uart_done;
@@ -56,7 +57,9 @@ always @(negedge cpu_clk) begin
         mem_read = cpu_mem_read_ena;
         mem_write = cpu_mem_write_ena;
         write_data = cpu_write_data;
+        o_dma_write = 1;
     end else begin
+        o_dma_write = 0;
         if(las_ack != hdw_ack_but) begin
             if(hdw_ack_but == 1'b0) begin
                 mem_addr = `MMIO_ack_map_addr;
