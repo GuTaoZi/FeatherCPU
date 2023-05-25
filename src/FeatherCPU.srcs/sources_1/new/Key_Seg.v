@@ -11,7 +11,6 @@ module Keyboard_N_Segtube(
     output [7:0]        o_seg_lit
 );
 
-reg [31:0] my_data;
 wire [3:0] data;
 wire ena;
 
@@ -35,7 +34,7 @@ end
 
 segtube sg(
     .i_clk(i_clk),
-    .i_dat(i_custom_en?i_custom_data:my_data),
+    .i_dat(i_custom_en?i_custom_data:o_data),
     .o_seg_cho(o_seg_cho),
     .o_seg_lit(o_seg_lit)
 );

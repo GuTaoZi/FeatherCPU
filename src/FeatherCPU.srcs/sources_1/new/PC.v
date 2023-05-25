@@ -1,23 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2023/04/28 16:40:46
-// Design Name: 
-// Module Name: PC
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 `include "ParamDef.vh"
 
 module PC(
@@ -35,6 +16,7 @@ module PC(
 );
 reg [`REG_WIDTH] now_pc = 0;
 wire [`REG_WIDTH] next_pc;
+reg [`REG_WIDTH] pc_tmp;
 assign o_pc = now_pc;
 assign o_next_pc = next_pc;
 
@@ -42,11 +24,12 @@ always @(negedge i_clk, posedge i_rst)
 begin
     if(i_rst) begin
         now_pc = 0;
-        o_pc_rb = 0;
+        o_pc_rb = 4;
     end else begin
         if(i_pc_en) begin
             o_pc_rb = now_pc + 4;
-            now_pc = next_pc;
+            pc_tmp = next_pc;
+            now_pc = pc_tmp;
         end
     end
 end

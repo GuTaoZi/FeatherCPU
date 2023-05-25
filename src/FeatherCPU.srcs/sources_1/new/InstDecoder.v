@@ -13,7 +13,6 @@ module inst_decoder(
     output o_mem_read,
     output o_mem_write,
     output o_mem_to_reg,
-    output o_alu_src,
 //    output o_reg_write,
     output [`INST_TYPES_WIDTH] o_inst_type
 );
@@ -101,7 +100,6 @@ assign o_alu_op =
 assign o_mem_read   = (opcode==7'b000_0011);
 assign o_mem_write  = (o_inst_type==`S_TYPE);
 assign o_mem_to_reg = (opcode==7'b000_0011);
-assign o_alu_src    = (o_inst_type==`R_TYPE||o_inst_type==`S_TYPE||o_inst_type==`B_TYPE);
 //assign o_reg_write  = !(o_inst_type==`S_TYPE||o_inst_type==`B_TYPE);
 
 endmodule

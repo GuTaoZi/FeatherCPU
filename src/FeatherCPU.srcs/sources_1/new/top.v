@@ -136,7 +136,6 @@ wire mem_write_en;
 // DONE while state == 2'b11 !!!!!!!!!!!!!!!!!!!!!!
 
 wire mem_to_reg_en;
-wire alu_src_from_2_regs;
 wire [`INST_TYPES_WIDTH] inst_type;
 wire reg_write_en_from_id = !(inst_type == `S_TYPE || inst_type ==`B_TYPE);
 
@@ -152,7 +151,6 @@ inst_decoder u_inst_decoder(
     .o_mem_read(mem_read_en),
     .o_mem_write(mem_write_en),
     .o_mem_to_reg(mem_to_reg_en),
-    .o_alu_src(alu_src_from_2_regs),
 //    .o_reg_write(reg_write_en_from_id),
     .o_inst_type(inst_type)
 );
@@ -165,7 +163,7 @@ wire [`REG_WIDTH] alu_opt;
 wire overflow_raw;
 
 wire register_write_enable_of_id_and_pc=(state==2'b11)&(reg_write_en_from_id);
-wire data_write_into_register = (inst[6:0]==`I_LW)?data_from_mem:alu_opt;
+wire [`REG_WIDTH] data_write_into_register = (inst[6:0]==`I_LW)?data_from_mem:alu_opt;
 
 Register u_Register(
     .i_read_addr1(rs1_idx_raw),
