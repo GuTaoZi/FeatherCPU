@@ -1,5 +1,3 @@
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets debug_btn_IBUF]
-
 set_property IOSTANDARD LVCMOS33 [get_ports fpga_clk]
 set_property PACKAGE_PIN Y18 [get_ports fpga_clk]
 

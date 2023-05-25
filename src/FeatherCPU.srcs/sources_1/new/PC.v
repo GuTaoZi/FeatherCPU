@@ -42,6 +42,7 @@ always @(negedge i_clk, posedge i_rst)
 begin
     if(i_rst) begin
         now_pc = 0;
+        o_pc_rb = 0;
     end else begin
         if(i_pc_en) begin
             o_pc_rb = now_pc + 4;

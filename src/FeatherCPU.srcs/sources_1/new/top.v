@@ -8,7 +8,8 @@ module Top(
     input  [3:0]    kb_row,
     input           debug_btn,
     input  [`SWITCH_WIDTH]   sw,
-    input           ack_btn,
+    input           kb_ack_btn,
+    input           kb_cancel_btn,
     output [3:0]    kb_col,
     output          upg_tx,
     output [`LED_WIDTH]   led_o,
@@ -43,13 +44,19 @@ reg [2:0] debug_state = 0;
 // 11: show value of reg[sw[23:16]]
 // plus one at negedge of debug_btn(P5) 
 
-always @(negedge debug_btn)
+reg debug_btn_state = 0;
+
+always @(posedge fpga_clk)
 begin
-    if(~debug_btn)
-    begin
-        debug_state = debug_state+1'b1;
-        if(debug_state == 7)
-            debug_state = 3'b000;
+    if(debug_btn_state != debug_btn) begin
+        debug_btn_state = debug_btn;
+
+        if(~debug_btn)
+        begin
+            debug_state = debug_state+1'b1;
+            if(debug_state == 7)
+                debug_state = 3'b000;
+        end
     end
 end
     
@@ -212,11 +219,11 @@ wire [`SWITCH_WIDTH] hdw_switch_data = sw;
 wire [`REG_WIDTH] hdw_keybd_data;
 wire [`LED_WIDTH] hdw_led_data;
 
-filter ack_btn_filter(
+filter kb_ack_btn_filter(
 .i_clk(fpga_clk),
 .i_rst(rst),
-.i_inp(ack_btn),
-.o_output(ack_btn_fil));
+.i_inp(kb_ack_btn),
+.o_output(kb_ack_btn_fil));
 
 DMA dma(
     .hdw_clk(clk),
@@ -227,7 +234,7 @@ DMA dma(
     .cpu_mem_read_ena(mem_read_en),
     .cpu_mem_write_ena(mem_write_en),
     .hdw_sw_data(hdw_switch_data),
-    .hdw_ack_but(ack_btn_fil),
+    .hdw_ack_but(kb_ack_btn_fil),
     .uart_ena(uart_ena & uart_addr[14]),
     .uart_done(uart_done),
     .uart_clk(uart_clk),
@@ -256,6 +263,7 @@ Keyboard_N_Segtube u_keyboard_segtube(
     .i_row(kb_row),
     .i_custom_en(seg_custom_en),
     .i_custom_data(seg_custom_data),
+    .i_cancel_btn(kb_cancel_btn),
     ///input///
     ///output///
     .o_col(kb_col),

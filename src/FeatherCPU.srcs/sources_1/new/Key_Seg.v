@@ -1,6 +1,7 @@
 module Keyboard_N_Segtube(
     input i_clk,
     input i_rst,
+    input i_cancel_btn,
     input  [3:0]        i_row,
     input i_custom_en,
     input  [31:0]       i_custom_data,
@@ -23,11 +24,12 @@ Keyboard kb(
     .o_enable(ena)
 );
 
-always @(posedge ena) begin
-    my_data = {my_data[27:0], data};
-    if(my_data[19:16] == 4'h1) begin
-        o_data = my_data;
-        my_data = 0;
+
+always @(posedge ena, posedge i_cancel_btn) begin
+    if(i_cancel_btn) begin
+        o_data = 0;
+    end else begin
+        o_data = {o_data[27:0], data};
     end
 end
 

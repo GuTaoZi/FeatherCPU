@@ -70,11 +70,89 @@ case0:
 	lit:	sw s0, 2(s11)
 		jal edl_lop
 case1:
+		input(s0, case1_0)
+		add a0, zero, s0
+		add a2, zero, zero
+		add a7, zero, zero
+		jal ra, case1_rec
+		sw a2, 4(s11)
 		jal end
+case1_rec:
+		addi sp, sp, -8
+		sw ra, 0(sp)
+		sw a0, 4(sp)
+		addi a2, a2, 1
+		
+		beq a0, zero, case1_rec_end
+		addi a0, a0, -1
+		jal ra, case1_rec
+		lw a0, 4(sp)
+		add a7, a7, a0
+case1_rec_end:
+		addi a2, a2, 1
+		lw ra, 0(sp)
+		addi sp, sp, 8
+case1_rec_end:	jalr ra
+
+show_case:
+		sw a2, 4(s11)
+		add t6, zero, zero
+		addi t5, zero, 1
+		slli t5, t5, 22
+		
+	s_c_1:	addi t5, t5, -1
+		bne t5, zero, s_c_1
+		
+		sw zero, 4(s11)
+		jalr ra
 case2:
+		input(s0, case2_0)
+		add a0, zero, s0
+		add a7, zero, zero
+		jal ra, case2_rec
+		sw a1, 4(s11)
 		jal end
+case2_rec:
+		addi sp, sp, -8
+		sw ra, 0(sp)
+		sw a0, 4(sp)
+		add a2, zero, a0
+		jal show_case
+		
+		beq a0, zero, case2_rec_end
+		addi a0, a0, -1
+		jal ra, case2_rec
+		lw a0, 4(sp)
+		add a7, a7, a0
+case2_rec_end:
+		lw ra, 0(sp)
+		addi sp, sp, 8
+case2_rec_end:	jalr ra
+
 case3:
+		input(s0, case3_0)
+		add a0, zero, s0
+		add a7, zero, zero
+		jal ra, case3_rec
+		sw a1, 4(s11)
 		jal end
+case3_rec:
+		addi sp, sp, -8
+		sw ra, 0(sp)
+		sw a0, 4(sp)
+		
+		beq a0, zero, case3_rec_end
+		addi a0, a0, -1
+		jal ra, case3_rec
+		lw a0, 4(sp)
+		add a2, zero, a0
+		jal show_case
+		add a7, a7, a0
+case3_rec_end:
+		lw ra, 0(sp)
+		addi sp, sp, 8
+case3_rec_end:	jalr ra
+
 case4:
 		input(s0, case4_1)
 		input(s1, case4_3)

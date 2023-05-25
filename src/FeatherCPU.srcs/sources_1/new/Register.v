@@ -25,7 +25,7 @@ begin
     if(i_rst) begin
         registers[0] = 32'h0000_0000;
         registers[1] = 32'h0000_0000;
-        registers[2] = 32'h0000_3fe0;
+        registers[2] = 32'h0000_ff80;
         registers[3] = 32'h0000_0080;
         registers[4] = 32'h0000_0000;
         registers[5] = 32'h0000_0000;
