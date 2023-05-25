@@ -164,6 +164,7 @@ wire overflow_raw;
 
 wire register_write_enable_of_id_and_pc=(state==2'b11)&(reg_write_en_from_id);
 wire [`REG_WIDTH] data_write_into_register = (inst[6:0]==`I_LW)?data_from_mem:alu_opt;
+wire reg_write;
 
 Register u_Register(
     .i_read_addr1(rs1_idx_raw),
@@ -178,7 +179,8 @@ Register u_Register(
     ///output///
     .o_read_data1(reg_data1),
     .o_read_data2(reg_data2),
-    .o_debug_data(reg_debug)
+    .o_debug_data(reg_debug),
+    .o_writing(reg_write)
 );
 
 wire [`REG_WIDTH] src1 = 
@@ -231,6 +233,7 @@ DMA dma(
     .cpu_write_data(reg_data2),
     .cpu_mem_read_ena(mem_read_en),
     .cpu_mem_write_ena(mem_write_en),
+    .hdw_keybd_data(hdw_keybd_data),
     .hdw_sw_data(hdw_switch_data),
     .hdw_ack_but(kb_ack_btn_fil),
     .uart_ena(uart_ena & uart_addr[14]),
@@ -275,7 +278,7 @@ wire i_Jal = (inst[6:0]==`J_JAL)?1'b1:1'b0;
 wire i_Jalr = (inst[6:0]==`J_JALR)?1'b1:1'b0;
 wire i_pc_en =(state==2'b00)?1'b1:1'b0;
 wire i_branch = (inst_type==`B_TYPE)?1'b1:1'b0;
-wire [5:0] pc_bundle = {i_Jal,i_Jalr,i_pc_en,i_branch,cpu_clk, register_write_enable_of_id_and_pc};
+wire [6:0] pc_bundle = {i_Jal,i_Jalr,i_pc_en,i_branch,cpu_clk, register_write_enable_of_id_and_pc, reg_write};
 
 PC u_PC(
     .i_clk(cpu_clk),
@@ -293,6 +296,6 @@ PC u_PC(
     .o_pc_rb(pc_write_into_rs1)
 );
 
-assign led_o = {pc_bundle, 18'hff} | hdw_led_data;
+assign led_o = {pc_bundle, 17'h00} | hdw_led_data;
 
 endmodule

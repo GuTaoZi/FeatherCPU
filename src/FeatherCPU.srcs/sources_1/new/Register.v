@@ -13,14 +13,15 @@ module Register(
     input   [`REG_IDX_LEN]  i_debug_idx,
     output [`REG_WIDTH] o_read_data1,
     output [`REG_WIDTH] o_read_data2,
-    output [`REG_WIDTH] o_debug_data
+    output [`REG_WIDTH] o_debug_data,
+    output reg          o_writing
 );
 
 reg [`REG_WIDTH] registers [`REG_NUMBERS : 0];
 
-assign o_read_ra = registers[2];
+assign o_read_ra = registers[1];
 
-always @(posedge i_clk, posedge i_rst)
+always @(posedge i_write_en, posedge i_rst)
 begin
     if(i_rst) begin
         registers[0] = 32'h0000_0000;
@@ -56,9 +57,12 @@ begin
         registers[30] = 32'h0000_0000;
         registers[31] = 32'h0000_0000;
     end else begin
-        if(i_write_en && i_write_addr != 5'b00000) begin
+        if(i_write_en && (i_write_addr != 5'b00000)) begin
             registers[i_write_addr] = i_write_data;
-        end
+            o_writing = 1'b1;
+        end else begin
+            o_writing = 1'b0;
+         end
     end
 end
 

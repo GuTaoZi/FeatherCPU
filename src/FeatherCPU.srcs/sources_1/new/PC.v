@@ -20,7 +20,7 @@ reg [`REG_WIDTH] pc_tmp;
 assign o_pc = now_pc;
 assign o_next_pc = next_pc;
 
-always @(negedge i_clk, posedge i_rst)
+always @(posedge i_pc_en, posedge i_rst)
 begin
     if(i_rst) begin
         now_pc = 0;
