@@ -7,14 +7,14 @@ module inst_decoder(
     input[`INST_LEN] i_inst,
     output[`REG_IDX_LEN] o_rs1_idx,
     output[`REG_IDX_LEN] o_rs2_idx,
-    output[`REG_IDX_LEN] o_rd_idx,
+//    output[`REG_IDX_LEN] o_rd_idx,
     output[`REG_WIDTH] o_imm,
     output[`ALU_OP_LEN] o_alu_op,
     output o_mem_read,
     output o_mem_write,
     output o_mem_to_reg,
     output o_alu_src,
-    output o_reg_write,
+//    output o_reg_write,
     output [`INST_TYPES_WIDTH] o_inst_type
 );
 
@@ -49,7 +49,7 @@ assign imm_JAL = {{12{i_inst[31]}}, i_inst[19:12],i_inst[20], i_inst[30:21],1'b0
 assign imm_JALR = {{20{i_inst[31]}},i_inst[31:20]};
 assign imm_U = {i_inst[31:12]};
 
-assign o_rd_idx = i_inst[11:7];
+//assign o_rd_idx = i_inst[11:7];
 assign o_rs1_idx = i_inst[19:15];
 assign o_rs2_idx = i_inst[24:20];
 
@@ -102,6 +102,6 @@ assign o_mem_read   = (opcode==7'b000_0011);
 assign o_mem_write  = (o_inst_type==`S_TYPE);
 assign o_mem_to_reg = (opcode==7'b000_0011);
 assign o_alu_src    = (o_inst_type==`R_TYPE||o_inst_type==`S_TYPE||o_inst_type==`B_TYPE);
-assign o_reg_write  = !(o_inst_type==`S_TYPE||o_inst_type==`B_TYPE);
+//assign o_reg_write  = !(o_inst_type==`S_TYPE||o_inst_type==`B_TYPE);
 
 endmodule

@@ -10,7 +10,7 @@ parameter len = 5;
 reg las_state = 0;
 reg [len:0] cnt = 0;
 
-always @(posedge i_clk) begin
+always @(posedge i_clk, posedge i_rst) begin
     if(i_rst) begin
         las_state = 0;
         cnt = 0;
