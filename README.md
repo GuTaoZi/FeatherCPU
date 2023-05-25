@@ -58,9 +58,41 @@ Some signed instructions beyond RV32I are implemented in this ISA.
 
 For more details, see [Feather ISA](doc/FeatherISA.md).
 
+### Performances
+
+Single cycle CPU
+
+25 MHz CPU cycle
+
+2 cycles/instruction, 12500 instructions/s
+
 ## CPU Interfaces
 
 时钟、复位、uart接口、其他常用IO接口使用说明。
+
+**Clocks**
+
+- FPGA clock: 100 MHz
+- CPU clock: 25 MHz
+
+**Input interfaces**
+
+- Uart interface, for instruction and data memory input
+- 4X4 matrix keyboard, for data input
+- 24 switches, for debugging input
+- Reset button: P5
+- Input done button: P10
+- Debugging state button: R1
+
+**Output interfaces**
+
+- 8 segment tubes, displaying input data and CPU state information
+- 24 leds, for memory-mapped output
+
+**Todo**
+
+- [ ] Beeping?
+- [ ] VGA?
 
 ## Internal Structures
 
@@ -74,7 +106,16 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 
 ## Summary
 
-开发过程中遇到的问题、思考、总结。
+### Problems met
+
+- Different ISAs bring about different architectures
+- Writing bitstreams to the board always fails for the first time for unknown reason, kind of annoying
+- VIVADO cooperates BAD with Git
+
+### How to debug with hardware
+
+- Simulation on modules
+- Implement debug modes, output the current information of CPU
 
 ## Changelog
 
