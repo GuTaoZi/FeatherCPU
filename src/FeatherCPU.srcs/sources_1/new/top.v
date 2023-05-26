@@ -275,7 +275,7 @@ wire [31:0] seg_custom_data =({(4'd0 + debug_state),28'h0})|
             ((debug_state==3'b001)?inst:
             (debug_state==3'b010)?pc:
             (debug_state==3'b011)?reg_debug:
-            (debug_state==3'b100)? (rd_idx_raw == sw[31:27] ? {src1[15:0],src2[15:0]} : 32'h000f_f000):
+            (debug_state==3'b100)? (rd_idx_raw == sw[23:19] ? {src1[15:0],src2[15:0]} : 32'h000f_f000):
             (debug_state==3'b101)?alu_opt:
             (debug_state==3'b110)?rd_idx_raw:
             data_write_into_register);
