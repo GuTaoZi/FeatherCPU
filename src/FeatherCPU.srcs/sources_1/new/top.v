@@ -3,19 +3,27 @@
 
 module Top(
     input           fpga_clk,
-    input           rst,
+    input           rst_raw,
     input           upg_rx,
     input  [3:0]    kb_row,
     input           debug_btn,
     input  [`SWITCH_WIDTH]   sw,
     input           kb_ack_btn,
     input           kb_cancel_btn,
+    input           filter_test_btn,
     output [3:0]    kb_col,
     output          upg_tx,
     output [`LED_WIDTH]   led_o,
     output [7:0]    seg_cho,
     output [7:0]    seg_lit
 );
+wire rst;
+filter rst_raw_filer(
+.i_clk(fpga_clk),
+.i_rst(1'b0),
+.i_inp(rst_raw),
+.o_output(rst));
+
 
 reg [25:0] cntw;
 always @(posedge fpga_clk) begin
@@ -29,13 +37,19 @@ end
 wire clk;
 assign clk = sw[0] ? cntw[23] : fpga_clk;
 
+wire filter_test_btn_fil;
+filter filter_test_filter(
+.i_clk(fpga_clk),
+.i_rst(rst),
+.i_inp(filter_test_btn),
+.o_output(filter_test_btn_fil));
 
-//wire debug_btn_fil;
-//filter debug_btn_filter(
-//.i_clk(fpga_clk),
-//.i_rst(rst),
-//.i_inp(debug_btn),
-//.o_output(debug_btn_fil));
+wire debug_btn_fil;
+filter debug_btn_filter(
+.i_clk(fpga_clk),
+.i_rst(rst),
+.i_inp(debug_btn),
+.o_output(debug_btn_fil));
 
 reg [2:0] debug_state = 0;
 // 00: show keyboard input
@@ -48,10 +62,10 @@ reg debug_btn_state = 0;
 
 always @(posedge fpga_clk)
 begin
-    if(debug_btn_state != debug_btn) begin
-        debug_btn_state = debug_btn;
+    if(debug_btn_state != debug_btn_fil) begin
+        debug_btn_state = debug_btn_fil;
 
-        if(~debug_btn)
+        if(~debug_btn_fil)
         begin
             debug_state = debug_state+1'b1;
             if(debug_state == 7)
@@ -223,11 +237,12 @@ wire [`SWITCH_WIDTH] hdw_switch_data = sw;
 wire [`REG_WIDTH] hdw_keybd_data;
 wire [`LED_WIDTH] hdw_led_data;
 
-//filter kb_ack_btn_filter(
-//.i_clk(fpga_clk),
-//.i_rst(rst),
-//.i_inp(kb_ack_btn),
-//.o_output(kb_ack_btn_fil));
+wire kb_ack_btn_fil;
+filter kb_ack_btn_filter(
+.i_clk(fpga_clk),
+.i_rst(rst),
+.i_inp(kb_ack_btn),
+.o_output(kb_ack_btn_fil));
 
 wire dma_mem_write;
 
@@ -241,7 +256,7 @@ DMA dma(
     .cpu_mem_write_ena(mem_write_en),
     .hdw_keybd_data(hdw_keybd_data),
     .hdw_sw_data(hdw_switch_data),
-    .hdw_ack_but(kb_ack_btn),
+    .hdw_ack_but(kb_ack_btn_fil),
     .uart_ena(uart_ena & uart_addr[14]),
     .uart_done(uart_done),
     .uart_clk(uart_clk),
@@ -260,7 +275,7 @@ wire [31:0] seg_custom_data =({(4'd0 + debug_state),28'h0})|
             ((debug_state==3'b001)?inst:
             (debug_state==3'b010)?pc:
             (debug_state==3'b011)?reg_debug:
-            (debug_state==3'b100)?imm_raw:
+            (debug_state==3'b100)? (rd_idx_raw == sw[31:27] ? {src1[15:0],src2[15:0]} : 32'h000f_f000):
             (debug_state==3'b101)?alu_opt:
             (debug_state==3'b110)?rd_idx_raw:
             data_write_into_register);
@@ -302,6 +317,6 @@ PC u_PC(
     .o_pc_rb(pc_write_back_jalr)
 );
 
-assign led_o = hdw_led_data;
+assign led_o = {cpu_clk, i_pc_en, state, 20'b0} | hdw_led_data;
 
 endmodule

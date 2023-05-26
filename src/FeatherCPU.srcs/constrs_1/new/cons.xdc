@@ -151,11 +151,14 @@ set_property PACKAGE_PIN J4 [get_ports {kb_row[2]}]
 set_property PACKAGE_PIN L3 [get_ports {kb_row[1]}]
 set_property PACKAGE_PIN K3 [get_ports {kb_row[0]}]
 
-set_property PACKAGE_PIN P20 [get_ports rst]
-set_property IOSTANDARD LVCMOS33 [get_ports rst]
+set_property PACKAGE_PIN P20 [get_ports rst_raw]
+set_property IOSTANDARD LVCMOS33 [get_ports rst_raw]
 
 set_property PACKAGE_PIN R1 [get_ports debug_btn]
 set_property IOSTANDARD LVCMOS33 [get_ports debug_btn]
+
+set_property PACKAGE_PIN P5 [get_ports filter_test_btn]
+set_property IOSTANDARD LVCMOS33 [get_ports filter_test_btn]
 
 set_property PACKAGE_PIN P4 [get_ports kb_ack_btn]
 set_property IOSTANDARD LVCMOS33 [get_ports kb_ack_btn]
