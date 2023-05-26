@@ -184,6 +184,17 @@ wire [`REG_WIDTH] data_write_into_register = (inst[6:0]==`I_LW)     ?   data_fro
                                             alu_opt;
 wire reg_write;
 
+reg wrongans = 1'b0;
+always @*
+begin
+    if (rst) begin
+        wrongans = 1'b0;
+    end
+    else if((alu_opt>32'h200) && (rd_idx_raw==5'b101)) begin
+        wrongans = 1'b1;
+    end
+end
+
 Register u_Register(
     .i_read_addr1(rs1_idx_raw),
     .i_read_addr2(rs2_idx_raw),
@@ -317,6 +328,6 @@ PC u_PC(
     .o_pc_rb(pc_write_back_jalr)
 );
 
-assign led_o = {cpu_clk, i_pc_en, state, 20'b0} | hdw_led_data;
+assign led_o = {cpu_clk, i_pc_en, state,wrongans, 19'b0} | hdw_led_data;
 
 endmodule
