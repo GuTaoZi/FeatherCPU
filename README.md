@@ -62,9 +62,9 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 
 Single cycle CPU
 
-25 MHz CPU cycle
+25 MHz CPU frequency
 
-2 cycles/instruction, 12500 instructions/s
+2 cycles/instruction, 12500000 instructions/s
 
 ## CPU Interfaces
 
@@ -72,8 +72,8 @@ Single cycle CPU
 
 **Clocks**
 
-- FPGA clock: 100 MHz
-- CPU clock: 25 MHz
+- FPGA frequency: 100 MHz
+- CPU frequency: 25 MHz
 
 **Input interfaces**
 
