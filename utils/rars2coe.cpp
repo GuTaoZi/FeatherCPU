@@ -15,6 +15,9 @@ int main(int argc, char **argv){
         getline(cin, ifile);
         cout<<"output file name:";
         getline(cin, ofile);
+        if(ofile.length() <= 1) {
+            ofile = "prgmip32.coe";
+        }
     } else if(argc == 3){
         ifile = argv[1];
         ofile = argv[2];

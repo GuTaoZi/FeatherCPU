@@ -52,11 +52,6 @@ filter debug_btn_filter(
 .o_output(debug_btn_fil));
 
 reg [2:0] debug_state = 0;
-// 00: show keyboard input
-// 01: show current instruction
-// 10: show current pc
-// 11: show value of reg[sw[23:16]]
-// plus one at negedge of debug_btn(P5) 
 
 reg debug_btn_state = 0;
 
@@ -129,9 +124,10 @@ InsMem u_InsMem(
 );
 
 // direct from decoder, some of them might be none of use (like non-sense rd)
+wire [`INST_TYPES_WIDTH] inst_type;
 wire [`REG_IDX_LEN] rs1_idx_raw;
 wire [`REG_IDX_LEN] rs2_idx_raw;
-wire [`REG_IDX_LEN] rd_idx_raw = inst[11:7];
+wire [`REG_IDX_LEN] rd_idx_raw = (inst_type == `S_TYPE || inst_type ==`B_TYPE)?5'b0_0000:inst[11:7];
 wire [`REG_WIDTH] imm_raw;
 wire [`REG_WIDTH] data_from_mem;
 
@@ -142,7 +138,6 @@ wire mem_write_en;
 // DONE while state == 2'b11 !!!!!!!!!!!!!!!!!!!!!!
 
 wire mem_to_reg_en;
-wire [`INST_TYPES_WIDTH] inst_type;
 wire reg_write_en_from_id = !(inst_type == `S_TYPE || inst_type ==`B_TYPE);
 
 inst_decoder u_inst_decoder(
@@ -169,7 +164,7 @@ wire [`REG_WIDTH] alu_opt;
 wire overflow_raw;
 
 wire [`REG_WIDTH] pc_write_back_jalr;
-wire register_write_enable_of_id_and_pc=(state==2'b11)&(reg_write_en_from_id);
+wire register_write_enable_of_id_and_pc=(cnt==3'b110)&(reg_write_en_from_id);
 wire [`REG_WIDTH] data_write_into_register = (inst[6:0]==`I_LW)     ?   data_from_mem           :
                                             (inst[6:0]==`J_JALR)    ?   pc_write_back_jalr      :
                                             (inst[6:0]==`J_JAL)     ?   pc_write_back_jalr      :
@@ -267,7 +262,7 @@ wire [31:0] seg_custom_data =({(4'd0 + debug_state),28'h0})|
             ((debug_state==3'b001)?inst:
             (debug_state==3'b010)?pc:
             (debug_state==3'b011)?reg_debug:
-            (debug_state==3'b100)? (rd_idx_raw == sw[23:19] ? {src1[15:0],src2[15:0]} : 32'h000f_f000):
+            (debug_state==3'b100)? (rd_idx_raw == sw[23:19] ? {src1[15:0], {5'b00000, inst_type, 2'b00, alu_op_raw}} : 32'h000f_f000):
             (debug_state==3'b101)?alu_opt:
             (debug_state==3'b110)?rd_idx_raw:
             data_write_into_register);
