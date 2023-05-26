@@ -48,6 +48,16 @@ This project is written in [Verilog Coding Style](https://verilogcodingstyle.rea
 
 ## CPU Features
 
+### Basic Information
+
+CPU frequency: 25 MHz
+
+CPI: 2 cycles/instruction
+
+32-bit Registers: x0 - x31
+
+
+
 ### Instructions
 
 This custom ISA is designed based on `RV32I`. 
@@ -58,17 +68,7 @@ Some signed instructions beyond RV32I are implemented in this ISA.
 
 For more details, see [Feather ISA](doc/FeatherISA.md).
 
-### Performances
-
-Single cycle CPU
-
-25 MHz CPU frequency
-
-2 cycles/instruction, 12500000 instructions/s
-
 ## CPU Interfaces
-
-时钟、复位、uart接口、其他常用IO接口使用说明。
 
 **Clocks**
 
@@ -78,10 +78,11 @@ Single cycle CPU
 **Input interfaces**
 
 - Uart interface, for instruction and data memory input
-- 4X4 matrix keyboard, for data input
+- 4X4 matrix keyboard, for memory-mapped input
 - 24 switches, for debugging input
 - Reset button: P5
 - Input done button: P10
+- Input reset button: ?
 - Debugging state button: R1
 
 **Output interfaces**
