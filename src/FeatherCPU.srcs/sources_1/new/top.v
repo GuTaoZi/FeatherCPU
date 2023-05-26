@@ -110,15 +110,7 @@ end
 assign cpu_clk = cnt[1];
 
 
-reg [1:0] state;
-
-always @(negedge cnt[0], posedge rst) begin
-    if(rst) begin
-        state = 2'b00;
-    end else begin
-        state = state + 1'b1;
-    end
-end
+wire [1:0] state = cnt[2:1];
 
 wire [31:0] pc;
 wire [31:0] inst;
@@ -299,7 +291,6 @@ wire i_Jal = (inst[6:0]==`J_JAL)?1'b1:1'b0;
 wire i_Jalr = (inst[6:0]==`J_JALR)?1'b1:1'b0;
 wire i_pc_en =(state==2'b00)?1'b1:1'b0;
 wire i_branch = (inst_type==`B_TYPE)?1'b1:1'b0;
-wire [0:0] pc_bundle = {cpu_clk};
 
 PC u_PC(
     .i_clk(cpu_clk),
