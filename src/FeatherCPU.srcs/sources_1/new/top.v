@@ -317,6 +317,6 @@ PC u_PC(
     .o_pc_rb(pc_write_back_jalr)
 );
 
-assign led_o = {cpu_clk, i_pc_en, state, 19'b0} | hdw_led_data;
+assign led_o = {cpu_clk, i_pc_en, state, 20'b0} | hdw_led_data;
 
 endmodule
