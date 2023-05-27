@@ -98,51 +98,595 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 
 #### Top
 
-| Port            | I/O  | Src/Dst  | Description                         |
-| :-------------- | :--: | :------: | ----------------------------------- |
-| fpga_clk        |  I   | Hardware | FPGA clock signal                   |
-| rst_raw         |  I   | Hardware | Reset signal before de**-**jittered |
-| upg_rx          |  I   |   Uart   | Uart input data                     |
-| kb_row          |  I   | Hardware | Keyboard row signal                 |
-| debug_btn       |  I   | Hardware | Debug button signal                 |
-| sw              |  I   | Hardware | Switches signal                     |
-| kb_ack_btn      |  I   | Hardware | Keyboard ACK signal                 |
-| kb_cancel_btn   |  I   | Hardware | Keyboard input reset signal         |
-| filter_test_btn |  I   | Hardware | Filter test button signal           |
-| kb_col          |  O   | Hardware | Keyboard col signal                 |
-| upg_tx          |  O   |   Uart   | Uart send back data                 |
-| led_o           |  O   | Hardware | LED state                           |
-| seg_cho         |  O   | Hardware | Segment tube select signal          |
-| seg_lit         |  O   | Hardware | Segment tube data to display        |
+<details><table>
+    <tr>
+        <td><b>Port</b></td>
+        <td><b>I/O</b></td>
+        <td><b>Src/Dst</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>fpga_clk</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>FPGA clock signal</td>
+    </tr>
+    <tr>
+        <td>rst_raw</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Reset signal before de**-**jittered</td>
+    </tr>
+    <tr>
+        <td>upg_rx</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart input data</td>
+    </tr>
+    <tr>
+        <td>kb_row</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Keyboard row signal</td>
+    </tr>
+    <tr>
+        <td>debug_btn</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Debug button signal</td>
+    </tr>
+    <tr>
+        <td>sw</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Switches signal</td>
+    </tr>
+    <tr>
+        <td>kb_ack_btn</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Keyboard ACK signal</td>
+    </tr>
+    <tr>
+        <td>kb_cancel_btn</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Keyboard input reset signal</td>
+    </tr>
+    <tr>
+        <td>filter_test_btn</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Filter test button signal</td>
+    </tr>
+    <tr>
+        <td>kb_col</td>
+        <td>O</td>
+        <td>Hardware</td>
+        <td>Keyboard col signal</td>
+    </tr>
+    <tr>
+        <td>upg_tx</td>
+        <td>O</td>
+        <td>Uart</td>
+        <td>Uart send back data</td>
+    </tr>
+    <tr>
+        <td>led_o</td>
+        <td>O</td>
+        <td>Hardware</td>
+        <td>LED state</td>
+    </tr>
+    <tr>
+        <td>seg_cho</td>
+        <td>O</td>
+        <td>Hardware</td>
+        <td>Segment tube select signal</td>
+    </tr>
+    <tr>
+        <td>seg_lit</td>
+        <td>O</td>
+        <td>Hardware</td>
+        <td>Segment tube data to display</td>
+    </tr>
+</table></details>
 
 #### PC
 
-| Port      | I/O  |   Src/Dst   | Description                   |
-| :-------- | :--: | :---------: | ----------------------------- |
-| i_clk     |  I   |     Top     | CPU clock signal              |
-| i_rst     |  I   |  Hardware   | Reset signal                  |
-| i_Jal     |  I   | InstDecoder | Jal instruction enable        |
-| i_Jalr    |  I   | InstDecoder | Jalr instruction enable       |
-| i_pc_en   |  I   |     Top     | PC update enable              |
-| i_branch  |  I   | InstDecoder | Branch instruction enable     |
-| i_Jal_imm |  I   | InstDecoder | Jal immediate                 |
-| i_alu_val |  I   | InstDecoder | Result of ALU for updating PC |
-| o_pc      |  O   |     Top     | Current PC                    |
-| o_next_pc |  O   |     Top     | Next PC, for debugging        |
-| o_pc_rb   |  O   |     Top     | PC to write back for Jal(r)   |
+<details><table>
+    <tr>
+        <td><b>Port</b></td>
+        <td><b>I/O</b></td>
+        <td><b>Src/Dst</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>i_clk</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>CPU clock signal</td>
+    </tr>
+    <tr>
+        <td>i_rst</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Reset signal</td>
+    </tr>
+    <tr>
+        <td>i_Jal</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Jal instruction enable</td>
+    </tr>
+    <tr>
+        <td>i_Jalr</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Jalr instruction enable</td>
+    </tr>
+    <tr>
+        <td>i_pc_en</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>PC update enable</td>
+    </tr>
+    <tr>
+        <td>i_branch</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Branch instruction enable</td>
+    </tr>
+    <tr>
+        <td>i_Jal_imm</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Jal immediate</td>
+    </tr>
+    <tr>
+        <td>i_alu_val</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Result of ALU for updating PC</td>
+    </tr>
+    <tr>
+        <td>o_pc</td>
+        <td>O</td>
+        <td>Top</td>
+        <td>Current PC</td>
+    </tr>
+    <tr>
+        <td>o_next_pc</td>
+        <td>O</td>
+        <td>Top</td>
+        <td>Next PC, for debugging</td>
+    </tr>
+    <tr>
+        <td>o_pc_rb</td>
+        <td>O</td>
+        <td>Top</td>
+        <td>PC to write back for Jal(r)</td>
+    </tr>
+</table></details>
 
 #### InsMem
 
-| Port        | I/O  | Src/Dst  | Description                 |
-| :---------- | :--: | :------: | --------------------------- |
-| i_pc        |  I   |    PC    | Program counter             |
-| i_clk       |  I   | Hardware | FPGA clock signal           |
-| i_uart_ena  |  I   |   Uart   | Uart-write enable signal    |
-| i_uart_done |  I   |   Uart   | Uart write-complete signal  |
-| i_uart_clk  |  I   |   Uart   | Uart clock signal           |
-| i_uart_addr |  I   |   Uart   | Uart-write memory address   |
-| i_uart_data |  I   |   Uart   | Data to write in, from uart |
-| o_inst      |  O   |    ID    | Instruction read out        |
+<details><table>
+    <tr>
+        <td><b>Port</b></td>
+        <td><b>I/O</b></td>
+        <td><b>Src/Dst</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>i_pc</td>
+        <td>I</td>
+        <td>PC</td>
+        <td>Program counter</td>
+    </tr>
+    <tr>
+        <td>i_clk</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>FPGA clock signal</td>
+    </tr>
+    <tr>
+        <td>i_uart_ena</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart-write enable signal</td>
+    </tr>
+    <tr>
+        <td>i_uart_done</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart write-complete signal</td>
+    </tr>
+    <tr>
+        <td>i_uart_clk</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart clock signal</td>
+    </tr>
+    <tr>
+        <td>i_uart_addr</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart-write memory address</td>
+    </tr>
+    <tr>
+        <td>i_uart_data</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Data to write in, from uart</td>
+    </tr>
+    <tr>
+        <td>o_inst</td>
+        <td>O</td>
+        <td>ID</td>
+        <td>Instruction read out</td>
+    </tr>
+</table></details>
+
+#### InstDecoder
+
+<details><table>
+    <tr>
+        <td><b>Port</b></td>
+        <td><b>I/O</b></td>
+        <td><b>Src/Dst</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>i_inst</td>
+        <td>I</td>
+        <td>InstMem</td>
+        <td>Instruction to decode</td>
+    </tr>
+    <tr>
+        <td>o_rs1_idx</td>
+        <td>O</td>
+        <td>ALU</td>
+        <td>Index of first register</td>
+    </tr>
+    <tr>
+        <td>o_rs2_idx</td>
+        <td>O</td>
+        <td>ALU</td>
+        <td>Index of second register</td>
+    </tr>
+    <tr>
+        <td>o_imm</td>
+        <td>O</td>
+        <td>ALU</td>
+        <td>Immediate number decoded</td>
+    </tr>
+    <tr>
+        <td>o_alu_op</td>
+        <td>O</td>
+        <td>ALU</td>
+        <td>ALU operator number</td>
+    </tr>
+    <tr>
+        <td>o_mem_read</td>
+        <td>O</td>
+        <td>DMA</td>
+        <td>Memory read enable</td>
+    </tr>
+    <tr>
+        <td>o_mem_write</td>
+        <td>O</td>
+        <td>DMA</td>
+        <td>Memory write enable</td>
+    </tr>
+    <tr>
+        <td>o_mem_to_reg</td>
+        <td>O</td>
+        <td>DMA</td>
+        <td>Memory write back</td>
+    </tr>
+    <tr>
+        <td>o_inst_type</td>
+        <td>O</td>
+        <td>ALU</td>
+        <td>Instruction type</td>
+    </tr>
+    <tr>
+        <td>funct10</td>
+        <td>O</td>
+        <td>Top</td>
+        <td>{funct3, funct7}</td>
+    </tr>
+</table></details>
+
+#### Register
+
+<details><table>
+    <tr>
+        <td><b>Port</b></td>
+        <td><b>I/O</b></td>
+        <td><b>Src/Dst</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>i_read_addr1</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Index of first register</td>
+    </tr>
+    <tr>
+        <td>i_read_addr2</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Index of second register</td>
+    </tr>
+    <tr>
+        <td>i_write_addr</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Index of write**-**back register</td>
+    </tr>
+    <tr>
+        <td>i_write_data</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>Data to write back</td>
+    </tr>
+    <tr>
+        <td>i_write_en</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>Write back enable</td>
+    </tr>
+    <tr>
+        <td>i_clk</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>CPU clock signal</td>
+    </tr>
+    <tr>
+        <td>i_rst</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>Reset signal</td>
+    </tr>
+    <tr>
+        <td>i_debug_idx</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>Index of register to display</td>
+    </tr>
+    <tr>
+        <td>o_read_data1</td>
+        <td>O</td>
+        <td>ALU</td>
+        <td>Value of first register</td>
+    </tr>
+    <tr>
+        <td>o_read_data2</td>
+        <td>O</td>
+        <td>ALU</td>
+        <td>Value of second register</td>
+    </tr>
+    <tr>
+        <td>o_debug_data</td>
+        <td>O</td>
+        <td>ALU</td>
+        <td>Value of display register</td>
+    </tr>
+</table></details>
+
+#### ALU
+
+<details><table>
+    <tr>
+        <td><b>Port</b></td>
+        <td><b>I/O</b></td>
+        <td><b>Src/Dst</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>i_src1</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>First operand</td>
+    </tr>
+    <tr>
+        <td>i_src2</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Second operand</td>
+    </tr>
+    <tr>
+        <td>i_branch_val_i</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>Immediate for B inst</td>
+    </tr>
+    <tr>
+        <td>i_ALU_op</td>
+        <td>I</td>
+        <td>InstDecoder</td>
+        <td>ALU operator number</td>
+    </tr>
+    <tr>
+        <td>i_rst</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>Reset signal</td>
+    </tr>
+    <tr>
+        <td>o_ALU_ouput</td>
+        <td>O</td>
+        <td>Top</td>
+        <td>Result</td>
+    </tr>
+    <tr>
+        <td>o_overflow</td>
+        <td>O</td>
+        <td>Top</td>
+        <td>Overflow identifier</td>
+    </tr>
+</table></details>
+
+#### DMA
+
+<details><table>
+    <tr>
+        <td><b>Port</b></td>
+        <td><b>I/O</b></td>
+        <td><b>Src/Dst</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>hdw_clk</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>FPGA clock signal</td>
+    </tr>
+    <tr>
+        <td>cpu_clk</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>CPU clock signal</td>
+    </tr>
+    <tr>
+        <td>cpu_mem_ena</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>CPU-access memory signal</td>
+    </tr>
+    <tr>
+        <td>cpu_addr</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>CPU-access memory address</td>
+    </tr>
+    <tr>
+        <td>cpu_write_data</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>Data to write in, from CPU</td>
+    </tr>
+    <tr>
+        <td>cpu_mem_read_ena</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>CPU-read memory signal</td>
+    </tr>
+    <tr>
+        <td>cpu_mem_write_ena</td>
+        <td>I</td>
+        <td>Top</td>
+        <td>CPU-write memory signal</td>
+    </tr>
+    <tr>
+        <td>hdw_sw_data</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>MMIO data from switches</td>
+    </tr>
+    <tr>
+        <td>hdw_keybd_data</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>MMIO data from keyboard</td>
+    </tr>
+    <tr>
+        <td>hdw_ack_btn</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>MMIO data from ACK button</td>
+    </tr>
+    <tr>
+        <td>uart_ena</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart-write memory signal</td>
+    </tr>
+    <tr>
+        <td>uart_done</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart-complete signal</td>
+    </tr>
+    <tr>
+        <td>uart_clk</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart clock signal</td>
+    </tr>
+    <tr>
+        <td>uart_addr</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Uart-write memory address</td>
+    </tr>
+    <tr>
+        <td>uart_data</td>
+        <td>I</td>
+        <td>Uart</td>
+        <td>Data to write in, from uart</td>
+    </tr>
+    <tr>
+        <td>read_data</td>
+        <td>O</td>
+        <td>Top</td>
+        <td>Data read from data memory</td>
+    </tr>
+    <tr>
+        <td>hdw_led_data</td>
+        <td>O</td>
+        <td>Hardware</td>
+        <td>MMIO data for leds</td>
+    </tr>
+</table></details>
+
+#### DataMem
+
+<details><table>
+    <tr>
+        <td><b>Port</b></td>
+        <td><b>I/O</b></td>
+        <td><b>Src/Dst</b></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>i_addr</td>
+        <td>I</td>
+        <td>DMA</td>
+        <td>The address of demanded data</td>
+    </tr>
+    <tr>
+        <td>i_write_data</td>
+        <td>I</td>
+        <td>DMA</td>
+        <td>The data to write in</td>
+    </tr>
+    <tr>
+        <td>i_mem_read</td>
+        <td>I</td>
+        <td>DMA</td>
+        <td>Read enable</td>
+    </tr>
+    <tr>
+        <td>i_mem_write</td>
+        <td>I</td>
+        <td>DMA</td>
+        <td>Write enable</td>
+    </tr>
+    <tr>
+        <td>i_clk</td>
+        <td>I</td>
+        <td>Hardware</td>
+        <td>FPGA clock signal</td>
+    </tr>
+    <tr>
+        <td>o_read_data</td>
+        <td>O</td>
+        <td>DMA</td>
+        <td>Data read out</td>
+    </tr>
+</table></details>
 
 ## Tests
 
