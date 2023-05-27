@@ -35,7 +35,7 @@ always @(posedge fpga_clk) begin
 end
 
 wire clk;
-assign clk = sw[0] ? cntw[23] : fpga_clk;
+assign clk = sw[0] ? cntw[24] : fpga_clk;
 
 wire filter_test_btn_fil;
 filter filter_test_filter(
@@ -96,9 +96,9 @@ uart0 u_uart0(
 reg [2:0] cnt = 0;
 always @(negedge clk, posedge rst) begin
     if(rst) begin
-        cnt = 0;
+        cnt <= 0;
     end else begin
-        cnt = cnt + 1;
+        cnt <= cnt + 1'b1;
     end
 end
 
@@ -138,7 +138,7 @@ wire mem_write_en;
 // DONE while state == 2'b11 !!!!!!!!!!!!!!!!!!!!!!
 
 wire mem_to_reg_en;
-wire reg_write_en_from_id = !(inst_type == `S_TYPE || inst_type ==`B_TYPE);
+wire reg_write_en_from_id = ~(inst_type == `S_TYPE || inst_type ==`B_TYPE);
 
 inst_decoder u_inst_decoder(
     .i_inst(inst),
@@ -164,7 +164,7 @@ wire [`REG_WIDTH] alu_opt;
 wire overflow_raw;
 
 wire [`REG_WIDTH] pc_write_back_jalr;
-wire register_write_enable_of_id_and_pc=(cnt==3'b110)&(reg_write_en_from_id);
+wire register_write_enable_of_id_and_pc=(cnt==3'b110)&&(reg_write_en_from_id);
 wire [`REG_WIDTH] data_write_into_register = (inst[6:0]==`I_LW)     ?   data_from_mem           :
                                             (inst[6:0]==`J_JALR)    ?   pc_write_back_jalr      :
                                             (inst[6:0]==`J_JAL)     ?   pc_write_back_jalr      :

@@ -4,6 +4,7 @@
 %name1 :
 	lw t2, 12(s11)
 	bne t2, t6, %name1
+	add zero, zero, zero
 
 	lw %addr, 0(s11)
 
@@ -24,20 +25,28 @@
 	andi t3, t3, 7
 	add t4, zero, zero
 	beq t3, t4, case0
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case1
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case2
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case3
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case4
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case5
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case6
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case7
+	add zero, zero, zero
 	jal end
 
 case0:
@@ -47,6 +56,7 @@ case0:
 		addi t2, zero, 1
 	
 	loop0:	beq t1, zero, end0
+		add zero, zero, zero
 		andi t3, t1, 1
 		xor t2, t2, t3
 		srli t1, t1, 1
@@ -63,6 +73,7 @@ case1:
 		addi t2, zero, 1
 	
 	loop1:	beq t1, zero, end1
+		add zero, zero, zero
 		andi t3, t1, 1
 		xor t2, t2, t3
 		srli t1, t1, 1

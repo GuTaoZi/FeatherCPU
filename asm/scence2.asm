@@ -4,6 +4,7 @@
 %name1 :
 	lw t2, 12(s11)
 	bne t2, t6, %name1
+	add zero, zero, zero
 
 	lw %addr, 0(s11)
 
@@ -24,20 +25,28 @@
 	andi t3, t3, 7
 	add t4, zero, zero
 	beq t3, t4, case0
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case1
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case2
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case3
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case4
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case5
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case6
+	add zero, zero, zero
 	addi t4, t4, 1
 	beq t3, t4, case7
+	add zero, zero, zero
 	jal end
 	
 case0:
@@ -46,12 +55,14 @@ case0:
 		slli s1, s1, 7
 		and s2, s1, s0
 		beq s1, s2, case0_err
+		add zero, zero, zero
 		add s1, zero, zero # i = 0
 		add s2, zero, zero # sum = 0
 	case0_loop1:
 		addi s1, s1, 1
 		add s2, s2, s1
 		bne s1, s0, case0_loop1
+		add zero, zero, zero
 		sw s2, 2(s11)
 		jal end
 	case0_err:
@@ -62,6 +73,7 @@ case0:
 		addi s1, s1, 1
 		and s3, s1, s2
 		beq s3, s2, lit
+		add zero, zero, zero
 		sw zero, 2(s11)
 		jal edl_lop
 	lit:	sw s0, 2(s11)
@@ -81,6 +93,7 @@ case1_rec:
 		addi a2, a2, 1
 		
 		beq a0, zero, case1_rec_end
+		add zero, zero, zero
 		addi a0, a0, -1
 		jal ra, case1_rec
 		lw a0, 4(sp)
@@ -99,6 +112,7 @@ show_case:
 		
 	s_c_1:	addi t5, t5, -1
 		bne t5, zero, s_c_1
+		add zero, zero, zero
 		
 		sw zero, 4(s11)
 		jalr ra
@@ -117,6 +131,7 @@ case2_rec:
 		jal show_case
 		
 		beq a0, zero, case2_rec_end
+		add zero, zero, zero
 		addi a0, a0, -1
 		jal ra, case2_rec
 		lw a0, 4(sp)
@@ -139,6 +154,7 @@ case3_rec:
 		sw a0, 4(sp)
 		
 		beq a0, zero, case3_rec_end
+		add zero, zero, zero
 		addi a0, a0, -1
 		jal ra, case3_rec
 		lw a0, 4(sp)
@@ -162,7 +178,9 @@ case4:
 		andi s5, s4, 128 # s5 = sign of s0+s1
 		
 		bne s2, s3, case4_fail
+		add zero, zero, zero
 		beq s3, s5, case4_fail
+		add zero, zero, zero
 		addi s6, zero, 1
 		slli s6, s6, 8
 		or s6, s6, s4
@@ -183,7 +201,9 @@ case5:
 		andi s5, s4, 128 # s5 = sign of s0+s1
 		
 		beq s2, s3, case5_fail
+		add zero, zero, zero
 		beq s2, s5, case5_fail
+		add zero, zero, zero
 		addi s6, zero, 1
 		slli s6, s6, 8
 		or s6, s6, s4
@@ -215,6 +235,7 @@ case7:
 		addi s1, s1, 1
 		and s3, s1, s2
 		beq s3, s2, remin
+		add zero, zero, zero
 		sw s4, 2(s11)
 		jal edl_lp2
 	remin:	sw s5, 2(s11)
