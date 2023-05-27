@@ -115,7 +115,7 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
         <td>rst_raw</td>
         <td>I</td>
         <td>Hardware</td>
-        <td>Reset signal before de**-**jittered</td>
+        <td>Reset signal before de-jittered</td>
     </tr>
     <tr>
         <td>upg_rx</td>
@@ -423,7 +423,7 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
         <td>i_write_addr</td>
         <td>I</td>
         <td>InstDecoder</td>
-        <td>Index of write**-**back register</td>
+        <td>Index of write-back register</td>
     </tr>
     <tr>
         <td>i_write_data</td>
