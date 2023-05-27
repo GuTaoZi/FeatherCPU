@@ -54,7 +54,7 @@ always @(posedge fpga_clk) begin
 end
 
 wire clk;
-assign clk = sw[3] ? cntw[24] : fpga_clk;
+assign clk = sw[18] ? cntw[24] : fpga_clk;
 
 wire filter_test_btn_fil;
 filter filter_test_filter(
@@ -320,6 +320,6 @@ PC u_PC(
     .o_pc_rb(pc_write_back_jalr)
 );
 
-assign led_o = {cpu_clk, i_pc_en, state, 20'b0} | hdw_led_data;
+assign led_o = hdw_led_data;
 
 endmodule

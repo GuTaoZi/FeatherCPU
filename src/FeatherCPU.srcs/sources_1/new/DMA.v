@@ -77,9 +77,7 @@ always @(negedge cpu_clk) begin
         mem_read = cpu_mem_read_ena;
         mem_write = cpu_mem_write_ena;
         write_data = cpu_write_data;
-        o_dma_write = 1;
     end else begin
-        o_dma_write = 0;
         if(las_ack != hdw_ack_btn) begin
             if(hdw_ack_btn == 1'b0) begin
                 mem_addr = `MMIO_ack_map_addr;

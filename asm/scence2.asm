@@ -115,10 +115,13 @@ case1:
 		jal end
 case1_rec:
 		addi sp, sp, -8
+		add zero, zero, zero
 		sw ra, 0(sp)
 		sw a0, 4(sp)
+		add zero, zero, zero
 		addi a2, a2, 1
 		
+		add zero, zero, zero
 		beq a0, zero, case1_rec_end
 		add zero, zero, zero
 		addi a0, a0, -1
@@ -126,6 +129,7 @@ case1_rec:
 		lw a0, 4(sp)
 		add a7, a7, a0
 case1_rec_end:
+		add zero, zero, zero
 		addi a2, a2, 1
 		lw ra, 0(sp)
 		addi sp, sp, 8
