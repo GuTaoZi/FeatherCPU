@@ -5,7 +5,7 @@
 module DMA(
     input                   hdw_clk,
     input                   cpu_clk,
-    input                   cpu_mem_ena, // If CPU need DMemory
+    input                   cpu_mem_ena,
     input   [`REG_WIDTH]    cpu_addr,
     input   [`REG_WIDTH]    cpu_write_data,
     input                   cpu_mem_read_ena,
@@ -13,7 +13,7 @@ module DMA(
 
     input   [`SWITCH_WIDTH] hdw_sw_data,
     input   [`REG_WIDTH]    hdw_keybd_data,
-    input                   hdw_ack_but,
+    input                   hdw_ack_btn,
 
     input                   uart_ena,
     input                   uart_done,
@@ -22,9 +22,29 @@ module DMA(
     input   [`REG_WIDTH]    uart_data,
 
     output  [`REG_WIDTH]    read_data,
-    output reg [`LED_WIDTH] hdw_led_data,
-    output reg              o_dma_write
+    output reg [`LED_WIDTH] hdw_led_data
 );
+
+/****************************************************************
+ port               I/O     Src/Dst     Description
+ hdw_clk             I        Top       FPGA clock signal
+ cpu_clk             I        Top       CPU clock signal
+ cpu_mem_ena         I        Top       CPU-access memory signal
+ cpu_addr            I        Top       CPU-access memory address
+ cpu_write_data      I        Top       Data to write in, from CPU
+ cpu_mem_read_ena    I        Top       CPU-read memory signal
+ cpu_mem_write_ena   I        Top       CPU-write memory signal
+ hdw_sw_data         I        Top       MMIO data from switches
+ hdw_keybd_data      I        Top       MMIO data from keyboard
+ hdw_ack_btn         I        Top       MMIO data from ACK button
+ uart_ena            I        Uart      Uart-write memory signal
+ uart_done           I        Uart      Uart-complete signal
+ uart_clk            I        Uart      Uart clock signal
+ uart_addr           I        Uart      Uart-write memory address
+ uart_data           I        Uart      Data to write in, from uart
+ read_data           O        Top       Data read from data memory
+ hdw_led_data        O        Top       MMIO data for leds
+****************************************************************/
 
 assign kick_off = ~uart_ena | uart_done;
 
@@ -60,14 +80,14 @@ always @(negedge cpu_clk) begin
         o_dma_write = 1;
     end else begin
         o_dma_write = 0;
-        if(las_ack != hdw_ack_but) begin
-            if(hdw_ack_but == 1'b0) begin
+        if(las_ack != hdw_ack_btn) begin
+            if(hdw_ack_btn == 1'b0) begin
                 mem_addr = `MMIO_ack_map_addr;
                 write_data = 32'h0000_0001;
                 mem_read = 1'b0;
                 mem_write = 1'b1;
             end
-            las_ack = hdw_ack_but;
+            las_ack = hdw_ack_btn;
         end else begin
             if(tran_pos == 2'b00) begin
                 mem_addr = `MMIO_sw_map_addr;

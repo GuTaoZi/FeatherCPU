@@ -233,7 +233,6 @@ filter kb_ack_btn_filter(
 .i_inp(kb_ack_btn),
 .o_output(kb_ack_btn_fil));
 
-wire dma_mem_write;
 
 DMA dma(
     .hdw_clk(clk),
@@ -245,7 +244,7 @@ DMA dma(
     .cpu_mem_write_ena(mem_write_en),
     .hdw_keybd_data(hdw_keybd_data),
     .hdw_sw_data(hdw_switch_data),
-    .hdw_ack_but(kb_ack_btn_fil),
+    .hdw_ack_btn(kb_ack_btn_fil),
     .uart_ena(uart_ena & uart_addr[14]),
     .uart_done(uart_done),
     .uart_clk(uart_clk),
@@ -254,8 +253,7 @@ DMA dma(
     ///input////
     ///output///
     .read_data(data_from_mem),
-    .hdw_led_data(hdw_led_data),
-    .o_dma_write(dma_mem_write)
+    .hdw_led_data(hdw_led_data)
 );
 
 wire [`REG_WIDTH] nxt_pc;

@@ -12,6 +12,16 @@ module ALU(
     output [`REG_WIDTH]   o_ALU_ouput,
     output                o_overflow
 );
+/****************************************************************
+ port           I/O     Src/Dst     Description
+i_src1           I        ID        First operand
+i_src2           I        ID        Second operand
+i_branch_val_i   I        ID        Immediate for B inst
+i_ALU_op         I        ID        ALU operator number
+i_rst            I        Top       Reset signal
+o_ALU_ouput      O        Top       Result
+o_overflow       O        Top       Overflow identifier
+****************************************************************/
 
 wire [`REG_WIDTH] sum;
 wire [`REG_WIDTH] mul;
