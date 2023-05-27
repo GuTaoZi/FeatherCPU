@@ -38,7 +38,7 @@ For Chinese README, see [README_CN](doc/README_CN.md).
 - [x] Tests
   - [x] Basic testcases \#1
   - [x] Basic testcases \#2
-  - [ ] Bonus testcases
+  - [x] Bonus testcases
   - [ ] Video for bonus part
 - [x] Summary
 
@@ -687,6 +687,8 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
         <td>Data read out</td>
     </tr>
 </table></details>
+
+
 ## Tests
 
 ### Module tests
