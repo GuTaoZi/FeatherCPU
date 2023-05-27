@@ -5,6 +5,14 @@ input       i_inp,
 output reg  o_output
 );
 
+/****************************************************************
+ port               I/O     Src/Dst     Description
+ i_clk               I      H'ware      FPGA clock
+ i_rst               I      H'ware      Reset signal
+ i_inp               I      H'ware      Raw signal before de-jittered
+ o_output            O        Top       De-jittered signal
+****************************************************************/
+
 reg las_state = 0;
 reg [20:0] cnt = 0;
 

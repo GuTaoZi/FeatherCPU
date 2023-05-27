@@ -14,6 +14,22 @@ module PC(
     output [`REG_WIDTH] o_next_pc,
     output reg [`REG_WIDTH] o_pc_rb
 );
+
+/****************************************************************
+ port           I/O     Src/Dst     Description
+ i_clk           I        Top       CPU clock signal
+ i_rst           I      H'ware      Reset signal
+ i_Jal           I        ID        Jal instruction enable
+ i_Jalr          I        ID        Jalr instruction enable
+ i_pc_en         I        Top       PC update enable
+ i_branch        I        ID        Branch instruction enable
+ i_Jal_imm       I        ID        Jal immediate
+ i_alu_val       I        ID        Result of ALU for updating PC
+ o_pc            O        Top       Current PC
+ o_next_pc       O        Top       Next PC, for debugging
+ o_pc_rb         O        Top       PC to write back for Jal(r)
+****************************************************************/
+
 reg [`REG_WIDTH] now_pc = 0;
 wire [`REG_WIDTH] next_pc;
 reg [`REG_WIDTH] pc_tmp;

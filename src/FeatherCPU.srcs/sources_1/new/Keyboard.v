@@ -7,6 +7,16 @@ module Keyboard(
     output reg o_enable
 );
 
+/****************************************************************
+ port           I/O     Src/Dst     Description
+ i_clk           I      H'ware      FPGA clock signal
+ i_rst           I      H'ware      Reset signal
+ i_row           I      H'ware      Row signal of keyboard
+ o_col           O      H'ware      Col signal of keyboard
+ o_data          O       Top        Input data from keyboard
+ o_enable        O       Top        Input done
+****************************************************************/
+
 reg [20:0] clkcnt = 0;
 
 always @(posedge i_clk, posedge i_rst)

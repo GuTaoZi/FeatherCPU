@@ -13,6 +13,18 @@ module InsMem(
     output  [`INST_LEN]     o_inst
 );
 
+/****************************************************************
+ port               I/O     Src/Dst     Description
+ i_pc                I        PC        Program counter
+ i_clk               I       H'ware     FPGA clock signal
+ i_uart_ena          I       Uart       Uart-write enable signal
+ i_uart_done         I       Uart       Uart write-complete signal
+ i_uart_clk          I       Uart       Uart clock signal
+ i_uart_addr         I       Uart       Uart-write memory address
+ i_uart_data         I       Uart       Data to write in, from uart
+ o_inst              O        ID        Instruction read out
+****************************************************************/
+
 assign kick_off = ~i_uart_ena | i_uart_done;
 
 ins_mem im( .addra(kick_off ? i_pc[15:2] : i_uart_addr),

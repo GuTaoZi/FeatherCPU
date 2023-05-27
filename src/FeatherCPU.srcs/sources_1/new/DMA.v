@@ -34,16 +34,16 @@ module DMA(
  cpu_write_data      I        Top       Data to write in, from CPU
  cpu_mem_read_ena    I        Top       CPU-read memory signal
  cpu_mem_write_ena   I        Top       CPU-write memory signal
- hdw_sw_data         I        Top       MMIO data from switches
- hdw_keybd_data      I        Top       MMIO data from keyboard
- hdw_ack_btn         I        Top       MMIO data from ACK button
+ hdw_sw_data         I       H'ware     MMIO data from switches
+ hdw_keybd_data      I       H'ware     MMIO data from keyboard
+ hdw_ack_btn         I       H'ware     MMIO data from ACK button
  uart_ena            I        Uart      Uart-write memory signal
  uart_done           I        Uart      Uart-complete signal
  uart_clk            I        Uart      Uart clock signal
  uart_addr           I        Uart      Uart-write memory address
  uart_data           I        Uart      Data to write in, from uart
  read_data           O        Top       Data read from data memory
- hdw_led_data        O        Top       MMIO data for leds
+ hdw_led_data        O       H'ware     MMIO data for leds
 ****************************************************************/
 
 assign kick_off = ~uart_ena | uart_done;

@@ -17,7 +17,7 @@ module DataMem(
  i_write_data    I        DMA       The data to write in
  i_mem_read      I        DMA       Read enable
  i_mem_write     I        DMA       Write enable
- i_clk           I        DMA       FPGA clock signal
+ i_clk           I       H'ware     FPGA clock signal
  o_read_data     O        DMA       Data read out
 ****************************************************************/
 

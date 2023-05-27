@@ -10,6 +10,19 @@ module Keyboard_N_Segtube(
     output [7:0]        o_seg_cho,
     output [7:0]        o_seg_lit
 );
+/****************************************************************
+ port           I/O     Src/Dst     Description
+ i_clk           I      H'ware      FPGA clock signal
+ i_rst           I      H'ware      Reset signal
+ i_cancel_btn    I      H'ware      Reset input data signal
+ i_row           I      H'ware      Row signal of keyboard
+ i_custom_en     I       Top        Custom data display enable
+ i_custom_data   I       Top        Custom data to display
+ o_col           O      H'ware      Col signal of keyboard
+ o_data          O       Top        Input data from keyboard
+ o_seg_cho       O      H'ware      Segment tubes select signal
+ o_seg_lit       O      H'ware      Segment tube of data
+****************************************************************/
 
 wire [3:0] data;
 wire ena;

@@ -7,25 +7,33 @@ module inst_decoder(
     input[`INST_LEN] i_inst,
     output[`REG_IDX_LEN] o_rs1_idx,
     output[`REG_IDX_LEN] o_rs2_idx,
-//    output[`REG_IDX_LEN] o_rd_idx,
     output[`REG_WIDTH] o_imm,
     output[`ALU_OP_LEN] o_alu_op,
     output o_mem_read,
     output o_mem_write,
     output o_mem_to_reg,
-//    output o_reg_write,
     output [`INST_TYPES_WIDTH] o_inst_type,
     output [9:0] funct10
 );
+
+/****************************************************************
+ port           I/O     Src/Dst     Description
+ i_inst          I      InstMem     Instruction to decode
+ o_rs1_idx       O        ALU       Index of first register
+ o_rs2_idx       O        ALU       Index of second register
+ o_imm           O        ALU       Immediate number decoded
+ o_alu_op        O        ALU       ALU operator number
+ o_mem_read      O        DMA       Memory read enable
+ o_mem_write     O        DMA       Memory write enable
+ o_mem_to_reg    O        DMA       Memory write back
+ o_inst_type     O        ALU       Instruction type
+ funct10         O       Debug      {funct3, funct7}
+****************************************************************/
 
 wire[6:0] opcode;
 wire[2:0] funct3;
 wire[6:0] funct7;
 wire[31:0] imm_I, imm_S,imm_B,imm_U,imm_JAL,imm_JALR;
-//wire[4:0] rd,rs1,rs2;
-//wire o_rs1_ena;
-//wire o_rs2_ena;
-//wire o_imm_ena;
 
 assign opcode = i_inst[6:0];
 assign funct3 = i_inst[14:12];
@@ -49,7 +57,6 @@ assign imm_JAL = {{12{i_inst[31]}}, i_inst[19:12],i_inst[20], i_inst[30:21],1'b0
 assign imm_JALR = {{20{i_inst[31]}},i_inst[31:20]};
 assign imm_U = {i_inst[31:12]};
 
-//assign o_rd_idx = i_inst[11:7];
 assign o_rs1_idx = i_inst[19:15];
 assign o_rs2_idx = i_inst[24:20];
 
@@ -100,9 +107,8 @@ assign o_alu_op =
     (opcode==`U_TYPE)?`ALU_SLL
     :`ALU_ERR;
 
-assign o_mem_read   = (opcode==7'b000_0011);
+assign o_mem_read   = (opcode==`I_LW);
 assign o_mem_write  = (o_inst_type==`S_TYPE);
-assign o_mem_to_reg = (opcode==7'b000_0011);
-//assign o_reg_write  = !(o_inst_type==`S_TYPE||o_inst_type==`B_TYPE);
+assign o_mem_to_reg = (opcode==`I_LW);
 
 endmodule
