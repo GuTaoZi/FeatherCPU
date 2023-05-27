@@ -17,6 +17,7 @@
 	add zero, zero, zero
 .end_macro
 .text
+	sra zero, zero, zero
 	addi s11, zero, 255
 	slli s11, s11, 8
 	addi s11, s11, 192 # s11: MMIO base addr
@@ -95,7 +96,6 @@ case1:
 		add zero, zero, zero
 		andi t3, t1, 1
 		xor t2, t2, t3
-		div t2, t2, t3
 		srli t1, t1, 1
 		jal loop1
 	end1:	
@@ -172,8 +172,25 @@ case6:
 		input(t3, ip13lp1)
 		andi t1, t1, 255
 		andi t3, t3, 255
+		andi t2, t1, 128
+		andi t4, t3, 128
+		add zero, zero, zero
+		beq t2, zero, case6_n1
+		add zero, zero, zero
+		xori t1, t1, 255
+		xori t1, t1, -1
+case6_n1:
+		add zero, zero, zero
+		beq t4, zero, case6_n2
+		add zero, zero, zero
+		xori t3, t3, 255
+		xori t3, t3, -1
+case6_n2:
+		add zero, zero, zero
 		slt t4, t1, t3   # t4 = (t1 < t3)
 		andi t4, t4, 255
+		andi t1, t1, 255
+		andi t3, t3, 255
 		slli t1, t1, 16
 		slli t3, t3, 8
 		or t4, t4, t1

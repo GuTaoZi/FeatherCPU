@@ -130,6 +130,17 @@ case6:
 		input(t3, ip13lp1)
 		andi t1, t1, 255
 		andi t3, t3, 255
+		andi t2, t1, 128
+		andi t4, t3, 128
+		beq t2, zero, case6_n1
+		xori t1, t1, 255
+		xori t1, t1, -1
+case6_n1:
+		beq t4, zero, case6_n2
+		xori t3, t3, 255
+		xori t3, t3, -1
+case6_n2:
+		
 		slt t4, t1, t3   # t4 = (t1 < t3)
 		andi t4, t4, 255
 		slli t1, t1, 16

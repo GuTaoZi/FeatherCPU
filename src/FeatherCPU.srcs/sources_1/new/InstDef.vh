@@ -13,7 +13,7 @@
 `define R_XOR   10'b100_000_0000
 `define R_DIV   10'b100_000_0001
 `define R_SRL   10'b101_000_0000
-`define R_SRA   10'b110_000_0000
+`define R_SRA   10'b101_010_0000
 `define R_OR    10'b110_000_0000
 `define R_REM   10'b110_000_0001
 `define R_AND   10'b111_000_0000

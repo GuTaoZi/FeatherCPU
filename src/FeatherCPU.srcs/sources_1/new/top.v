@@ -35,7 +35,7 @@ always @(posedge fpga_clk) begin
 end
 
 wire clk;
-assign clk = sw[0] ? cntw[24] : fpga_clk;
+assign clk = sw[3] ? cntw[24] : fpga_clk;
 
 wire filter_test_btn_fil;
 filter filter_test_filter(
@@ -139,6 +139,7 @@ wire mem_write_en;
 
 wire mem_to_reg_en;
 wire reg_write_en_from_id = ~(inst_type == `S_TYPE || inst_type ==`B_TYPE);
+wire [9:0] f10;
 
 inst_decoder u_inst_decoder(
     .i_inst(inst),
@@ -153,7 +154,8 @@ inst_decoder u_inst_decoder(
     .o_mem_write(mem_write_en),
     .o_mem_to_reg(mem_to_reg_en),
 //    .o_reg_write(reg_write_en_from_id),
-    .o_inst_type(inst_type)
+    .o_inst_type(inst_type),
+    .funct10(f10)
 );
 
 wire [`REG_WIDTH] reg_data1;
@@ -196,7 +198,7 @@ wire [`REG_WIDTH] src1 =
 (inst_type==`B_TYPE)?(reg_data1):   // rs1 == rs2
 (inst_type==`U_TYPE)?(imm_raw):     // imm << 12
 (inst[6:0]==`J_JALR)?(reg_data1):
-(inst[6:0]==`J_JAL)?0:0; // pc = rs1 + imm
+(inst[6:0]==`J_JAL)?32'h0:32'h0; // pc = rs1 + imm
 
 wire [`REG_WIDTH] src2 =
 (inst[6:0]==`I_LW)?(imm_raw):
@@ -206,7 +208,7 @@ wire [`REG_WIDTH] src2 =
 (inst_type==`B_TYPE)?(reg_data2):
 (inst_type==`U_TYPE)?(4'd12):
 (inst[6:0]==`J_JALR)?(imm_raw):
-(inst[6:0]==`J_JAL)?(imm_raw):0;
+(inst[6:0]==`J_JAL)?(imm_raw):32'h0;
 
 ALU alu(
     .i_src1(src1),
@@ -264,7 +266,7 @@ wire [31:0] seg_custom_data =({(4'd0 + debug_state),28'h0})|
             (debug_state==3'b011)?reg_debug:
             (debug_state==3'b100)? (rd_idx_raw == sw[23:19] ? {src1[15:0], {5'b00000, inst_type, 2'b00, alu_op_raw}} : 32'h000f_f000):
             (debug_state==3'b101)?alu_opt:
-            (debug_state==3'b110)?rd_idx_raw:
+            (debug_state==3'b110)? (rd_idx_raw == sw[23:19] ? {6'h0, f10, {5'b00000, inst_type, 2'b00, alu_op_raw}} : 32'h000f_f000):
             data_write_into_register);
 
 Keyboard_N_Segtube u_keyboard_segtube(
