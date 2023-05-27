@@ -12,6 +12,7 @@ module ALU(
     output [`REG_WIDTH]   o_ALU_ouput,
     output                o_overflow
 );
+
 /****************************************************************
  port           I/O     Src/Dst     Description
 i_src1           I        ID        First operand

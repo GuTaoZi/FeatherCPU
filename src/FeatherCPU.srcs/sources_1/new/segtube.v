@@ -6,6 +6,7 @@ module segtube(
     output reg[7:0] o_seg_cho,
     output reg[7:0] o_seg_lit
 );
+
 /****************************************************************
  port           I/O     Src/Dst     Description
  i_clk           I      H'ware      FPGA clock signal
