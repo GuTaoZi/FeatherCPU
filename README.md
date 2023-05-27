@@ -710,6 +710,18 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 |  On-board  | Top           |   ✔    | [Test scenario 1](https://github.com/GuTaoZi/FeatherCPU/tree/main/asm). See [project requirement](https://github.com/GuTaoZi/FeatherCPU/blob/main/doc/Project%20Requirements.pdf) |
 |  On-board  | Top           |   ✔    | [Test scenario 2](https://github.com/GuTaoZi/FeatherCPU/tree/main/asm). See [project requirement](https://github.com/GuTaoZi/FeatherCPU/blob/main/doc/Project%20Requirements.pdf) |
 
+### Bonus tests
+
+| Testcase  | Descriptions | Result | Bonus reasons |
+| --------- | ------------ | ------ | ------------- |
+| Fibonacci |              | ✔      |               |
+|           |              | ✔      |               |
+|           |              | ✔      |               |
+|           |              | ✔      |               |
+|           |              | ✔      |               |
+
+
+
 ## Summary
 
 ### Conclusion
