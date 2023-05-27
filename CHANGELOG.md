@@ -6,6 +6,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.0.0] - 2023-05-27
+
+### Added
+
+- Video demo
+
+### Changed
+
+- Complete the project report
+- Re-format the project structure
+
+### Fixed
+
+- Fix bugs of several wire widths
+- Fix bugs of instruction decoder
+- Fix bugs of assembly test scenarios, now all passed
+
+## [0.3.5] - 2023-05-25
+
+### Added
+
+- Complete debug mode, displaying instant internal information
+- Add simulation files testing ID, EX and Register modules
+- Add assembly test scenarios
+
+### Changed
+
+- Modify the `state` bits to be more synchronized with CPU clock
+
+### Fixed
+
+- Fix bugs about register-writing enabling
+
 ## [0.3.4] - 2023-05-23
 
 ### Added

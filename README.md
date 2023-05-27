@@ -56,8 +56,6 @@ CPI: 2 cycles/instruction
 
 32-bit Registers: x0 - x31
 
-
-
 ### Instructions
 
 This custom ISA is designed based on `RV32I`. 
@@ -82,7 +80,7 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 - 24 switches, for debugging input
 - Reset button: P5
 - Input done button: P10
-- Input reset button: ?
+- Input reset button: P1
 - Debugging state button: R1
 
 **Output interfaces**
