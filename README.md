@@ -38,7 +38,7 @@ For Chinese README, see [README_CN](doc/README_CN.md).
 - [x] Tests
   - [x] Basic testcases \#1
   - [x] Basic testcases \#2
-  - [ ] Bonus testcases
+  - [x] Bonus testcases
   - [ ] Video for bonus part
 - [x] Summary
 
@@ -687,6 +687,8 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
         <td>Data read out</td>
     </tr>
 </table></details>
+
+
 ## Tests
 
 ### Module tests
@@ -709,6 +711,18 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 |  On-board  | Top           |   ✔    | The usability test of all types of instructions              |
 |  On-board  | Top           |   ✔    | [Test scenario 1](https://github.com/GuTaoZi/FeatherCPU/tree/main/asm). See [project requirement](https://github.com/GuTaoZi/FeatherCPU/blob/main/doc/Project%20Requirements.pdf) |
 |  On-board  | Top           |   ✔    | [Test scenario 2](https://github.com/GuTaoZi/FeatherCPU/tree/main/asm). See [project requirement](https://github.com/GuTaoZi/FeatherCPU/blob/main/doc/Project%20Requirements.pdf) |
+
+### Bonus tests
+
+| Testcase  | Descriptions | Result | Bonus reasons |
+| --------- | ------------ | ------ | ------------- |
+| Fibonacci |              | ✔      |               |
+|           |              | ✔      |               |
+|           |              | ✔      |               |
+|           |              | ✔      |               |
+|           |              | ✔      |               |
+
+
 
 ## Summary
 
