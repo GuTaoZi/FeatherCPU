@@ -6,6 +6,13 @@ module segtube(
     output reg[7:0] o_seg_cho,
     output reg[7:0] o_seg_lit
 );
+/****************************************************************
+ port           I/O     Src/Dst     Description
+ i_clk           I      H'ware      FPGA clock signal
+ i_dat           I      Key_Seg     Data to display
+ o_seg_cho       O      Key_Seg     Segment tube select signal
+ o_seg_lit       O      Key_Seg     Segment tube data
+****************************************************************/
 
 wire[7:0] num2seg [15:0];
 assign num2seg[0] = 8'b1100_0000; // 0

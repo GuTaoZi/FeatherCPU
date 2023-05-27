@@ -17,6 +17,25 @@ module Top(
     output [7:0]    seg_cho,
     output [7:0]    seg_lit
 );
+
+/****************************************************************
+ port           I/O     Src/Dst     Description
+ fpga_clk        I      H'ware      FPGA clock signal
+ rst_raw         I      H'ware      Reset signal before de-jittered
+ upg_rx          I       Uart       Uart input data
+ kb_row          I      H'ware      Keyboard row signal
+ debug_btn       I      H'ware      Debug button signal
+ sw              I      H'ware      Switches signal
+ kb_ack_btn      I      H'ware      Keyboard ACK signal
+ kb_cancel_btn   I      H'ware      Keyboard input reset signal
+ filter_test_btn I      H'ware      Filter test button signal
+ kb_col          O      H'ware      Keyboard col signal
+ upg_tx          O       Uart       Uart send back data
+ led_o           O      H'ware      LED state
+ seg_cho         O      H'ware      Segment tube select signal
+ seg_lit         O      H'ware      Segment tube data to display
+****************************************************************/
+
 wire rst;
 filter rst_raw_filer(
 .i_clk(fpga_clk),
@@ -171,7 +190,6 @@ wire [`REG_WIDTH] data_write_into_register = (inst[6:0]==`I_LW)     ?   data_fro
                                             (inst[6:0]==`J_JALR)    ?   pc_write_back_jalr      :
                                             (inst[6:0]==`J_JAL)     ?   pc_write_back_jalr      :
                                             alu_opt;
-wire reg_write;
 
 Register u_Register(
     .i_read_addr1(rs1_idx_raw),
@@ -186,8 +204,7 @@ Register u_Register(
     ///output///
     .o_read_data1(reg_data1),
     .o_read_data2(reg_data2),
-    .o_debug_data(reg_debug),
-    .o_writing(reg_write)
+    .o_debug_data(reg_debug)
 );
 
 wire [`REG_WIDTH] src1 = 

@@ -13,9 +13,23 @@ module Register(
     input   [`REG_IDX_LEN]  i_debug_idx,
     output [`REG_WIDTH] o_read_data1,
     output [`REG_WIDTH] o_read_data2,
-    output [`REG_WIDTH] o_debug_data,
-    output reg          o_writing
+    output [`REG_WIDTH] o_debug_data
 );
+
+/****************************************************************
+ port           I/O     Src/Dst     Description
+ i_read_addr1    I        ID        Index of first register
+ i_read_addr2    I        ID        Index of second register
+ i_write_addr    I        ID        Index of write-back register
+ i_write_data    I        Top       Data to write back
+ i_write_en      I        Top       Write back enable
+ i_clk           I        Top       CPU clock signal
+ i_rst           I      H'ware      Reset signal
+ i_debug_idx     I        Top       Index of register to display
+ o_read_data1    O        ALU       Value of first register
+ o_read_data2    O        ALU       Value of second register
+ o_debug_data    O        ALU       Value of display register
+****************************************************************/
 
 reg [`REG_WIDTH] registers [`REG_NUMBERS : 0];
 
