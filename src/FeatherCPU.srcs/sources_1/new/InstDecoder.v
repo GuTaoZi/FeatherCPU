@@ -59,11 +59,13 @@ assign o_imm = (o_inst_type==`R_TYPE)?32'h0:
                (o_inst_type==`J_TYPE)?((opcode==`J_JAL)?imm_JAL:imm_JALR):
                (o_inst_type==`U_TYPE)?imm_U:32'hffff_ffff;
 
-wire funct10 = {funct3,funct7};
+wire [9:0] funct10 = {funct3,funct7};
 
 assign o_alu_op =
     (o_inst_type==`R_TYPE)?
-    ((funct10==`R_ADD||funct10==`R_ADDU)?`ALU_ADD:
+    (
+    (funct10==`R_XOR)?`ALU_XOR:
+    (funct10==`R_ADD||funct10==`R_ADDU)?`ALU_ADD:
     (funct10==`R_SUB||funct10==`R_SUBU)?`ALU_SUB:
     (funct10==`R_MUL)?`ALU_MUL:
     (funct10==`R_DIV)?`ALU_DIV:
@@ -71,7 +73,6 @@ assign o_alu_op =
     (funct10==`R_SLL)?`ALU_SLL:
     (funct10==`R_SLT)?`ALU_SLT:
     (funct10==`R_SLTU)?`ALU_SLTU:
-    (funct10==`R_XOR)?`ALU_XOR:
     (funct10==`R_SRL)?`ALU_SRL:
     (funct10==`R_SRA)?`ALU_SRA:
     (funct10==`R_OR)?`ALU_OR:
@@ -86,6 +87,7 @@ assign o_alu_op =
     ({funct3,o_imm[11:5]}==`I_SRLI)?`ALU_SRL:
     ({funct3,o_imm[11:5]}==`I_SRAI)?`ALU_SRA:
     (funct3==`I_ORI)?`ALU_OR:
+    (funct3==`I_XORI)?`ALU_XOR:
     (funct3==`I_ANDI)?`ALU_AND:`ALU_ERR)
     :
     (o_inst_type==`S_TYPE)?`ALU_ADD:

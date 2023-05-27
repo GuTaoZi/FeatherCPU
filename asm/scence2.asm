@@ -63,7 +63,7 @@ case0:
 		add s2, s2, s1
 		bne s1, s0, case0_loop1
 		add zero, zero, zero
-		sw s2, 2(s11)
+		sw s2, 4(s11)
 		jal end
 	case0_err:
 		add s1, zero, zero
@@ -74,9 +74,9 @@ case0:
 		and s3, s1, s2
 		beq s3, s2, lit
 		add zero, zero, zero
-		sw zero, 2(s11)
+		sw zero, 4(s11)
 		jal edl_lop
-	lit:	sw s0, 2(s11)
+	lit:	sw s0, 4(s11)
 		jal edl_lop
 case1:
 		input(s0, case1_0)
@@ -184,10 +184,10 @@ case4:
 		addi s6, zero, 1
 		slli s6, s6, 8
 		or s6, s6, s4
-		sw s6, 2(s11)
+		sw s6, 4(s11)
 		jal end
 	case4_fail: # no overflow
-		sw s6, 2(s11)
+		sw s6, 4(s11)
 		jal end
 case5:
 		input(s0, case5_1)
@@ -207,10 +207,10 @@ case5:
 		addi s6, zero, 1
 		slli s6, s6, 8
 		or s6, s6, s4
-		sw s6, 2(s11)
+		sw s6, 4(s11)
 		jal end
 	case5_fail: # no overflow
-		sw s6, 2(s11)
+		sw s6, 4(s11)
 		jal end
 case6:
 		input(s0, case6_1)
@@ -218,7 +218,7 @@ case6:
 		andi s0, s0, 255
 		andi s1, s1, 255
 		mul s2, s0, s1
-		sw s2, 2(s11)
+		sw s2, 4(s11)
 		jal end
 case7:
 		input(s0, case7_1)
@@ -236,9 +236,9 @@ case7:
 		and s3, s1, s2
 		beq s3, s2, remin
 		add zero, zero, zero
-		sw s4, 2(s11)
+		sw s4, 4(s11)
 		jal edl_lp2
-	remin:	sw s5, 2(s11)
+	remin:	sw s5, 4(s11)
 		jal edl_lp2
 
 end:	jal end
