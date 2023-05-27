@@ -15,32 +15,32 @@ For Chinese README, see [README_CN](doc/README_CN.md).
 
 |      | Struct | ISA  | Doc  | IF   | ID   | EX   | MEM  | WB   | IO   | ASM  | Sim  | Video |
 | ---- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
-| 🍑    |        | ✔    | ✔    |      | ✔    | ✔    |      | ✔    | ✔    |      |      |       |
-| 🪶    | ✔      |      |      | ✔    |      | ✔    | ✔    | ✔    | ✔    | ✔    |      |       |
+| 🍑    |        | ✔    | ✔    |      | ✔    | ✔    |      | ✔    | ✔    |      | ✔    | ✔     |
+| 🪶    | ✔      |      |      | ✔    |      | ✔    | ✔    | ✔    | ✔    | ✔    | ✔    | ✔     |
 
 \* Uncountable detailed contributions are omitted here.
 
 ## TODOs
 
-- [ ] CPU Features
+- [x] CPU Features
   - [x] ISA Design
   - [x] Address Space Design
   - [x] Fast Single Cycle Design
-  - [ ] Debugging
-- [ ] CPU Interfaces
+  - [x] Debugging
+- [x] CPU Interfaces
   - [x] Clock
   - [x] Reset
   - [x] Uart
   - [x] Others: Keyboard, segment tubes
-- [ ] Internal Structures
+- [x] Internal Structures
   - [x] Module interconnections
-  - [ ] Module introduction
-- [ ] Tests
-  - [ ] Basic testcases \#1
-  - [ ] Basic testcases \#2
+  - [x] Module introduction
+- [x] Tests
+  - [x] Basic testcases \#1
+  - [x] Basic testcases \#2
   - [ ] Bonus testcases
   - [ ] Video for bonus part
-- [ ] Summary
+- [x] Summary
 
 ## Style Guide
 
@@ -687,12 +687,36 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
         <td>Data read out</td>
     </tr>
 </table></details>
-
 ## Tests
 
-以表格的方式罗列出测试方法（仿真、上板）、测试类型（单元、集成）、测试用例描述、测试结果（通过、不通过）；以及最终的测试结论。
+### Module tests
+
+|   Method   | Module                | Result | Descriptions                                                 |
+| :--------: | --------------------- | :----: | ------------------------------------------------------------ |
+| Simulation | InstDecoder           |   ✔    | Check whether the combinational logic module correctly decodes the instructions |
+| Simulation | Filter                |   ✔    | The filter de-jitters the input signals and outputs stable signals. |
+|  On-board  | Uart                  |   ✔    | The uart interface works well.                               |
+|  On-board  | DMA and IO interfaces |   ✔    | The keyboard, segtubes, switches and LEDs work, and DMA accesses the memory correctly. |
+|  On-board  | PC                    |   ✔    | PC is updated correctly according to controller and ALU.     |
+|  On-board  | ALU                   |   ✔    | ALU correctly calculates the results for all instructions.   |
+|  On-board  | Register              |   ✔    | The input and output of registers are correct.               |
+
+### Integrated tests
+
+|   Method   | Object        | Result | Descriptions                                                 |
+| :--------: | ------------- | :----: | ------------------------------------------------------------ |
+| Simulation | ID - EX - Reg |   ✔    | The combinatorial part works.                                |
+|  On-board  | Top           |   ✔    | The usability test of all types of instructions              |
+|  On-board  | Top           |   ✔    | [Test scenario 1](https://github.com/GuTaoZi/FeatherCPU/tree/main/asm). See [project requirement](https://github.com/GuTaoZi/FeatherCPU/blob/main/doc/Project%20Requirements.pdf) |
+|  On-board  | Top           |   ✔    | [Test scenario 2](https://github.com/GuTaoZi/FeatherCPU/tree/main/asm). See [project requirement](https://github.com/GuTaoZi/FeatherCPU/blob/main/doc/Project%20Requirements.pdf) |
 
 ## Summary
+
+### Conclusion
+
+In this project, we implement a single-cycle CPU for FeatherISA running on Minisys from scratch without referencing others' implementations. Though many bugs were met during the process of development, they were then solved with great efforts. This is really meaningful for understanding the architectures of computers, and stimulates our interest of hardware-software cooperating development.
+
+Great thanks for Prof. Zhang, TA Wang Wei, SAs, and everyone else who contributes to the development of this project!
 
 ### Problems met
 
@@ -709,4 +733,3 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 ## Changelog
 
 See [CHANGELOG.md](https://github.com/GuTaoZi/FeatherCPU/blob/main/CHANGELOG.md).
-

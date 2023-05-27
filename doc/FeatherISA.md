@@ -6,8 +6,6 @@ This custom ISA is designed based on `RV32I`.
 
 Some signed instructions beyond RV32I are implemented in this ISA. 
 
-- [ ] `ebreak` interruption implementation
-
 ### Instruction Format
 
 <img src="https://s2.loli.net/2023/04/19/74xdmlkVQotgSMf.png" style="zoom: 67%;" />
@@ -164,6 +162,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
     </tr>
 </table>
 </details>
+
 ### I type
 
 <details>
@@ -268,7 +267,7 @@ Instructions with \* are custom instructions beyond `RV32I`.
             <td></td>
         </tr>
         <tr>
-            <td>ebreak(optional)</td>
+            <td>ebreak</td>
             <td>Environment Break</td>
             <td>1110011</td>
             <td>000</td>
@@ -278,6 +277,8 @@ Instructions with \* are custom instructions beyond `RV32I`.
         </tr>
     </table>
 </details>
+
+
 ### S type
 
 <details>
