@@ -50,6 +50,8 @@ This project is written in [Verilog Coding Style](https://verilogcodingstyle.rea
 
 ### Basic Information
 
+Harvard architecture
+
 CPU frequency: 25 MHz
 
 CPI: 2 cycles/instruction
@@ -68,22 +70,22 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 
 ## CPU Interfaces
 
-**Clocks**
+### **Clocks**
 
 - FPGA frequency: 100 MHz
 - CPU frequency: 25 MHz
 
-**Input interfaces**
+### **Input interfaces**
 
 - Uart interface, for instruction and data memory input
 - 4X4 matrix keyboard, for memory-mapped input
 - 24 switches, for debugging input
 - Reset button: P5
-- Input done button: P10
+- Input acknowledge button: P10
 - Input reset button: P1
 - Debugging state button: R1
 
-**Output interfaces**
+### **Output interfaces**
 
 - 8 segment tubes, displaying input data and CPU state information
 - 24 leds, for memory-mapped output
@@ -714,15 +716,10 @@ For more details, see [Feather ISA](doc/FeatherISA.md).
 
 ### Bonus tests
 
-| Testcase  | Descriptions | Result | Bonus reasons |
-| --------- | ------------ | ------ | ------------- |
-| Fibonacci |              | ✔      |               |
-|           |              | ✔      |               |
-|           |              | ✔      |               |
-|           |              | ✔      |               |
-|           |              | ✔      |               |
-
-
+| Testcase  | Descriptions                                                 | Result |
+| --------- | ------------------------------------------------------------ | ------ |
+| Marquee   | Use MMIO to control the running speed of the marquee.        | ✔      |
+| Fibonacci | Calculate the Fibonacci sequence with fast matrix exponential. | ✔      |
 
 ## Summary
 
