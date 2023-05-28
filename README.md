@@ -20,28 +20,6 @@ For Chinese README, see [README_CN](doc/README_CN.md).
 
 \* Uncountable detailed contributions are omitted here.
 
-## TODOs
-
-- [x] CPU Features
-  - [x] ISA Design
-  - [x] Address Space Design
-  - [x] Fast Single Cycle Design
-  - [x] Debugging
-- [x] CPU Interfaces
-  - [x] Clock
-  - [x] Reset
-  - [x] Uart
-  - [x] Others: Keyboard, segment tubes
-- [x] Internal Structures
-  - [x] Module interconnections
-  - [x] Module introduction
-- [x] Tests
-  - [x] Basic testcases \#1
-  - [x] Basic testcases \#2
-  - [x] Bonus testcases
-  - [ ] Video for bonus part
-- [x] Summary
-
 ## Style Guide
 
 This project is written in [Verilog Coding Style](https://verilogcodingstyle.readthedocs.io/en/latest/index.html).
@@ -744,3 +722,25 @@ Great thanks for Prof. Zhang, TA Wang Wei, SAs, and everyone else who contribute
 ## Changelog
 
 See [CHANGELOG.md](https://github.com/GuTaoZi/FeatherCPU/blob/main/CHANGELOG.md).
+
+## TODOs
+
+- [x] CPU Features
+  - [x] ISA Design
+  - [x] Address Space Design
+  - [x] Fast Single Cycle Design
+  - [x] Debugging
+- [x] CPU Interfaces
+  - [x] Clock
+  - [x] Reset
+  - [x] Uart
+  - [x] Others: Keyboard, segment tubes
+- [x] Internal Structures
+  - [x] Module interconnections
+  - [x] Module introduction
+- [x] Tests
+  - [x] Basic testcases \#1
+  - [x] Basic testcases \#2
+  - [x] Bonus testcases
+  - [x] Video for bonus part
+- [x] Summary

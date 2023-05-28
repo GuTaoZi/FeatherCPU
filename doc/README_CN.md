@@ -20,28 +20,6 @@ FeatherCPU是一个支持RV32I指令集的轻量级CPU内核，测试运行于Mi
 | 🍑    |      | ✔      | ✔    |      | ✔    | ✔    |      | ✔    | ✔    |      | ✔    | ✔    |
 | 🪶    | ✔    |        |      | ✔    |      | ✔    | ✔    | ✔    | ✔    | ✔    | ✔    | ✔    |
 
-## 待办
-
-- [x] CPU特性
-  - [x] ISA设计
-  - [x] 寻址空间设计
-  - [x] 多周期流水线设计
-  - [x] 调试
-- [x] CPU接口
-  - [x] 时钟
-  - [x] 复位
-  - [x] Uart接口
-  - [x] 其他IO: 矩阵键盘，数码管
-- [x] CPU内部结构
-  - [x] 子模块接口连接关系
-  - [x] 子模块设计说明
-- [x] 测试说明
-  - [x] 基础测试集 \#1
-  - [x] 基础测试集 \#2
-  - [x] Bonus测试
-  - [ ] Bonus展示视频
-- [x] 问题与总结
-
 ## 代码规范
 
 本项目代码规范部分参考于 [Verilog Coding Style](https://verilogcodingstyle.readthedocs.io/en/latest/index.html).
@@ -758,3 +736,24 @@ CPI：2 周期/指令
 
 详参 [CHANGELOG.md](https://github.com/GuTaoZi/FeatherCPU/blob/main/CHANGELOG.md).
 
+## 待办
+
+- [x] CPU特性
+  - [x] ISA设计
+  - [x] 寻址空间设计
+  - [x] 多周期流水线设计
+  - [x] 调试
+- [x] CPU接口
+  - [x] 时钟
+  - [x] 复位
+  - [x] Uart接口
+  - [x] 其他IO: 矩阵键盘，数码管
+- [x] CPU内部结构
+  - [x] 子模块接口连接关系
+  - [x] 子模块设计说明
+- [x] 测试说明
+  - [x] 基础测试集 \#1
+  - [x] 基础测试集 \#2
+  - [x] Bonus测试
+  - [x] Bonus展示视频
+- [x] 问题与总结
