@@ -1,0 +1,5 @@
+.text
+	addi t0, zero, 5
+	sw t0, 115(t0)
+	lw t1, 115(t0)
+lp:	jal lp

@@ -1,0 +1,16 @@
+.text
+	addi t1, zero, 1
+	slli t6, t1, 16
+	addi t1, zero, 63
+	slli t1, t1, 8
+	addi t1, t1, 240
+loop1:
+	lw t3, (t1)
+	and t2, t3, t6
+	bne t2, t6, loop1
+	
+loop2:
+	lw t5, (t1)
+	and t2, t5, t6
+	beq t2, t6, loop2
+	
